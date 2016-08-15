@@ -94,7 +94,7 @@ function requestHandlerAPI(){
 			var mail 	= localStorage.getItem('mail');
 			var token 	= localStorage.getItem('token');
 
-			//console.log(" ID > > "+userId + " MAIL > > " + mail + " TOKEN > > " + this.token);
+			console.log(" ID > > "+userId + " MAIL > > " + mail + " TOKEN > > " + this.token);
 
 			/*
 				REGRESA LA RESPUESTA DEL SERVIDOR CON EL USER ID, MAIL Y TOKEN
@@ -162,7 +162,7 @@ function requestHandlerAPI(){
 
 				// 	return (userId) ? response : false;
 				// }
-				return false;
+				return true;
 				
 			}
 
