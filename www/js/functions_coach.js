@@ -2,8 +2,8 @@
 
 $( function() {
 
-  	//$( ".accordion" ).accordion({collapsible:true,active:false,animate:300,heightStyle:"content"});
-  	//$( ".accordion1" ).accordion({collapsible:true,active:false,animate:200,heightStyle:"content"});
+  	$( ".accordion" ).accordion({collapsible:true,active:false,animate:300,heightStyle:"content"});
+  	$( ".accordion1" ).accordion({collapsible:true,active:false,animate:200,heightStyle:"content"});
 
 } );
 
@@ -11,23 +11,25 @@ $(window).on("load resize",function(){
 
 	var ancho = document.documentElement.clientWidth;
 	var alto = document.documentElement.clientHeight;
-	$('.list-platos #scroller > ul > li').css("height",alto-148);  
+	$('.list-platos #scroller > ul > li').css("height",alto-148); 
+	$('#toda_la_dieta > li').css("height",alto-100);
+	$('.iosm #toda_la_dieta > li').css("height",alto-120);
 });
 
 $(window).load(function(){
 	$(function() {
 
-		$('#enviar_login').click(){
-			conosle.log('click'):
-		}
+		$('#enviar_login').click(function(){
+			conosle.log('click');
+		});
 
 		$(".acc-selector").click(function(){
 			if ($(this).hasClass('ui-state-active')) {
-				if ($(this).hasClass('desayuno')) {$('body').animate({scrollTop:0}, 300);}
-				if ($(this).hasClass('snack1')) {$('body').animate({scrollTop:65}, 300);}
-				if ($(this).hasClass('comida')) {$('body').animate({scrollTop:128}, 300);}
-				if ($(this).hasClass('snack2')) {$('body').animate({scrollTop:190}, 300);}
-				if ($(this).hasClass('cena')) {$('body').animate({scrollTop:255}, 300);}
+				if ($(this).hasClass('desayuno')) {$(this).parent().parent().animate({scrollTop:0}, 300);}
+				if ($(this).hasClass('snack1')) {$(this).parent().parent().animate({scrollTop:54}, 300);}
+				if ($(this).hasClass('comida')) {$(this).parent().parent().animate({scrollTop:120}, 300);}
+				if ($(this).hasClass('snack2')) {$(this).parent().parent().animate({scrollTop:184}, 300);}
+				if ($(this).hasClass('cena')) {$(this).parent().parent().animate({scrollTop:248}, 300);}
 			}
 		});
 
