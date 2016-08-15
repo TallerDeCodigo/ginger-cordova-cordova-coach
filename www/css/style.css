@@ -437,6 +437,21 @@ body.coperfil .la_img {width:100%;height:auto;margin-top:2px;}
 .di-options a:last-of-type {margin-left:-4px;width:49.8%;border-left:1px solid #afafaf;}
 .di-options a:only-of-type {width:100%;border:none;margin-left:0px;}
 
+/*
+	ABOUT
+*/
+#logo{background:url(../images/logo.svg);background-repeat:no-repeat;background-position: center;height:100px;}
+#logo_soporte{background:url(../images/logo.svg);background-repeat:no-repeat;background-position: center;height:100px;margin-top:30%;}
+.small{font-size: 1.5rem}
+.bg_blur{background: url(../images/fondo.png);background-repeat: no-repeat;-webkit-filter: blur(5px); background-position:center; padding:20px 0px 10px 0px;position:absolute;top:48%;z-index:-99;height:165px;}
+.bg_content{background-color:rgba(255,255,255,0.5);padding:30px 0px 35px 0px;color:#666;}
+p.small{margin-bottom:0;}
+.smaller{font-size: 1.2rem}
+.bg_content div{margin-top:30px;}
+
+.bg_blur_soporte{background: url(../images/backsoporte.png);background-size:100%; background-repeat: no-repeat;-webkit-filter: blur(5px); background-position:center; padding:20px 0px 10px 0px;position:absolute;top:0;bottom:0;left:0;right:0; z-index:-99;height:100%;}
+#soporte{font-size: 2rem}
+
 
 
 
