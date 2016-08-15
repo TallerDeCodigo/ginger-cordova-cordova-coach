@@ -2,8 +2,8 @@
 
 $( function() {
 
-  	//$( ".accordion" ).accordion({collapsible:true,active:false,animate:300,heightStyle:"content"});
-  	//$( ".accordion1" ).accordion({collapsible:true,active:false,animate:200,heightStyle:"content"});
+  	$( ".accordion" ).accordion({collapsible:true,active:false,animate:300,heightStyle:"content"});
+  	$( ".accordion1" ).accordion({collapsible:true,active:false,animate:200,heightStyle:"content"});
 
 } );
 
@@ -17,9 +17,10 @@ $(window).on("load resize",function(){
 $(window).load(function(){
 	$(function() {
 
-		$('#enviar_login').click(){
-			conosle.log('click'):
-		}
+		$('#enviar_login').click(function(){
+			conosle.log('click');
+		});
+
 
 		$(".acc-selector").click(function(){
 			if ($(this).hasClass('ui-state-active')) {
