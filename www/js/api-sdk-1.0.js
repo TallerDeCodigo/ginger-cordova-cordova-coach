@@ -169,69 +169,232 @@ function requestHandlerAPI(){
 			return false;
 		};
 
+		/**
+		 * Función para obtener las dietas de un coach que este logeado
+		 *
+		 **/
 
-		/* 
-		 * Register a new user account the old fashioned way
-		 * @param data_login JSON {user_login, user_password}
-		 * @return status Bool true is successfully logged in; false if an error ocurred (User already exists)
-		 */
-		this.registerNative = function(data_login){
-
-			var name = data_login.user;
-			var last_name = data_login.last_name;
-			var email = data_login.mail;
-			var pass = data_login.pass;
-			var cPass = data_login.cpass;
-
+		this.getDiets = function(){
 			var req = {
-					method : 'post',
-					url : api_base_url + 'api/signup',
-					headers: {
-						'X-ZUMO-APPLICATION': 'ideIHnCMutWTPsKMBlWmGVtIPXROdc92',
-						'X-ZUMO-AUTH': '',
-						'Content-Type': 'application/json'
-					},
-					data : {
-						"nombre" : name,
-						"apellido" :last_name,
-						"mail" : email,
-						"password" : pass
-					}
+				method : 'get',
+				url : api_base_url + 'tables/dieta/?coach=',	//definitr tabla
+				headers: {
+					'X-ZUMO-APPLICATION': 'ideIHnCMutWTPsKMBlWmGVtIPXROdc92',
+					'X-ZUMO-AUTH': localStorage.getItem('token'),
+					'Content-Type': 'application/json'
 				}
+			}
+			console.log(req);
 
-			var response = this.makeRequest('api/signup', req);
+			var response = this.getRequest('tables/dieta/?coach=' + localStorage.getItem('userId'), req);
+
+			console.log("Request Data Diets");
 
 			console.log(response);  //llega aqui con la respuesta del servidor
 
-			this.token = localStorage.getItem('token');
+			return (response) ? response : false;
 
-			console.log('TOKEN: ' + this.token );
+		};
 
-			/*
-				GUARDA LOS DATOS DEL USUARIO EN LOCAL STORAGE 
-			*/
+		/**
+		 *
+		 * Update Diet
+		 *
+		 **/
 
-			localStorage.setItem('token', response.token);
-			localStorage.setItem('mail', response.mail);
-			localStorage.setItem('chatId', response.jid);
-			localStorage.setItem('userId', response._id);
+		this.updateDiet = function (data){
+			
+			var req = {
+				method : 'PATCH',
+				url : api_base_url + 'tables/dieta/',
+				headers: {
+					'X-ZUMO-APPLICATION': 'ideIHnCMutWTPsKMBlWmGVtIPXROdc92',
+					'X-ZUMO-AUTH': localStorage.getItem('token'),
+					'Content-Type': 'application/json'
+				},
+				data : data
+			}
 
-			console.log(JSON.stringify(response));
+			console.log(JSON.stringify(req));
 
-			var userId 	= localStorage.getItem('userId');
-			var mail 	= localStorage.getItem('mail');
-			var token 	= localStorage.getItem('token');
+			var response = this.makePatchRequest('tables/dieta/', data);
 
-			console.log(" ID > > "+userId + " MAIL > > " + mail + " TOKEN > > " + token);
+			console.log("Request Path Data Dieta");
+
+			console.log(response);  //llega aqui con la respuesta del servidor
+
+			return (response) ? response : false;
+		};
+
+		/**
+		 * DELETE DIET
+		 * */
+
+		this.deleteDiet = function(diet){
+
+		};
+
+		/**
+		 *
+		 * Platillos
+ 		 *
+		 **/
+
+		this.listDishes = function(publico){
+			var req = {
+				method : 'get',
+				url : api_base_url + 'tables/plato?coach=' + localStorage.getItem('userId') + '&publico=' + publico + '&epp=999',	//definitr tabla
+				headers: {
+					'X-ZUMO-APPLICATION': 'ideIHnCMutWTPsKMBlWmGVtIPXROdc92',
+					'X-ZUMO-AUTH': localStorage.getItem('token'),
+					'Content-Type': 'application/json'
+				}
+			}
+			console.log(req);
+
+			var response = this.getRequest('tables/plato?coach=' + localStorage.getItem('userId') + '&publico=' + publico + '&epp=999' , req);
+
+			console.log("Request Data Dishes");
+
+			console.log(response);  //llega aqui con la respuesta del servidor
+
+			return (response) ? response : false;
+		};
 
 
-			// Function 
+		/**
+		 *
+		 * new dish
+ 		 *
+		 **/
 
-			//var user = this.getRequest('api/cliente', req);
+		this.newDish = function(){
+			var req = {
+				method : 'post',
+				url : api_base_url + 'tables/plato',	//definitr tabla
+				headers: {
+					'X-ZUMO-APPLICATION': 'ideIHnCMutWTPsKMBlWmGVtIPXROdc92',
+					'X-ZUMO-AUTH': localStorage.getItem('token'),
+					'Content-Type': 'application/json'
+				},
+				data : {
+					'data' : data
+				}
+			}
+			console.log(req);
 
-			//console.log(JSON.stringify(user));
+			var response = this.makeRequest('tables/plato', req);
 
-			return (response.nuevo) ? response : false;
+			console.log("Request Data Cliente");
+
+			console.log(response);  //llega aqui con la respuesta del servidor
+
+			return (response) ? response : false;
+		};
+
+		/**
+		 * Ingredientes
+		 * */
+
+		 this.listIngredient = function(){
+		 	var req = {
+				method : 'get',
+				url : api_base_url + 'tables/ingrediente',	//definitr tabla
+				headers: {
+					'X-ZUMO-APPLICATION': 'ideIHnCMutWTPsKMBlWmGVtIPXROdc92',
+					'X-ZUMO-AUTH': localStorage.getItem('token'),
+					'Content-Type': 'application/json'
+				}
+			}
+			console.log(req);
+
+			var response = this.getRequest('tables/ingrediente' , req);
+
+			console.log("Request Data Ingredients");
+
+			console.log(response);  //llega aqui con la respuesta del servidor
+
+			return (response) ? response : false;
+		 };
+
+		/**
+		 *
+		 * SAVE INGREDIENTS
+ 		 *
+		 **/
+
+
+		 this.newIngredient = function(data){
+		 	var req = {
+				method : 'post',
+				url : api_base_url + 'tables/ingrediente',	//definitr tabla
+				headers: {
+					'X-ZUMO-APPLICATION': 'ideIHnCMutWTPsKMBlWmGVtIPXROdc92',
+					'X-ZUMO-AUTH': localStorage.getItem('token'),
+					'Content-Type': 'application/json'
+				},
+				data : {
+					'data' : data
+				}
+			}
+			console.log(req);
+
+			var response = this.makeRequest('tables/ingrediente', req);
+
+			console.log("Request Data Cliente");
+
+			console.log(response);  //llega aqui con la respuesta del servidor
+
+			return (response) ? response : false;
+		 };
+
+		/**
+		 * Función para obtener las usuarios de un coach que este logeado
+		 *
+		 **/
+
+		this.getUsuarios = function(){
+			var req = {
+				method : 'get',
+				url : api_base_url + 'tables/cliente?coach=',	//definitr tabla
+				headers: {
+					'X-ZUMO-APPLICATION': 'ideIHnCMutWTPsKMBlWmGVtIPXROdc92',
+					'X-ZUMO-AUTH': localStorage.getItem('token'),
+					'Content-Type': 'application/json'
+				}
+			}
+			console.log(req);
+
+			var response = this.getRequest('tables/cliente/?coach=' + localStorage.getItem('userId'), req);
+
+			console.log("Request Data Clientes");
+
+			console.log(response);  //llega aqui con la respuesta del servidor
+
+			return (response) ? response : false;
+
+		};
+
+		this.getFinanzas = function(mes){
+			var req = {
+				method : 'get',
+				url : api_base_url + 'api/history/?coach=',	//definitr tabla
+				headers: {
+					'X-ZUMO-APPLICATION': 'ideIHnCMutWTPsKMBlWmGVtIPXROdc92',
+					'X-ZUMO-AUTH': localStorage.getItem('token'),
+					'Content-Type': 'application/json'
+				}
+			}
+			console.log(req);
+
+			var response = this.getRequest('api/history/?coach=' + localStorage.getItem('userId') + '&mes=' + mes, req);
+
+			console.log("Request Data Finanzas");
+
+			console.log(response);  //llega aqui con la respuesta del servidor
+
+			return (response) ? response : false;
+
 		};
 
 		this.tracking = function(tipo, magnitud){
