@@ -89,7 +89,7 @@ input, textarea {font-family:'Kohi';font-weight:100;-webkit-appearance:none;}
 h2 {margin:10px 0px 0px;font-weight:100;font-size:140%;}
 h4 {margin:10px 0px 12px;font-weight:700;font-size:130%;color:#333;}
 
-.circle-frame {position:absolute;border-radius:50%;overflow:hidden;background:url('images/noimg.svg') center;background-size:auto 100%;}
+.circle-frame {position:absolute;border-radius:50%;overflow:hidden;background:url(../images/noimg.svg) center;background-size:auto 100%;}
 .circle-frame img {width:auto;height:105%;position:absolute;top:-9999px;bottom:-9999px;left:-9999px;right:-9999px;margin:auto;}
 
 .bt-review {position:relative;display:inline-block;margin-left:9px;background:#8041b7;border-radius:2px;text-align:center;color:#FFF;font-weight:700;font-size:80%;line-height:18px;padding:0px 5px;}
@@ -151,7 +151,7 @@ section.menu {color:#FFF;font-size:110%;}
 .login input {width:88%;border-radius:3px;outline:none;border:none;background:#FFF;margin:3% 0px;padding:4px 5px 1px;font-size:120%;font-weight:100;}
 .login input[type="submit"]{height:50px;}
 
-#enviar_login{background:url(images/enter.svg);background-position:center;background-repeat:no-repeat;outline:none;margin-top:30px;}
+#enviar_login{background:url(../images/enter.svg);background-position:center;background-repeat:no-repeat;outline:none;margin-top:30px;}
 
 /* CHAT */
 
@@ -165,8 +165,8 @@ section.menu {color:#FFF;font-size:110%;}
 
 .incoming {float:left;background:#42c2a7;width:75%;color:#FFF;text-align:left;border-radius:10px;margin:12px 0px 0px 13px;position:relative;}
 .outgoing {float:right;background:#7f4ab8;width:75%;color:#FFF;text-align:left;border-radius:10px;margin:12px 13px 0px 0px;position:relative;}
-.incoming:after {content:"";position:absolute;left:-11px;bottom:0px;width:11px;height:14px;background:url('images/incom.svg');}
-.outgoing:after {content:"";position:absolute;right:-11px;bottom:0px;width:11px;height:14px;background:url('images/outgo.svg');}
+.incoming:after {content:"";position:absolute;left:-11px;bottom:0px;width:11px;height:14px;background:url(../images/incom.svg);}
+.outgoing:after {content:"";position:absolute;right:-11px;bottom:0px;width:11px;height:14px;background:url(../images/outgo.svg);}
 .incoming:not(.withimg) {border-bottom-left-radius:0px;}
 .outgoing:not(.withimg) {border-bottom-right-radius:0px;}
 .withimg {overflow:hidden;}
@@ -228,9 +228,9 @@ nav.botones {float:right;margin:2px 0px 5px 15px;}
 /*div.acc-content .platillo:last-of-type {border:none;}*/
 .platillo textarea {color:#3f3f3f;width:100%;border:none;border-bottom:1px solid #b4b1b0;resize:none;padding:0px 4px;outline:none;}
 .name_platillo {font-size:115%;font-weight:bold;}
-.receta {background:url('images/cook.svg') no-repeat;background-position:11px center;padding:8px 10px 0px 50px;}
+.receta {background:url(../images/cook.svg) no-repeat;background-position:11px center;padding:8px 10px 0px 50px;}
 .receta textarea {font-size:95%;font-weight:300;}
-.comentario {background:url('images/comment.svg') no-repeat;background-position:11px center;padding:8px 10px 0px 50px;}
+.comentario {background:url(../images/comment.svg) no-repeat;background-position:11px center;padding:8px 10px 0px 50px;}
 .comentario textarea {font-size:95%;font-weight:300;}
 
 h6.ingred {margin:11px 5px 8px;}
@@ -247,8 +247,8 @@ li.persona {list-style:none;border-bottom:1px solid #cfcfcf;text-align:left;heig
 .persona h5 {white-space:nowrap;text-overflow:ellipsis;overflow:hidden;}
 .persona p {white-space:nowrap;text-overflow:ellipsis;overflow:hidden;font-size:90%;}
 .persona div.leido, .persona div.no-leido {position:absolute;right:11px;top:18px;text-align:right;}
-.persona div.leido:before {position:absolute;width:16px;height:16px;background:url('images/leido.svg');background-size:100% auto;left:-19px;top:0px;content:"";}
-.persona div.no-leido:before {position:absolute;width:16px;height:16px;background:url('images/noleido.svg');background-size:100% auto;left:-19px;top:0px;content:"";}
+.persona div.leido:before {position:absolute;width:16px;height:16px;background:url(../images/leido.svg);background-size:100% auto;left:-19px;top:0px;content:"";}
+.persona div.no-leido:before {position:absolute;width:16px;height:16px;background:url(../images/noleido.svg);background-size:100% auto;left:-19px;top:0px;content:"";}
 
 /* LISTA DIETAS */
 
@@ -269,8 +269,8 @@ li.persona {list-style:none;border-bottom:1px solid #cfcfcf;text-align:left;heig
 .list-usuarios ul li:last-of-type {border:none;}
 .list-usuarios ul li h2 {margin:0px;line-height:70px;font-weight:300;}
 .list-usuarios ul li a.bubble {position:absolute;width:34px;height:34px;line-height:28px;color:#FFF;top:21px;text-align:center;font-size:135%;font-weight:100;}
-.list-usuarios ul li a.notificaciones {right:65px;background:url('images/circle.svg');}
-.list-usuarios ul li a.mensajes {right:15px;background:url('images/msjs.svg');}
+.list-usuarios ul li a.notificaciones {right:65px;background:url(../images/circle.svg);}
+.list-usuarios ul li a.mensajes {right:15px;background:url(../images/msjs.svg);}
 
 /* PERFIL */
 
@@ -317,7 +317,7 @@ a.create-diet {position:fixed;width:100%;height:45px;bottom:0px;z-index:9999999;
 .box-input-1 {border:2px solid #767676;width:80%;border-top:none;position:relative;display:inline-block;height:20px;}
 .box-input-1 input {position:relative;top:-12px;width:100%;background:none;outline:none;text-align:center;border:none;color:#767676;font-size:130%;height:30px;padding-bottom:3px;}
 
-.create {background:url('images/bottom.png') no-repeat;background-size:100% auto;background-position:bottom;}
+.create {background:url(../images/bottom.png) no-repeat;background-size:100% auto;background-position:bottom;}
 .create h5 {font-size:125%;margin-top:16%;margin-bottom:15px}
 .create .box-input-1 {margin-top:25px;margin-bottom:20px;}
 .create .btn-gre {margin-top:16%;}
@@ -351,14 +351,14 @@ a.create-diet {position:fixed;width:100%;height:45px;bottom:0px;z-index:9999999;
 .acc1-selector {height:50px;position:relative;line-height:50px;padding-left:60px;font-size:105%;background:#FFF;outline:none;}
 .acc1-selector img {position:absolute;left:13px;top:15%;height:70%;width:auto;}
 .acc1-selector h5 {position:relative;display:inline-block;}
-.acc1-selector h5:after {content:"";position:absolute;width:10px;height:10px;background:url(images/rightarrow.png) no-repeat;transform:rotate(0deg);-webkit-transform:rotate(0deg);background-size:auto 100%;right:-20px;top:20px;-webkit-transition:.15s ease-in-out;transition:.15s ease-in-out;}
+.acc1-selector h5:after {content:"";position:absolute;width:10px;height:10px;background:url(../images/rightarrow.png) no-repeat;transform:rotate(0deg);-webkit-transform:rotate(0deg);background-size:auto 100%;right:-20px;top:20px;-webkit-transition:.15s ease-in-out;transition:.15s ease-in-out;}
 .acc1-selector.ui-state-active h5:after {transform:rotate(90deg);-webkit-transform:rotate(90deg);top:22px;}
 
 .acc1-content ul {margin:0;}
 .acc1-content ul li {list-style:none;height:32px;line-height:32px;padding-left:55px;position:relative;}
 .acc1-content ul li .cantidad {opacity:0;position:absolute;width:16px;height:16px;background:#ff873e;font-weight:800;font-size:80%;border-radius:50%;top:50%;left:21px;margin-top:-8px;line-height:16px;text-align:center;color:#FFF;}
 
-.acc1-content ul li input[type=checkbox]:not(old) {width:20px;height:20px;padding:0;opacity:1;float:right;margin:6px 8px;background:url('images/radio.png') no-repeat;background-size:100% auto;outline:none;background-position:0px 0px;}
+.acc1-content ul li input[type=checkbox]:not(old) {width:20px;height:20px;padding:0;opacity:1;float:right;margin:6px 8px;background:url(../images/radio.png) no-repeat;background-size:100% auto;outline:none;background-position:0px 0px;}
 .acc1-content ul li input[type=checkbox]:not(old):checked {background-position:0px -20px;}
 
 /* CREAR INGREDIENTE */
@@ -391,7 +391,7 @@ a.create-diet {position:fixed;width:100%;height:45px;bottom:0px;z-index:9999999;
 
 nav.set-public {float:right;text-align:center;width:30%;margin:5px 0px 0px 0px;}
 nav.set-public span {font-size:30%;display:block;font-weight:800;}
-.create-platillo input[type=checkbox]:not(old) {width:20px;height:20px;padding:0;opacity:1;background:url('images/radio2.png') no-repeat;background-size:100% auto;outline:none;background-position:0px 0px;}
+.create-platillo input[type=checkbox]:not(old) {width:20px;height:20px;padding:0;opacity:1;background:url(../images/radio2.png) no-repeat;background-size:100% auto;outline:none;background-position:0px 0px;}
 .create-platillo input[type=checkbox]:not(old):checked {background-position:0px -20px;}
 
 
