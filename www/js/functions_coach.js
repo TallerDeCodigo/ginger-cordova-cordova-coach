@@ -20,8 +20,6 @@ $(window).load(function(){
 		$('#enviar_login').click(function(){
 			conosle.log('click');
 		});
-
-
 		$(".acc-selector").click(function(){
 			if ($(this).hasClass('ui-state-active')) {
 				if ($(this).hasClass('desayuno')) {$('body').animate({scrollTop:0}, 300);}
