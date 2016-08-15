@@ -177,8 +177,6 @@ section.menu {color:#FFF;font-size:110%;}
 
 /* DIETA */
 
-body.dieta #container {position:relative;padding-top:100px;width:100%;min-height:100%;}
-
 .week {position:fixed;width:100%;z-index:99999999;background:#FFF;top:50px;padding:0px 2%;}
 .week table {width:100%;table-layout:fixed;margin:6px 0 2px;}
 .week table tr {line-height:10px;}
@@ -186,15 +184,24 @@ body.dieta #container {position:relative;padding-top:100px;width:100%;min-height
 .weekdays td span {width:22px;height:22px;position:relative;display:inline-block;border-radius:50%;line-height:21px;}
 .weekdays td span.active {background:#33cc99;color:#FFF;}
 
-.swipe {width:92%;position:relative;display:inline-block;margin-bottom:-4px;}
+body.dieta #scroller {width:92%;position:absolute;height:calc(100% - 100px);top:100px;left:4%;}
+#toda_la_dieta {height:100%;position:absolute;}
+#toda_la_dieta > li {position:relative;height:330px;}
+.dieta-wrapper {position:absolute;width:100%;height:100%;overflow-y:scroll;left:0px;top:0px;}
 
-div.acc-selector {width:100%;color:#FFF;font-weight:700;font-size:150%;letter-spacing:0.06em;margin-bottom:-10px;border-top-left-radius:7px;border-top-right-radius:7px;height:74px;line-height:69px;outline:none;}
+div.acc-selector {width:100%;color:#FFF;font-weight:900;font-size:150%;letter-spacing:0.06em;margin-bottom:-10px;border-top-left-radius:7px;border-top-right-radius:7px;height:74px;line-height:69px;outline:none;}
 div.acc-content {width:100%;background:#FFF;text-align:left;}
 
-.platillo {width:100%;padding-top:10px;}
+.platillo {width:100%;padding-top:10px;padding:8px 3px 2px 3px;border-bottom:1px solid #cfcfcf;}
+/*div.acc-content .platillo:last-of-type {border:none;}*/
+.platillo h5 {font-size:115%;margin-bottom:18px;padding-left:8px;}
 
-nav.botones {float:right;margin:2px 0px 5px 15px;}
-.platillo svg {width:28px;margin-left:10px;}
+.platillo p.receta, .platillo p.comentario {padding:0px 5px 0px 50px;font-size:95%;position:relative;min-height:28px;margin-top:4px;}
+.platillo p.receta {background:url('../images/cook.svg') no-repeat;background-position:7px center;}
+.platillo p.comentario {background:url('../images/comment.svg') no-repeat;background-position:7px center;}
+
+.platillo nav {float:right;margin:2px 15px 0px 5px;}
+.platillo svg {width:34px;margin-left:10px;}
 .desayuno svg {fill:#8041b7;}
 .snack1 svg {fill:#33cc99;}
 .comida svg {fill:#e2376c;}
@@ -224,18 +231,16 @@ nav.botones {float:right;margin:2px 0px 5px 15px;}
 
 /* INPUTS DIETA */
 
-.platillo {padding:5px 3px 5px 3px;border-bottom:1px solid #cfcfcf;}
-/*div.acc-content .platillo:last-of-type {border:none;}*/
-.platillo textarea {color:#3f3f3f;width:100%;border:none;border-bottom:1px solid #b4b1b0;resize:none;padding:0px 4px;outline:none;}
+/*.platillo textarea {color:#3f3f3f;width:100%;border:none;border-bottom:1px solid #b4b1b0;resize:none;padding:0px 4px;outline:none;}
 .name_platillo {font-size:115%;font-weight:bold;}
 .receta {background:url(../images/cook.svg) no-repeat;background-position:11px center;padding:8px 10px 0px 50px;}
 .receta textarea {font-size:95%;font-weight:300;}
 .comentario {background:url(../images/comment.svg) no-repeat;background-position:11px center;padding:8px 10px 0px 50px;}
-.comentario textarea {font-size:95%;font-weight:300;}
+.comentario textarea {font-size:95%;font-weight:300;}*/
 
 h6.ingred {margin:11px 5px 8px;}
 h6.ingred a {color:#FFF;border-radius:50%;font-weight:900;position:relative;display:inline-block;width:18px;height:18px;text-align:center;font-size:108%;margin-right:2px;}
-p.los_ing {margin-left:32px;margin-bottom:5px;}
+p.los_ing {margin-left:32px;margin-bottom:9px;}
 
 a.add_dish {width:100%;text-align:center;line-height:44px;font-size:125%;display:block;}
 
@@ -394,6 +399,26 @@ nav.set-public span {font-size:30%;display:block;font-weight:800;}
 .create-platillo input[type=checkbox]:not(old) {width:20px;height:20px;padding:0;opacity:1;background:url(../images/radio2.png) no-repeat;background-size:100% auto;outline:none;background-position:0px 0px;}
 .create-platillo input[type=checkbox]:not(old):checked {background-position:0px -20px;}
 
+
+/* PERFIL COACH */
+
+body.coperfil #container {background:#f4f1f0; color:#3f3f3f;}
+body.coperfil #container h2 {font-weight:800;margin-bottom:5px;}
+body.coperfil .la_img {width:100%;height:auto;margin-top:2px;}
+.bio-coach {margin:0px 10% 10px;font-size:90%;}
+
+.rate-stars img {height:16px;width:auto;margin:3px 1px 0px;}
+
+.profile-menu {width:100%;text-align:left;background:rgba(255,255,255,0.55);padding:1px 0px;margin-top:15px;border-top:1px solid #dfdfdf;}
+.profile-menu a {width:100%;display:block;height:44px;line-height:45px;font-size:115%;position:relative;padding-left:52px;border-bottom:1px solid #dfdfdf;}
+.profile-menu a img {position:absolute;left:11px;height:26px;width:auto;top:9px;}
+.profile-menu a:nth-of-type(1) {background:#f4f1f0;}
+.profile-menu a:nth-of-type(3) {background:#f4f1f0;}
+
+.info-coach {border-bottom:1px solid #dfdfdf;}
+.profile-menu li {color:#ffd157;margin:10px 0px;font-size:160%;line-height:80%;margin-left:12px;}
+.profile-menu li span {color:#3f3f3f;font-size:62.5%;vertical-align:top;}
+.profile-menu li span * {vertical-align:top;}
 
 /* DIALOG */
 
