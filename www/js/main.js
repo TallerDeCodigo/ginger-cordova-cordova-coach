@@ -948,13 +948,41 @@
 				console.log(data_login.mail);
 
 				data_login.pass = $('#pass').val();
-				var responsedata = apiRH.loginNative(data_login);
 
-				console.log("> "+responsedata);
+
+				//Login OK
+
+				var responsedata = apiRH.loginNative(data_login);
+				
+				//Dietas OK
+				
+				//var responsedata = apiRH.getDiets();
+
+				//Usuarios OK
+
+				//var responsedata = apiRH.getUsuarios();
+
+				//Finanzas
+
+				//var responsedata = apiRH.getFinanzas(1);
+
+				//var responsedata = apiRH.getFinanzas(1);
+
+				//Platillos
+
+				//var responsedata = apiRH.listDishes(1);
+
+				//Ingredientes
+
+				// var responsedata = apiRH.listIngredient();
+				
+				console.log("> "+ JSON.stringify(responsedata));
 
 				if(responsedata){
-				 	//apiRH.save_user_data_clientside(responsedata);
+				 	apiRH.save_user_data_clientside(responsedata);
+				 	
 				 	window.location.assign('index.html');
+				 	
 				 	return;
 				}else{
 					console.log('Error');
