@@ -17,6 +17,10 @@ $(window).on("load resize",function(){
 $(window).load(function(){
 	$(function() {
 
+		$('#enviar_login').click(){
+			conosle.log('click'):
+		}
+
 		$(".acc-selector").click(function(){
 			if ($(this).hasClass('ui-state-active')) {
 				if ($(this).hasClass('desayuno')) {$('body').animate({scrollTop:0}, 300);}
