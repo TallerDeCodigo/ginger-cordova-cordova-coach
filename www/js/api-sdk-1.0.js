@@ -397,35 +397,6 @@ function requestHandlerAPI(){
 
 		};
 
-		this.tracking = function(tipo, magnitud){
-			var req = {
-				method : 'post',
-				url : api_base_url + 'tables/medicion/',	//definitr tabla
-				headers: {
-					'X-ZUMO-APPLICATION': 'ideIHnCMutWTPsKMBlWmGVtIPXROdc92',
-					'X-ZUMO-AUTH': localStorage.getItem('token'),
-					'Content-Type': 'application/json'
-				},
-				data : {
-					'tipo' : tipo,
-					'magnitud' : magnitud,
-					'cliente' : "5784f8b5f05f58301260194f",
-					'coach' : ""
-				}
-			}
-			console.log(req);
-
-			var response = this.makeRequest('tables/medicion', req);
-
-			console.log("Request Data Cliente");
-
-			console.log(response);  //llega aqui con la respuesta del servidor
-
-			return (response) ? response : false;
-
-		};
-
-
 		this.updatePerfil = function(data){
 			var req = {
 				method : 'PATCH',
@@ -450,40 +421,7 @@ function requestHandlerAPI(){
 			return (response) ? response : false;
 		};
 
-		this.getCoachList = function(data){
-			var req = {
-				method : 'GET',
-				url : api_base_url + 'tables/dieta?opciones=1',	//definitr tabla
-				headers: {
-					'X-ZUMO-APPLICATION': 'ideIHnCMutWTPsKMBlWmGVtIPXROdc92',
-					'X-ZUMO-AUTH': localStorage.getItem('token'),
-					'Content-Type': 'application/json'
-				},
-				data : data
-			}
-			console.log(req);
-
-			$.ajax({
-			  type: 'GET',
-			  headers: req.headers,
-			  url:  req.url,
-			  dataType: 'json',
-			  async: false
-			})
-			 .done(function(response){
-				result = response;
-				console.log(response);
-				sdk_app_context.hideLoader(response);
-			})
-			 .fail(function(e){
-				result = false;
-				console.log(JSON.stringify(e));
-			});
-
-			console.log(result);
-			return result;
-		};
-
+	
 		//Conekta
 
 		this.makePayment = function(token)
