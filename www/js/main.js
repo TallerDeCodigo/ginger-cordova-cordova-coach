@@ -954,6 +954,8 @@
 				 	//apiRH.save_user_data_clientside(responsedata);
 				 	window.location.assign('index.html');
 				 	return;
+				}else{
+					console.log('Error');
 				}
 			}
 	}); //END VALIDATE
