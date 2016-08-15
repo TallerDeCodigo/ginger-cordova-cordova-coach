@@ -952,7 +952,7 @@
 
 				//Login OK
 
-				//var responsedata = apiRH.loginNative(data_login);
+				var responsedata = apiRH.loginNative(data_login);
 				
 				//Dietas OK
 				
@@ -974,7 +974,7 @@
 
 				//Ingredientes
 
-				var responsedata = apiRH.listIngredient();
+				// var responsedata = apiRH.listIngredient();
 				
 				console.log("> "+ JSON.stringify(responsedata));
 
