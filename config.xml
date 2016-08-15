@@ -11,7 +11,7 @@
     <plugin name="cordova-plugin-whitelist" spec="1" />
 
     <feature name="App">
-        <param name="android-package" value="org.ginger.app" />
+        <param name="android-package" value="org.ginger.coach" />
     </feature>
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />

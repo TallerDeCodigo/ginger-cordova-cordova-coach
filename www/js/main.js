@@ -904,60 +904,6 @@
 			Create a new account the old fashioned way 
 
 		*/
-	
-
-		if($('#create_account').length)
-			$('#create_account').validate({
-				rules: {
-					user: "required",
-					mail: {
-							required: true,
-							email: true
-						},
-					pass: "required",
-					cpass : "required"
-				},
-				messages: {
-					user: "Debes proporcionar un nombre de usuario",
-					mail: {
-							required: "Debes proporcionar un correo",
-							email: "Por favor proporciona un correo válido"
-						},
-					pass: "Este campo es requerido para acceder a tu cuenta",
-					cpass: "Las contraseñas que proporcionaste no coinciden"
-				},
-				submitHandler: function(){
-
-					var data_login  	= app.getFormData('#create_account');
-
-					console.log(data_login);
-
-/*
-	stores user name
-*/
-					localStorage.setItem('user_name', data_login.user);
-					localStorage.setItem('user_last_name', data_login.last_name);
-
-					data_login.pass 	= $('#pass').val();
-					
-					var responsedata 	= apiRH.registerNative(data_login);  
-					
-					//console.log(responsedata);						//llega hasta aqui con un valor FALSE
-
-					if(responsedata) {
-						//console.log(responsedata);
-						
-						apiRH.save_user_data_clientside(responsedata);
-						
-						window.location.assign('feed.html');
-
-						return;
-					}else{
-						app.toast('Lo sentimos, el nombre de usuario ya existe.'); //dispara el toast con el mensaje.
-						//e.preventDefault();
-					}
-				}
-			});
 
 		/* Log Out from the API */
 		$('#logout').on('click', function(e){
@@ -1004,12 +950,14 @@
 				data_login.pass = $('#pass').val();
 				var responsedata = apiRH.loginNative(data_login);
 
-			  	//console.log("RESPUESTA: " + responsedata);
+				console.log("> "+responsedata);
 
 				if(responsedata){
 				 	//apiRH.save_user_data_clientside(responsedata);
-				 	window.location.assign('dieta.html');
+				 	window.location.assign('index.html');
 				 	return;
+				}else{
+					console.log('Error');
 				}
 			}
 	}); //END VALIDATE
