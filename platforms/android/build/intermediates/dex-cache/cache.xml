@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/Users/HELA/Sites/ginger-cordova-cordova/platforms/android/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="c1408edfa043a8637e978257c470db6879af55f1">
+        <dex dex="/Users/HELA/Sites/ginger-cordova-cordova/platforms/android/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_c3f8c44718d9ecb9dc6bd6b902f97eb863ffc378/classes.dex" />
+    </item>
+    <item
+        jar="/Users/HELA/Sites/ginger-cordova-cordova/platforms/android/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="2421820ee78fbe56e4901905e0e24d312359013a">
+        <dex dex="/Users/HELA/Sites/ginger-cordova-cordova/platforms/android/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_ef5d06924a9834bb5cfb14c80d2535a43c3e76f1/classes.dex" />
+    </item>
+    <item
+        jar="/Users/HELA/Sites/ginger-cordova-cordova/platforms/android/build/intermediates/exploded-aar/android/CordovaLib/unspecified/debug/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="6fb2ee53309ad00edeb1e521a16a6c088a5788bd">
+        <dex dex="/Users/HELA/Sites/ginger-cordova-cordova/platforms/android/build/intermediates/pre-dexed/debug/CordovaLib-unspecified-debug_5113006cc59c886192deede6744e7548d432a1d9.jar" />
+    </item>
+
+</items>
