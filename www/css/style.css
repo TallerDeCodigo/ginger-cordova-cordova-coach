@@ -231,12 +231,12 @@ div.acc-content {width:100%;background:#FFF;text-align:left;}
 
 /* INPUTS DIETA */
 
-/*.platillo textarea {color:#3f3f3f;width:100%;border:none;border-bottom:1px solid #b4b1b0;resize:none;padding:0px 4px;outline:none;}
+.platillo textarea {color:#3f3f3f;width:100%;border:none;border-bottom:1px solid #b4b1b0;resize:none;padding:0px 4px;outline:none;}
 .name_platillo {font-size:115%;font-weight:bold;}
-.receta {background:url(../images/cook.svg) no-repeat;background-position:11px center;padding:8px 10px 0px 50px;}
+.create-platillo .receta {background:url(../images/cook.svg) no-repeat;background-position:11px center;padding:8px 10px 0px 50px;}
 .receta textarea {font-size:95%;font-weight:300;}
-.comentario {background:url(../images/comment.svg) no-repeat;background-position:11px center;padding:8px 10px 0px 50px;}
-.comentario textarea {font-size:95%;font-weight:300;}*/
+.create-platillo .comentario {background:url(../images/comment.svg) no-repeat;background-position:11px center;padding:8px 10px 0px 50px;}
+.comentario textarea {font-size:95%;font-weight:300;}
 
 h6.ingred {margin:11px 5px 8px;}
 h6.ingred a {color:#FFF;border-radius:50%;font-weight:900;position:relative;display:inline-block;width:18px;height:18px;text-align:center;font-size:108%;margin-right:2px;}
