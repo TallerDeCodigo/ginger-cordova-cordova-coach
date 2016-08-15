@@ -2,8 +2,8 @@
 
 $( function() {
 
-  	$( ".accordion" ).accordion({collapsible:true,active:false,animate:300,heightStyle:"content"});
-  	$( ".accordion1" ).accordion({collapsible:true,active:false,animate:200,heightStyle:"content"});
+  	//$( ".accordion" ).accordion({collapsible:true,active:false,animate:300,heightStyle:"content"});
+  	//$( ".accordion1" ).accordion({collapsible:true,active:false,animate:200,heightStyle:"content"});
 
 } );
 
@@ -11,10 +11,7 @@ $(window).on("load resize",function(){
 
 	var ancho = document.documentElement.clientWidth;
 	var alto = document.documentElement.clientHeight;
-
-	$('.list-platos #scroller > ul > li').css("height",alto-148);
-
-	    
+	$('.list-platos #scroller > ul > li').css("height",alto-148);  
 });
 
 $(window).load(function(){
@@ -54,10 +51,27 @@ $(window).load(function(){
 			$(this).addClass('active');
 		});
 
+		$('.persona').click(function(){
+			window.location.assign('chat.html');
+		});
+
+		$('.usuario-item').click(function(){
+			window.location.assign('usuario.html');
+		});
+
+		$('.bt-review').click(function(){
+			window.location.assign('lista-dietas.html');
+		});
+
+		// $('.bt-review').click(function(){
+		// 	window.location.assign('dietas.html');
+		// });		
+		
 
 	});
 
 });
+/*END WINDOW ON LOAD*/
 
 (function($){
 
