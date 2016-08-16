@@ -188,7 +188,14 @@ $(window).load(function(){
 			});
 
 			$('.btn_edit').click(function (e) {
-				console.log('edit');
+				
+				var idDieta = $('.btn_edit').attr('data');
+
+				console.log(idDieta);
+
+				localStorage.setItem('dOperator', idDieta);
+
+
 			});
 
 			$('.btn_delete').click(function (e) {
@@ -249,7 +256,7 @@ $(window).load(function(){
 
 		if($('body').hasClass('dieta')){
 
-			var dieta = app.get_diet('?_id=54f3c3d24b6614a8119e7115');
+			var dieta = app.get_diet('?_id='+ localStorage.getItem('dOperator'));
 			console.log(dieta);
 			if(dieta){
 				var comm_id;
