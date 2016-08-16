@@ -7,7 +7,7 @@ $( function() {
 	}else{
 		console.log("no has class");
 	}
-});
+});//end function 
 
 
 $(window).on("load resize",function(){
@@ -17,10 +17,142 @@ $(window).on("load resize",function(){
 	$('.list-platos #scroller > ul > li').css("height",alto-148); 
 	$('#toda_la_dieta > li').css("height",alto-100);
 	$('.iosm #toda_la_dieta > li').css("height",alto-120);
-});
+});// end window on load
 
 $(window).load(function(){
 	$(function() {
+
+		/**
+		 *
+		 * Lista de Usuarios de Coach
+		 *
+		 **/
+
+		if($('body').hasClass('has-usuarios') ){
+
+			//Request to Service Diets
+
+			var responsedata = apiRH.getUsuarios();
+
+			console.log(JSON.stringify(responsedata));
+
+			var user = responsedata;
+
+			//Loop the feed
+
+
+
+			var i = 0;
+
+			$.each(user, function( key, value ) {
+				
+				console.log(i + " - " + value);
+				
+				$('.list-users').append("<li class='usuario-item' data='" + JSON.stringify(user[i]) + "'><h2>" + user[i].nombre + " " + user[i].apellido + "</h2><a class='bubble notificaciones'>3</a><a class='bubble mensajes'>3</a></li>");
+
+				i++;
+			});
+
+		}
+
+
+		if($('body').hasClass('has-user') ){
+
+			var user = localStorage.getItem('user-selected');
+
+			console.log(JSON.parse(user));
+
+			//Acceder a los elementos para poder x
+
+			//$('').append('');
+
+		}
+
+
+		/**
+		 *
+		 * Lista de Dietas de Coach
+		 *
+		 **/
+
+		if($('body').hasClass('has-dietas') ){
+
+			//Request to Service
+
+			var responsedata = apiRH.getDiets();
+
+			//console.log(JSON.stringify(responsedata));
+
+			var diet = responsedata;
+
+			//Loop the feed
+
+			var i = 0;
+
+			$.each(diet, function( key, value ) {
+				
+				console.log(i + " - " + value);
+				
+				var nombre = 'no-name';
+				var descripcion = '';
+				var _id = ''
+
+				$.each(value, function( key, value ) 
+				{
+
+					if(key == 'nombre'){
+						console.log(value);
+						nombre = value;
+					}
+
+					if(key == '_id'){
+						console.log(value);
+						_id  = value;
+					}
+
+					if(key == 'descripcion'){
+						console.log(value);
+						descripcion = value;
+					}
+					
+				});
+
+				$('.list-diet').append('<li class="elemento-dieta" data="' + _id + '"><h2> ' + nombre + ' </h2><p>' + descripcion + '</p><nav><a href="copiar-dieta.html"><img src="images/copy.png"></a><a href="dieta.html"><img src="images/edit.png"></a><a href="#"><img src="images/delete.png"></a></nav></li>');
+
+				i++;
+			});
+
+		}
+
+		if($('body').hasClass('has-list-diets') )
+		{
+
+			//Request to Service
+
+			var responsedata = apiRH.getDiets();
+
+			//console.log(JSON.stringify(responsedata));
+
+			var diet = responsedata;
+
+			//Loop the feed
+
+			var i = 0;
+
+			$.each(diet, function( key, value ) {
+
+				$('.list-diets').append('<li class="dieta-item"><h2>' +  diet[i].nombre + '</h2><p>' + diet[i].descripcion + '</p><div class="columna"><h3 class="cgre">100%</h3><a href="#" class="btn-pur" data-id="' +  diet[i]._id + '">Cambiar Dieta</a></div></li>');	
+
+				i++;	
+
+			});
+
+			
+
+		}
+
+
+
 
 		$('#enviar_login').click(function(){
 
@@ -65,7 +197,17 @@ $(window).load(function(){
 		});
 
 		$('.usuario-item').click(function(){
+
+			console.log($(this).attr("data"));
+
+			var json = $(this).attr("data");
+
+			//var pJson = JSON.parse(json);
+
+			localStorage.setItem('user-selected', json);
+
 			window.location.assign('usuario.html');
+
 		});
 
 		$('.bt-review').click(function(){
@@ -74,7 +216,17 @@ $(window).load(function(){
 
 		// $('.bt-review').click(function(){
 		// 	window.location.assign('dietas.html');
-		// });		
+		// });	
+
+
+		$('.btn-pur').click(function(){
+			var dietSelected = $(this).attr("data-id");
+			console.log('CLICK CHANGE: ' + dietSelected);
+
+			//REQUEST TO CHANGE DIET
+
+
+		});	
 		
 
 	});
@@ -113,4 +265,6 @@ $(window).load(function(){
 
 	});
 
-})(jQuery);
+})(jQuery); //End function
+
+

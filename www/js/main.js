@@ -966,8 +966,6 @@
 
 				//var responsedata = apiRH.getFinanzas(1);
 
-				//var responsedata = apiRH.getFinanzas(1);
-
 				//Platillos
 
 				//var responsedata = apiRH.listDishes(1);
