@@ -151,8 +151,106 @@ $(window).load(function(){
 
 		}
 
+		if($('body').hasClass('has-finanzas'))
+		{
+			var hoy = new Date();
+
+			console.log("MES: " + (hoy.getMonth() + 1));
+
+			var month = hoy.getMonth();
+			var dia = hoy.getDate();
+			var pdia = 1;
+
+			var totalAmount = 0;
+			var totalDays 	= 0;
+			
+			console.log(dia);
+
+			var responsedata = apiRH.getFinanzas(hoy.getMonth() + 1);
+			var meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+			$('.mes').html(meses[month]);
+
+			$('.btn_right').click(function(){
+				month++;
+
+				
+				if(month > 11){
+					month = 0;
+				}
+				$('.mes').html(meses[month]);
+				console.log(meses[month] );
+
+				responsedata = apiRH.getFinanzas(month + 1);
+			});
+
+			$('.btn_left').click(function(){
+				month--;
+				if(month < 0){
+					month = 11;
+				}
+				$('.mes').html(meses[month]);
+				console.log(meses[month] );
+
+				responsedata = apiRH.getFinanzas(month + 1);
+
+			});
+
+			var finanzas = responsedata;
+			console.log(finanzas);
+
+			var i = 0;
+
+			$.each(finanzas, function( key, value ){
+
+				$('.record').append('<tr><td>' + finanzas[i].name + '</td><td>' + finanzas[i].days_since_subscription + '</td><td>' + finanzas[i].days_since_subscription + '</td><td>$' + number_format(finanzas[i].amount_this_month, 2) + '</td></tr>');	
+
+				totalAmount = totalAmount + finanzas[i].amount_this_month;
+
+				totalDays= totalDays+finanzas[i].days_since_subscription;
+
+				console.log( totalAmount + ' - ' +  totalDays);
+
+				i++;
+
+			});
+
+			//TOTALES
+			$('.totalAcumulado').html(number_format(totalAmount,2));
+			$('.total').html(totalDays);
+
+			//FECHAS DE INICIO
+			$('.inicio').html(pdia);
+			$('.final').html(dia + ' de ' + meses[month] );
 
 
+
+
+			
+		}
+
+
+		function number_format(amount, decimals) {
+
+		    amount += ''; // por si pasan un numero en vez de un string
+		    amount = parseFloat(amount.replace(/[^0-9\.]/g, '')); // elimino cualquier cosa que no sea numero o punto
+
+		    decimals = decimals || 0; // por si la variable no fue fue pasada
+
+		    // si no es un numero o es igual a cero retorno el mismo cero
+		    if (isNaN(amount) || amount === 0) 
+		        return parseFloat(0).toFixed(decimals);
+
+		    // si es mayor o menor que cero retorno el valor formateado como numero
+		    amount = '' + amount.toFixed(decimals);
+
+		    var amount_parts = amount.split('.'),
+		        regexp = /(\d+)(\d{3})/;
+
+		    while (regexp.test(amount_parts[0]))
+		        amount_parts[0] = amount_parts[0].replace(regexp, '$1' + ',' + '$2');
+
+		    return amount_parts.join('.');
+		}
 
 		$('#enviar_login').click(function(){
 

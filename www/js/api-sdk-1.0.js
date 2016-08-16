@@ -378,7 +378,7 @@ function requestHandlerAPI(){
 		this.getFinanzas = function(mes){
 			var req = {
 				method : 'get',
-				url : api_base_url + 'api/history/?coach=',	//definitr tabla
+				url : api_base_url + 'api/history/?coach=' + localStorage.getItem('userId') + '&mes=' + mes,	//definitr tabla
 				headers: {
 					'X-ZUMO-APPLICATION': 'ideIHnCMutWTPsKMBlWmGVtIPXROdc92',
 					'X-ZUMO-AUTH': localStorage.getItem('token'),
@@ -391,7 +391,7 @@ function requestHandlerAPI(){
 
 			console.log("Request Data Finanzas");
 
-			console.log(response);  //llega aqui con la respuesta del servidor
+			console.log(JSON.stringify(response) );  //llega aqui con la respuesta del servidor
 
 			return (response) ? response : false;
 
