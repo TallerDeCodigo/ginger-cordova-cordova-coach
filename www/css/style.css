@@ -361,7 +361,7 @@ a.create-diet {position:fixed;width:100%;height:45px;bottom:0px;z-index:9999999;
 
 .acc1-content ul {margin:0;}
 .acc1-content ul li {list-style:none;height:32px;line-height:32px;padding-left:55px;position:relative;}
-.acc1-content ul li .cantidad {opacity:0;position:absolute;width:16px;height:16px;background:#ff873e;font-weight:800;font-size:80%;border-radius:50%;top:50%;left:21px;margin-top:-8px;line-height:16px;text-align:center;color:#FFF;}
+.acc1-content ul li .cantidad {opacity:1;position:absolute;width:16px;height:16px;background:#ff873e;font-weight:800;font-size:80%;border-radius:50%;top:50%;left:21px;margin-top:-8px;line-height:16px;text-align:center;color:#FFF;}
 
 .acc1-content ul li input[type=checkbox]:not(old) {width:20px;height:20px;padding:0;opacity:1;float:right;margin:6px 8px;background:url(../images/radio.png) no-repeat;background-size:100% auto;outline:none;background-position:0px 0px;}
 .acc1-content ul li input[type=checkbox]:not(old):checked {background-position:0px -20px;}

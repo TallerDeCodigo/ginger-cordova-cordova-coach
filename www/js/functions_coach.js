@@ -26,6 +26,7 @@ $(window).load(function(){
 		var restricciones = [ 'Huevos', 'Pollo', 'Pescado', 'Mariscos', 'Lacteos', 'Carne' ];
 		var objetivo = [ 'adelgazar','detox','bienestar','rendimiento' ];
 		var sex = ['Hombre','Mujer'];
+		var tipo_de_ingredientes = [ 'granosycereales', 'verduras', 'grasas', 'lacteos', 'proteinaanimal', 'leguminosas', 'nuecesysemillas', 'frutas', 'endulzantes', 'aderezosycondimentos', 'superfoods', 'liquidos'];
 		/**
 		 *
 		 * Lista de Usuarios de Coach
@@ -194,7 +195,7 @@ $(window).load(function(){
 
 			var i = 0;
 
-			
+
 
 			$.each(dish, function( key, value ) {
 
@@ -204,7 +205,109 @@ $(window).load(function(){
 
 			});
 
+			$('.btn-platillo').click(function(){
+
+				var is_public = $(this).attr('data');
+
+				var responsedata = apiRH.listDishes(is_public);
+
+
+				$.each(dish, function( key, value ) {
+
+					$('.list-dish').append('<li class="platillo-item"><h2>' + dish[i].descripcion + '</h2><p>' + dish[i].receta + '</p></li>');	
+
+					i++;	
+
+				});
+			});
+
 		}
+
+
+		if($('body').hasClass('has-ingredients') ){
+			
+			$( ".accordion1" ).accordion({collapsible:true,active:false,animate:200,heightStyle:"content"});
+
+			var responsedata = apiRH.listIngredient();
+
+			var ingrediente = responsedata;
+
+			console.log(responsedata);
+
+
+			var i = 0;
+			var j = 0;
+
+			var arrAux = [];
+
+
+			$.each(ingrediente, function( key, value ) {
+
+
+			   $('.' + tipo_de_ingredientes[value.categoria] + '').append('<li><span class="cantidad"></span><span class="ingred-name">'+ value.nombre +'</span><input type="checkbox" name="pan" value=""></li>');	
+				 
+							
+				console.log(tipo_de_ingredientes[value.categoria]);
+
+				console.log(key + '::' + value.categoria);
+
+				
+				j++;	
+
+			});
+		}
+
+
+/*
+	CREAR INGREDIENTES
+*/
+		if($('body').hasClass('has-create-ingredient') ){
+
+			var i_nombre;
+			var category = -1;
+			var tipo = -1;	
+			var medida = -1;
+			$('.add').click(function(){
+				console.log('add ingrediente');
+				i_nombre = $('input[name="name_ingrediente"]').val();
+
+				if(i_nombre.length < 2) 
+					return;
+				if(category == -1) 
+					return;
+				if(tipo == -1) 
+					return;
+				if(medida  == -1) 
+					return;
+
+
+				//RIFARSE EL REUEST
+
+				console.log('REQUEST');
+
+				json = {
+
+				};
+
+
+			});
+
+			$('.ing-category').click(function(){
+				category = $(this).attr('value');
+			});
+
+			$('.btn-state').click(function(){
+				$('.btn-state').removeClass('active');
+				tipo = $(this).addClass('active');
+			});
+
+			$('.siono').click(function(){
+				$('.siono').removeClass('active');
+				medida = $(this).addClass('active');
+			});
+
+		}//end if has Class
+		
 
 		if($('body').hasClass('has-list-diets') )
 		{

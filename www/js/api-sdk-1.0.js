@@ -299,7 +299,7 @@ function requestHandlerAPI(){
 		 this.listIngredient = function(){
 		 	var req = {
 				method : 'get',
-				url : api_base_url + 'tables/ingrediente',	//definitr tabla
+				url : api_base_url + 'tables/ingrediente/?epp=999',	//definitr tabla
 				headers: {
 					'X-ZUMO-APPLICATION': 'ideIHnCMutWTPsKMBlWmGVtIPXROdc92',
 					'X-ZUMO-AUTH': localStorage.getItem('token'),
@@ -308,7 +308,7 @@ function requestHandlerAPI(){
 			}
 			console.log(req);
 
-			var response = this.getRequest('tables/ingrediente' , req);
+			var response = this.getRequest('tables/ingrediente/?epp=999' , req);
 
 			console.log("Request Data Ingredients");
 
