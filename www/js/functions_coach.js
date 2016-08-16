@@ -22,6 +22,10 @@ $(window).on("load resize",function(){
 $(window).load(function(){
 	$(function() {
 
+		var coach_type = [ 'Estricto','Innovador', 'Animador', 'Tradicional'];
+		var restricciones = [ 'Huevos', 'Pollo', 'Pescado', 'Mariscos', 'Lacteos', 'Carne' ];
+		var objetivo = [ 'adelgazar','detox','bienestar','rendimiento' ];
+		var sex = ['Hombre','Mujer'];
 		/**
 		 *
 		 * Lista de Usuarios de Coach
@@ -58,9 +62,62 @@ $(window).load(function(){
 
 		if($('body').hasClass('has-user') ){
 
-			var user = localStorage.getItem('user-selected');
+			var item = localStorage.getItem('user-selected');
+			var user = JSON.parse(item)
+			var fecha = new Date();
 
-			console.log(JSON.parse(user));
+			console.log(user.perfil.fechaNacimiento + '::::' + fecha.toString());
+
+			var edad = app.restaFechas(user.perfil.fechaNacimiento, fecha.toString());
+
+			
+
+			console.log(edad);
+			
+
+			$('.cpur').html(user.nombre + ' ' + user.apellido);	
+			
+			$('.user_dieta').html(user.dieta.nombre);
+			
+			$('.user_sexo').html(sex[user.perfil.sexo]);
+			$('.user_edad').html('');
+			$('.user_cp').html(user.cp);
+			$('.user_estatura').html(user.perfil.estatura + ' m');
+			$('.user_peso').html(user.perfil.peso + ' kg.');
+			$('.user_pesoideal').html(user.pesoDeseado + ' kg.');
+			$('.user_coachtype').html(coach_type[user.perfil.personalidad]);
+			$('.user_dpw').html(user.perfil.ejercicio + ' días por semana');
+
+			var separador = '';
+
+			for (var i = 0; i < user.perfil.restricciones.length; i++) {
+				user.perfil.restricciones[i]
+				if(i == user.perfil.restricciones.length -1){
+					separador = '';	
+				}else{
+					separador = ', ';
+				}
+
+				$('.user_restricciones').html(restricciones[user.perfil.restricciones[i]] + separador);
+			};
+			
+			
+			$('.user_comentario').html(user.comentarios);
+
+			for (var i = 0; i < user.perfil.objetivo.length; i++) {
+				user.perfil.objetivo[i]
+				if(i == user.perfil.objetivo.length -1){
+					separador = '';	
+				}else{
+					separador = ', ';
+				}
+
+				$('.user_plan').html(objetivo[user.perfil.objetivo[i]] + separador);
+			};
+
+			
+
+			console.log(JSON.parse(item));
 
 			//Acceder a los elementos para poder x
 
@@ -124,6 +181,31 @@ $(window).load(function(){
 
 		}
 
+
+		if($('body').hasClass('has-dishes') ){
+
+			//Request to dishes
+
+			var responsedata = apiRH.listDishes(0);
+
+			var dish = responsedata;
+
+			console.log(responsedata);
+
+			var i = 0;
+
+			
+
+			$.each(dish, function( key, value ) {
+
+				$('.list-dish').append('<li class="platillo-item"><h2>' + dish[i].descripcion + '</h2><p>' + dish[i].receta + '</p></li>');	
+
+				i++;	
+
+			});
+
+		}
+
 		if($('body').hasClass('has-list-diets') )
 		{
 
@@ -145,6 +227,60 @@ $(window).load(function(){
 
 				i++;	
 
+			});
+
+			
+
+		}
+
+		if($('body').hasClass('coperfil'))
+		{
+
+			
+			console.log(JSON.stringify(localStorage.getItem('user')));
+
+			var pUser = JSON.parse(localStorage.getItem('user'));
+			$('.la_img').attr('src','https://gingerfiles.blob.core.windows.net/coaches/' + pUser._id + '.png');
+			$('.cpur').html(pUser.nombre + ' ' + pUser.apellido);
+			$('.bio-coach').html(pUser.frase);
+
+			//CALCULO DE LA ESTRELLAS DE MIERDA
+			var star = Math.round(pUser.rating);
+
+			console.log(Math.round(star));
+
+			var count = 5;
+
+			for (var i = 0; i < star; i++) {
+				$('.rate-stars').append('<img src="images/starh.svg">');
+				console.log(i);
+				
+			};
+			
+			for (var x = 0; x < count - star; x++) {
+				console.log('-' + x);
+				$('.rate-stars').append('<img src="images/star.svg">');
+			};
+
+
+			var coach_type = [ 'Estricto','Innovador', 'Animador', 'Tradicional'];
+			var personalidades = pUser.personalidad;
+			var separador = "";
+
+			for(var p=0; p<personalidades.length; p++){
+
+				console.log(personalidades.length);
+				if(p == personalidades.length - 1){
+					separador = "";
+
+				}else{
+					separador = ", ";
+				}
+				$('#coach_type_perfil').append(coach_type[p] + separador);
+			}
+
+			$('#blog').click(function(){
+				cordova.InAppBrowser.open('http://apache.org', '_blank', 'location=yes');
 			});
 
 			
@@ -222,11 +358,7 @@ $(window).load(function(){
 			$('.inicio').html(pdia);
 			$('.final').html(dia + ' de ' + meses[month] );
 
-
-
-
-			
-		}
+		}//	END HAS CLASS FINANZAS
 
 
 		function number_format(amount, decimals) {

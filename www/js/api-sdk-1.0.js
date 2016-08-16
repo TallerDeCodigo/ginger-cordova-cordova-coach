@@ -78,7 +78,7 @@ function requestHandlerAPI(){
 			}
 			var response = this.makeRequest('api/login', req);
 
-			//console.log(response);
+			console.log(JSON.stringify(response));
 
 			/*
 				GUARDA LOS DATOS DEL USUARIO EN LOCAL STORAGE 
@@ -397,6 +397,33 @@ function requestHandlerAPI(){
 
 		};
 
+		this.getInfoCoach = function(){
+			var req = {
+				method : 'get',
+				url : api_base_url + 'tables/coach?_id=' + localStorage.getItem('userId'),	//definitr tabla
+				headers: {
+					'X-ZUMO-APPLICATION': 'ideIHnCMutWTPsKMBlWmGVtIPXROdc92',
+					'X-ZUMO-AUTH': localStorage.getItem('token'),
+					'Content-Type': 'application/json'
+				}
+			}
+			console.log(req);
+
+			var response = this.getRequest('tables/coach?_id=' + localStorage.getItem('userId'), req);
+
+			console.log("Request Data Coach");
+
+			console.log(JSON.stringify(response) );  //llega aqui con la respuesta del servidor
+
+
+			console.log("INFO COACH SAVE");
+			this.save_user_data_clientside(JSON.stringify(response));
+
+
+			return (response) ? true : false;
+
+		};
+
 		this.updatePerfil = function(data){
 			var req = {
 				method : 'PATCH',
@@ -590,37 +617,7 @@ function requestHandlerAPI(){
 		 */
 		this.save_user_data_clientside = function(data){
 
-			this.ls.setItem('', JSON.stringify({
-								user_login: 	data.user_login,
-								username: 		data.user_login,
-								user_id: 		data.user_id,
-								user_role: 		data.role,
-								user_profile: 	data.profile_url,
-							}));
-
-				/*
-				if(user_role == 'administrator') user_role = 'maker';
-				this.ls.setItem('dedalo_log_info', 	JSON.stringify({
-														user_login: 	data.user_login,
-														username: 		data.user_login,
-														user_id: 		data.user_id,
-														user_role: 		data.role,
-														user_profile: 	data.profile_url,
-													}));
-				*/									
-				/* Also save user ME info */
-
-				/*
-				$.getJSON(api_base_url+data.user_login+'/me/')
-				 .done(function(response){
-				 	apiRH.ls.setItem('me', JSON.stringify(response));
-				 	apiRH.ls.setItem('me.logged', true);
-				 	console.log(response);
-				})
-				 .fail(function(err){
-					console.log(err);
-				});
-				*/
+			localStorage.setItem('user', data);
 		};
 		/* 
 		 * Request new passive token from the API 

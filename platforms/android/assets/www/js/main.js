@@ -978,9 +978,9 @@
 			/* Requesting logout from server */
 			//var response = apiRH.logOut({user_login : user, request_token : apiRH.get_request_token() });
 			//if(response.success){
-				app.toast('Has cerrado la sesión, hasta pronto');
+				app.toast('Has cerrado la sesión, hasta pronto!');
 					localStorage.clear();
-				window.location.assign('index.html');
+				window.location.assign('login.html');
 				return;
 			//}
 			app.toast('No ha sido posible crear tu cuenta, inténtalo de nuevo por favor.');

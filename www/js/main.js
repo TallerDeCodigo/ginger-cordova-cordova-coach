@@ -52,7 +52,7 @@
 					if(is_feed)
 						return;
 					else	
-						window.location.assign('dieta.html?filter_feed=all');
+						window.location.assign('index.html?filter_feed=all');
 				}	
 				return;
 			}else{
@@ -801,38 +801,6 @@
 		},//END UPDATE PERFIL
 
 
-		feed_user_defaults: function(firstName,lastName,email,customerId,password,token,userId,chatId,chatPassword,coachId,coachQuickblox,dietId,user,exerciseValue,picture)
-		{
-			var req = {
-				method : 'post',
-				url : api_base_url + 'tables/medicion/',	//definitr tabla
-				headers: {
-					'X-ZUMO-APPLICATION': 'ideIHnCMutWTPsKMBlWmGVtIPXROdc92',
-					'X-ZUMO-AUTH': '',
-					'Content-Type': 'application/json'
-				},
-				data : {
-					'firstName' : firstName,
-					'lastName' : lastName,
-					'email' : email,
-					'customerId' : customerId,
-					'password' : password,
-					'token' : token,
-					'userId' : userId,
-					'chatId' : chatId,
-					'chatPassword' : chatPassword,
-					'coachQuickblox' : coachQuickblox,
-					'dietId' : dietId,
-					'user' : user,
-					'exerciseValue' : exerciseValue,
-					'picture' : picture
-				}
-			}
-
-			$http(req).success(function(response){
-				console.log(response);	
-			});
-		}, //END feed_user_default
 
 		update_platillo: function(plato, fecha, comida, platillo){
 			var req = {
@@ -888,8 +856,19 @@
 
 			//console.log(result);
 			return result;
-		}//END GET DIET
-	};
+		},//END GET DIET
+		
+		restaFechas: function(f1,f2)
+		{
+			var aFecha1 = f1.split('-'); 
+			var aFecha2 = f2.split('/'); 
+			var fFecha1 = Date.UTC(aFecha1[2],aFecha1[1]-1,aFecha1[0]); 
+			var fFecha2 = Date.UTC(aFecha2[2],aFecha2[1]-1,aFecha2[0]); 
+			var dif = fFecha2 - fFecha1;
+			var dias = Math.floor(dif / (1000 * 60 * 60 * 24)); 
+			return dias;
+		}
+	};	
 
 /*      _                                       _                        _       
  *   __| | ___   ___ _   _ _ __ ___   ___ _ __ | |_   _ __ ___  __ _  __| |_   _ 
@@ -912,7 +891,7 @@
 			//if(response.success){
 				app.toast('Has cerrado la sesión, hasta pronto');
 					localStorage.clear();
-				window.location.assign('index.html');
+				window.location.assign('login.html');
 				return;
 			//}
 			app.toast('No ha sido posible crear tu cuenta, inténtalo de nuevo por favor.');
@@ -953,6 +932,9 @@
 				//Login OK
 
 				var responsedata = apiRH.loginNative(data_login);
+
+
+				console.log(responsedata);
 				
 				//Dietas OK
 				
@@ -977,9 +959,13 @@
 				console.log("> "+ JSON.stringify(responsedata));
 
 				if(responsedata){
-				 	apiRH.save_user_data_clientside(responsedata);
-				 	
-				 	window.location.assign('index.html');
+
+					var coachInfo = apiRH.getInfoCoach();
+
+					console.log(coachInfo);
+
+				 	if(coachInfo)
+				 		window.location.assign('index.html');
 				 	
 				 	return;
 				}else{
