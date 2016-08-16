@@ -7,11 +7,17 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, maximum-scale=1, minimum-scale=1, height=device-height">
 		<meta http-equiv="cleartype" content="on">
 		<link rel="stylesheet" type="text/css" href="css/style.css">
+	    <script type="text/javascript" src="js/bower_components/handlebars/handlebars.runtime.min.js"></script>
 	    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	    <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+	    <script src="js/jquery-touch.min.js"></script>
 	    <script type="text/javascript" src="js/functions_coach.js"></script>
+		<script type='text/javascript' src='js/plugins.js'></script>
+		<script type='text/javascript' src='js/api-sdk-1.0.js'></script>
+		<script type="text/javascript" src="js/oauth.js"></script>
+		<script src="js/main.js"></script>
 	</head>
-	<body>
+	<body class="has-copy-diet">
 	<div id="container" class="create">
 		<header class="hwhite2">
 			<div class="toolbar">
@@ -25,11 +31,16 @@
 		</div>
 		<h5>Comentario</h5>
 		<div class="box-input-1">
-			<input type="text" name="cometario" placeholder="Comentarios">
+			<input type="text" name="comentario" placeholder="Comentarios">
 		</div>
 		<br>
 		<a class="btn-gre" href="dieta.html">Copiar</a>
 	</div>
 	</body>
+	<script type="text/javascript">
+		/* Initialize app object and perform initial login check */
+		window.is_feed = true;
+		app.initialize();
+	</script>
 </html>
 
