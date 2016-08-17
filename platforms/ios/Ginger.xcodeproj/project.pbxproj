@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		0171054664A141CD93E70ACA /* CDVLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = B0D32F964BAA4412907FB020 /* CDVLogger.m */; };
 		0207DA581B56EA530066E2B4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0207DA571B56EA530066E2B4 /* Images.xcassets */; };
@@ -32,6 +31,8 @@
 		B65CF2DD39C74A23A61F352B /* CDVJpegHeaderWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 61F844B527884351BBCB25B8 /* CDVJpegHeaderWriter.m */; };
 		E4A2C7CB581B4A3B8A872CD8 /* CDVSplashScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 9750183912904D6F98F42343 /* CDVSplashScreen.m */; };
 		F32C786169D94F7891422A06 /* UIImage+CropScaleOrientation.m in Sources */ = {isa = PBXBuildFile; fileRef = E0F7887FD62746548AEB2A27 /* UIImage+CropScaleOrientation.m */; };
+		BB07E668D7E3413B9922AE67 /* APPBackgroundMode.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C13C04141D64E3EA3190759 /* APPBackgroundMode.m */; };
+		42F1DACA3DDD4F4A8BD8B396 /* appbeep.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7EEDDD79B2E749CE87797D2E /* appbeep.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,6 +107,9 @@
 		F8F516C0050B44339DA4B1B4 /* CDVDevice.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = CDVDevice.h; path = "cordova-plugin-device/CDVDevice.h"; sourceTree = "<group>"; };
 		FB49D0D0AA754F4C8C93CA7F /* AVFoundation.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		FC67616708B34607A75D0A78 /* CDVFileTransfer.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = CDVFileTransfer.m; path = "cordova-plugin-file-transfer/CDVFileTransfer.m"; sourceTree = "<group>"; };
+		5C13C04141D64E3EA3190759 /* APPBackgroundMode.m */ = {isa = PBXFileReference; name = "APPBackgroundMode.m"; path = "cordova-plugin-background-mode/APPBackgroundMode.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		A969E14FD0EB4F4F8A80602E /* APPBackgroundMode.h */ = {isa = PBXFileReference; name = "APPBackgroundMode.h"; path = "cordova-plugin-background-mode/APPBackgroundMode.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		7EEDDD79B2E749CE87797D2E /* appbeep.wav */ = {isa = PBXFileReference; name = "appbeep.wav"; path = "appbeep.wav"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,6 +183,7 @@
 				0207DA571B56EA530066E2B4 /* Images.xcassets */,
 				3047A50E1AB8057F00498E2A /* config */,
 				8D1107310486CEB800E47090 /* Ginger-Info.plist */,
+				7EEDDD79B2E749CE87797D2E /* appbeep.wav */,
 			);
 			name = Resources;
 			path = Ginger/Resources;
@@ -247,6 +252,8 @@
 				6CC32153954A4E57A1E74ACD /* Toast.m */,
 				DB3237AB6E6343F28146D06F /* Toast+UIView.h */,
 				1F8B9EB8F57847919EAFD017 /* Toast.h */,
+				5C13C04141D64E3EA3190759 /* APPBackgroundMode.m */,
+				A969E14FD0EB4F4F8A80602E /* APPBackgroundMode.h */,
 			);
 			name = Plugins;
 			path = Ginger/Plugins;
@@ -335,6 +342,7 @@
 			files = (
 				302D95F214D2391D003F00A1 /* MainViewController.xib in Resources */,
 				0207DA581B56EA530066E2B4 /* Images.xcassets in Resources */,
+				42F1DACA3DDD4F4A8BD8B396 /* appbeep.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -381,6 +389,7 @@
 				76993A4543F24B8BA9A8F6B8 /* CDVViewController+SplashScreen.m in Sources */,
 				AAA813202D21456CBB3BAE05 /* Toast+UIView.m in Sources */,
 				9789DA191230471DBA4284F1 /* Toast.m in Sources */,
+				BB07E668D7E3413B9922AE67 /* APPBackgroundMode.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

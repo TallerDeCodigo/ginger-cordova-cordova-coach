@@ -280,6 +280,15 @@ module.exports = [
         "id": "nl.x-services.plugins.toast.tests",
         "file": "plugins/nl.x-services.plugins.toast/test/tests.js",
         "pluginId": "nl.x-services.plugins.toast"
+    },
+    {
+        "id": "cordova-plugin-background-mode.BackgroundMode",
+        "file": "plugins/cordova-plugin-background-mode/www/background-mode.js",
+        "pluginId": "cordova-plugin-background-mode",
+        "clobbers": [
+            "cordova.plugins.backgroundMode",
+            "plugin.backgroundMode"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -296,7 +305,8 @@ module.exports.metadata =
     "cordova-plugin-geolocation": "2.2.0",
     "cordova-plugin-splashscreen": "3.2.2",
     "cordova-plugin-whitelist": "1.2.2",
-    "nl.x-services.plugins.toast": "2.5.0"
+    "nl.x-services.plugins.toast": "2.5.0",
+    "cordova-plugin-background-mode": "0.6.6-dev"
 };
 // BOTTOM OF METADATA
 });

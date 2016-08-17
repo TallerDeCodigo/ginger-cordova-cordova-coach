@@ -51,6 +51,10 @@
                         {
                             "xml": "<feature name=\"Toast\"><param name=\"ios-package\" value=\"Toast\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"BackgroundMode\"><param name=\"ios-package\" value=\"APPBackgroundMode\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -60,6 +64,12 @@
                     "NSLocationWhenInUseUsageDescription": [
                         {
                             "xml": "<string />",
+                            "count": 1
+                        }
+                    ],
+                    "UIBackgroundModes": [
+                        {
+                            "xml": "<array><string>audio</string></array>",
                             "count": 1
                         }
                     ]
@@ -103,6 +113,9 @@
         },
         "cordova-plugin-compat": {
             "PACKAGE_NAME": "org.ginger.app"
+        },
+        "cordova-plugin-background-mode": {
+            "PACKAGE_NAME": "$(PRODUCT_BUNDLE_IDENTIFIER)"
         }
     },
     "dependent_plugins": {},
@@ -421,6 +434,15 @@
             "id": "nl.x-services.plugins.toast.tests",
             "file": "plugins/nl.x-services.plugins.toast/test/tests.js",
             "pluginId": "nl.x-services.plugins.toast"
+        },
+        {
+            "id": "cordova-plugin-background-mode.BackgroundMode",
+            "file": "plugins/cordova-plugin-background-mode/www/background-mode.js",
+            "pluginId": "cordova-plugin-background-mode",
+            "clobbers": [
+                "cordova.plugins.backgroundMode",
+                "plugin.backgroundMode"
+            ]
         }
     ],
     "plugin_metadata": {
@@ -435,6 +457,7 @@
         "cordova-plugin-splashscreen": "3.2.2",
         "cordova-plugin-whitelist": "1.2.2",
         "nl.x-services.plugins.toast": "2.5.0",
-        "cordova-plugin-compat": "1.0.0"
+        "cordova-plugin-compat": "1.0.0",
+        "cordova-plugin-background-mode": "0.6.6-dev"
     }
 }
