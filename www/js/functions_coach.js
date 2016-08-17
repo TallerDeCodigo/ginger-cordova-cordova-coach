@@ -126,7 +126,6 @@ $(window).load(function(){
 
 		}
 
-
 		/**
 		 *
 		 * Lista de Dietas de Coach
@@ -182,24 +181,33 @@ $(window).load(function(){
 
 			$('.btn_copy').click(function (e) {
 				console.log('copy');
-				var idDieta = $('.btn_copy').attr('data');	
-				localStorage.setItem("cp_dietaId", idDieta);
+				var idDieta = $(this).attr('data');	
+				localStorage.setItem("dOperator", idDieta);
 
 			});
 
-			$('.btn_edit').click(function (e) {
+			$('.btn_edit').click(function () {
 				
-				var idDieta = $('.btn_edit').attr('data');
+				var idDietax = $(this).attr('data');
 
-				console.log(idDieta);
+				console.log('ID DIET: ' + idDietax);
 
-				localStorage.setItem('dOperator', idDieta);
+				localStorage.setItem('dOperator', idDietax);
 
 
 			});
 
-			$('.btn_delete').click(function (e) {
+			$('.btn_delete').click(function () {
 				console.log('delete');
+				var idDelete = $(this).attr('data');
+				var response = apiRH.deleteDiet(idDelete);
+
+				alert(response);
+
+				if(response){
+					console.log('DELETE OK: ' + response);
+				}
+
 			});
 
 		}
@@ -449,6 +457,32 @@ $(window).load(function(){
 		}
 
 
+		if($('body').hasClass('has-create-platillo')){
+
+			$('add').click(function () {
+				var is_public 		= $('').attr('');
+				var is_name 		= $('name_platillo').val();
+				var is_receta 		= $('').attr('');
+				var is_comentarios 	= $('').attr('');
+				var is_ingredients 	= $('').attr('');	
+
+				var json = {
+
+				}
+
+				var response = apiRH.newDish(json);
+
+				if(response)
+					alert(response);
+				else
+					alert('error new dish');
+
+			});
+
+
+		}
+
+
 		if($('body').hasClass('has-ingredients') ){
 			
 			$( ".accordion1" ).accordion({collapsible:true,active:false,animate:200,heightStyle:"content"});
@@ -505,14 +539,24 @@ $(window).load(function(){
 				if(medida  == -1) 
 					return;
 
-
-				//RIFARSE EL REUEST
-
 				console.log('REQUEST');
 
-				json = {
-
+				json = {	
+					"nombre" : i_nombre,
+					"categoria" : category,
+					"tipo" 	 : i_nombre,
+					"contable" : medida
 				};
+
+				apiRH.newIngredient(json);
+
+				if(response){
+					alert(response);
+					window.location.assign('ingredientes.html');
+
+				}
+				else
+					alert('error');
 
 
 			});

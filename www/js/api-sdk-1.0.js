@@ -231,7 +231,25 @@ function requestHandlerAPI(){
 		 * */
 
 		this.deleteDiet = function(diet){
+			var req = {
+				method : 'DELETE',
+				url : api_base_url + 'tables/dieta/' + diet,
+				headers: {
+					'X-ZUMO-APPLICATION': 'ideIHnCMutWTPsKMBlWmGVtIPXROdc92',
+					'X-ZUMO-AUTH': localStorage.getItem('token'),
+					'Content-Type': 'application/json'
+				}
+			}
 
+			console.log(JSON.stringify(req));
+
+			var response = this.makeDeleteRequest('tables/dieta/' + diet, req);
+
+			console.log("Request Delete Data Dieta");
+
+			console.log(response);  //llega aqui con la respuesta del servidor
+
+			return (response) ? response : false;
 		};
 
 		/**
@@ -268,7 +286,7 @@ function requestHandlerAPI(){
  		 *
 		 **/
 
-		this.newDish = function(){
+		this.newDish = function(data){
 			var req = {
 				method : 'post',
 				url : api_base_url + 'tables/plato',	//definitr tabla
@@ -277,9 +295,7 @@ function requestHandlerAPI(){
 					'X-ZUMO-AUTH': localStorage.getItem('token'),
 					'Content-Type': 'application/json'
 				},
-				data : {
-					'data' : data
-				}
+				data : data
 			}
 			console.log(req);
 
@@ -333,15 +349,13 @@ function requestHandlerAPI(){
 					'X-ZUMO-AUTH': localStorage.getItem('token'),
 					'Content-Type': 'application/json'
 				},
-				data : {
-					'data' : data
-				}
+				data : data
 			}
 			console.log(req);
 
 			var response = this.makeRequest('tables/ingrediente', req);
 
-			console.log("Request Data Cliente");
+			console.log("Request Data Ingredients");
 
 			console.log(response);  //llega aqui con la respuesta del servidor
 
@@ -750,6 +764,64 @@ function requestHandlerAPI(){
 			});
 			return result;
 		};
+
+		this.makeDeleteRequest = function(endpoint, data){
+			console.log(data.data); //llega a makerequest
+
+			sdk_app_context.showLoader();
+			var result = {};
+
+			console.log('datos' + data.data);
+
+			$.ajax({
+			  type: 'DELETE',
+			  headers: data.headers,
+			  url: window.api_base_url+endpoint,
+			  data: JSON.stringify(data.data),
+			  dataType: 'json',
+			  async: false
+			})
+			 .done(function(response){
+				result = response;
+				sdk_app_context.hideLoader(response);
+			})
+			 .fail(function(e){
+				result = false;
+				console.log(JSON.stringify(e));
+			});
+			return result;
+
+		};
+
+
+		this.makeCopyDietReques = function(endpoint, data){
+			console.log(data.data); //llega a makerequest
+
+			sdk_app_context.showLoader();
+			var result = {};
+
+			console.log('datos' + data.data);
+
+			$.ajax({
+			  type: 'POST',
+			  headers: data.headers,
+			  url: window.api_base_url+endpoint,
+			  data: JSON.stringify(data.data),
+			  dataType: 'json',
+			  async: false
+			})
+			 .done(function(response){
+				result = response;
+				sdk_app_context.hideLoader(response);
+			})
+			 .fail(function(e){
+				result = false;
+				console.log(JSON.stringify(e));
+			});
+			return result;
+		};
+
+
 		/* 
 		 * Executes a GET call
 		 * @param endpoint API endpoint to make the call to
