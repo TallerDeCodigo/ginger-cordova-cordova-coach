@@ -253,9 +253,7 @@ $(window).load(function(){
 
 		if($('body').hasClass('has-copy-diet')){
 			$('.btn-gre').click(function () {
-				
 				console.log('COPY DIETA');
-
 				var d_nombre 		= $('input[name="nombre"]').val();
 				var d_comentario 	= $('input[name="comentario"]').val();
 
@@ -267,10 +265,27 @@ $(window).load(function(){
 				if(d_comentario.length < 4)
 					return;
 
-				localStorage.removeItem('d_comentario');
-				localStorage.removeItem('d_nombre');
+				var json = {
+					"nombre" : 		localStorage.getItem('d_nombre'),
+					"descripcion" : localStorage.getItem('d_comentario'),
+					"id": 			localStorage.getItem("dOperator")
+				};
 
-				window.location.assign('dieta.html');
+				var response = apiRH.copyDiet(json);
+
+				console.log(response);
+
+				if(response){
+					var c_diet = response;
+
+					localStorage.removeItem('d_comentario');
+					localStorage.removeItem('d_nombre');
+					localStorage.setItem("dOperator", c_diet._id);
+
+					window.location.assign('dieta.html');
+				}
+				else
+					console.log('Error');
 			});
 		}
 
@@ -278,7 +293,7 @@ $(window).load(function(){
 		if($('body').hasClass('dieta')){
 
 			var dieta = app.get_diet('?_id='+ localStorage.getItem('dOperator'));
-			console.log(dieta);
+			console.log('ID DIET: ' + dieta._id);
 			if(dieta){
 				var comm_id;
 				var platillo_id;

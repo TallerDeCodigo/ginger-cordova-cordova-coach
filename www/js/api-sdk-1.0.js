@@ -252,6 +252,34 @@ function requestHandlerAPI(){
 			return (response) ? response : false;
 		};
 
+
+		/**
+		 * COPY DIET
+		 * */
+
+		 this.copyDiet = function(data){
+			var req = {
+				method : 'POST',
+				url : api_base_url + 'api/duplicate',
+				headers: {
+					'X-ZUMO-APPLICATION': 'ideIHnCMutWTPsKMBlWmGVtIPXROdc92',
+					'X-ZUMO-AUTH': localStorage.getItem('token'),
+					'Content-Type': 'application/json'
+				},
+				data: data
+			}
+
+			console.log(JSON.stringify(req));
+
+			var response = this.makeRequest('api/duplicate', req);
+
+			console.log("Request Copy Data Dieta");
+
+			console.log(response);  //llega aqui con la respuesta del servidor
+
+			return (response) ? response : false;
+		};
+
 		/**
 		 *
 		 * Platillos
