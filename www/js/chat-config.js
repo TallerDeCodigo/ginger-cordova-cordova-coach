@@ -57,19 +57,24 @@ function connectToChat() {
   //
 
   console.log('here');
-  QB.createSession({login: 2418124, password: '7eveGyxJBkRMwEe1FSEG'}, function(err, res) {
+  
+  QB.createSession({login: "michelleronaym@gmail.com", password: "7eveGyxJBkRMwEe1FSEG"}, function(err, res) {
+    
+  console.log('Error ' + res);
     if (res) {
       // save session token
+
+
       token = res.token;
 
       user.id = res.user_id;
       mergeUsers([{user: user}]);
 
-      QB.chat.connect({userId: user.id, password: user.pass}, function(err, roster) {
+      QB.chat.connect({userId: "michelleronaym@gmail.com", password: '7eveGyxJBkRMwEe1FSEG'}, function(err, roster) {
         if (err) {
           console.log(err);
         } else {
-          console.log(roster);
+          console.log('Error: ' + roster);
 
           // // setup scroll stickerpipe module
           // //
