@@ -27,6 +27,7 @@ $(window).load(function(){
 		var objetivo = [ 'adelgazar','detox','bienestar','rendimiento' ];
 		var sex = ['Hombre','Mujer'];
 		var tipo_de_ingredientes = [ 'granosycereales', 'verduras', 'grasas', 'lacteos', 'proteinaanimal', 'leguminosas', 'nuecesysemillas', 'frutas', 'endulzantes', 'aderezosycondimentos', 'superfoods', 'liquidos'];
+		
 		/**
 		 *
 		 * Lista de Usuarios de Coach
