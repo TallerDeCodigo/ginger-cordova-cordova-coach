@@ -2,5 +2,9 @@
     {
         "merged": "/Users/HELA/Sites/ginger-cordova-cordova/platforms/android/build/intermediates/res/merged/debug/xml/config.xml",
         "source": "/Users/HELA/Sites/ginger-cordova-cordova/platforms/android/res/xml/config.xml"
+    },
+    {
+        "merged": "/Users/HELA/Sites/ginger-cordova-cordova-coach/platforms/android/build/intermediates/res/merged/debug/xml/config.xml",
+        "source": "/Users/HELA/Sites/ginger-cordova-cordova-coach/platforms/android/res/xml/config.xml"
     }
 ]

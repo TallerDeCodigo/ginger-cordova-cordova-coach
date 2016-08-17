@@ -1,5 +1,9 @@
 [
     {
+        "merged": "/Users/HELA/Sites/ginger-cordova-cordova-coach/platforms/android/build/intermediates/res/merged/debug/drawable-port-hdpi-v4/screen.png",
+        "source": "/Users/HELA/Sites/ginger-cordova-cordova-coach/platforms/android/res/drawable-port-hdpi/screen.png"
+    },
+    {
         "merged": "/Users/HELA/Sites/ginger-cordova-cordova/platforms/android/build/intermediates/res/merged/debug/drawable-port-hdpi-v4/screen.png",
         "source": "/Users/HELA/Sites/ginger-cordova-cordova/platforms/android/res/drawable-port-hdpi/screen.png"
     }

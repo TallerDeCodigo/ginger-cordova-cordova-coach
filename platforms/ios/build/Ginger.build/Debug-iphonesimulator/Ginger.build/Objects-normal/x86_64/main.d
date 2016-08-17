@@ -1,2 +1,2 @@
 dependencies: \
-  /Users/HELA/Sites/ginger-cordova-cordova/platforms/ios/Ginger/main.m
+  /Users/HELA/Sites/ginger-cordova-cordova-coach/platforms/ios/Ginger/main.m

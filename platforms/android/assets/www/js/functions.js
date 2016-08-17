@@ -11,19 +11,6 @@ var CREDENTIALS = {
 	authKey: 'XydaWcf8OO9xhGT',
 	authSecret: 'JZfqTspCvELAmnW'
 };
- 
-// //QB.init(CREDENTIALS.appId, CREDENTIALS.authKey, CREDENTIALS.authSecret);
-
-// //console.log(QB);
-
-// var sessionToken = '1b785b603a9ae88d9dfbd1fc0cca0335086927f1';
-// var appId = 3451;
- 
-// //QB.init(sessionToken, appId);
-
-// //QB.createSession(function(err, result) {
-//   console.log('Aqui');
-// //});
 
 /*EDAD*/
 	var minval_age = 15; 
@@ -169,7 +156,7 @@ var CREDENTIALS = {
 
 } );
 
-$(window).on("load resize",function(){
+$(window).on("load resize",function(){ 
 
 	var alto = document.documentElement.clientHeight;
 
@@ -204,38 +191,63 @@ $(window).on("load resize",function(){
 	$(".cslider").css("width",csld);
 
 /*
+
+	ENVIA MENSAJE AL ADMIN PARA AUTORIZAR CAMBIO DE COACH
+
+*/
+	var msg;
+	var msg_return
+	$('#write_ch_coach').on('click', function(){
+		msg = $('#msg_ch_coach').val();
+		localStorage.setItem('msg_ch_coach', msg);
+		msg_return = localStorage.getItem('msg_ch_coach');
+		if(msg_return != "undefined" || msg_return != "" || msg_return != null){
+			$('#espacio_comentario').html(msg_return);
+		}
+	});
+
+	$('#send_ch_coach').on('click', function(){
+		
+		if(msg_return == ""){
+			alert("Para poder cambiar de coach, es necesario que agregues tus comentarios");
+		}else{
+			console.log(msg_return);
+		}
+	});
+/*
 	ADD PROFILE DATA TO PROFILE VIEWS
 */
 
 
 if($('body').hasClass('load_data') || $('body').hasClass('update_data')){
 
-	var nombre = localStorage.getItem('user_name');
-	var apellido = localStorage.getItem('user_last_name');
-	var sexo = localStorage.getItem('genero');
-	var edad = localStorage.getItem('edad');
-	var cp 	 = localStorage.getItem('zipcode');
-	var estatura = localStorage.getItem('estatura');
-	var peso = localStorage.getItem('peso');
-	var ideal = localStorage.getItem('peso_ideal');
-	var coach_type = localStorage.getItem('coach_type');
-	var frecuencia = localStorage.getItem('dpw');
-	var restricciones = localStorage.getItem('restricciones');
-	var plan = localStorage.getItem('plan');
-	var comentario = localStorage.getItem('comentario');
+	var nombre 			= localStorage.getItem('user_name');
+	var apellido 		= localStorage.getItem('user_last_name');
+	var sexo 			= localStorage.getItem('genero');
+	var edad 			= localStorage.getItem('edad');
+	var cp 	 			= localStorage.getItem('zipcode');
+	var estatura 		= localStorage.getItem('estatura');
+	var peso 			= localStorage.getItem('peso');
+	var ideal 			= localStorage.getItem('peso_ideal');
+	var coach_type 		= localStorage.getItem('coach_type');
+	var frecuencia 		= localStorage.getItem('dpw');
+	var restricciones 	= localStorage.getItem('restricciones');
+	var plan 			= localStorage.getItem('coach_type');
+	var comentario 		= localStorage.getItem('comentarios');
 
-	console.log("nombre > "+ nombre);
-	console.log("sexo > "+ sexo);
-	console.log("edad > "+edad);
-	console.log("cp > "+cp);
-	console.log("estatura > "+estatura);
-	console.log("peso > "+peso);
-	console.log("ideal > "+ideal);
-	console.log("coach_type > "+coach_type);
-	console.log("frecuencia > "+frecuencia);
-	console.log("restricciones > "+restricciones);
-	console.log("plan > "+plan);
-	console.log("comentario > "+ comentario);
+
+	console.log("nombre > "	 		+nombre);
+	console.log("sexo > "	 		+sexo);
+	console.log("edad > "	 		+edad);
+	console.log("cp > "		 		+cp);
+	console.log("estatura > "		+estatura);
+	console.log("peso > "	 		+peso);
+	console.log("ideal > "	 		+ideal);
+	console.log("coach_type > "		+coach_type);
+	console.log("frecuencia > "		+frecuencia);
+	console.log("restricciones > "	+restricciones);
+	console.log("plan > "			+plan);
+	console.log("comentario > "		+comentario);
 
 	$('.cpur').html(nombre +" "+ apellido);
 	$('.edit-profile span').html(nombre +" "+ apellido);
@@ -266,9 +278,9 @@ if($('body').hasClass('load_data') || $('body').hasClass('update_data')){
 
 	var suma = parseInt(coach_type)+1;
 	console.log('suma '+suma);
-	console.log('coach> '+ coach_type);
+	console.log('coach type> '+ coach_type);
 
-	$('.tipo_coach .co-option:nth-of-type('+suma+')').addClass('active');
+	//$('.tipo_coach .co-option:nth-of-type('+suma+')').addClass('active');
 
 	switch(coach_type){
 			case '0': 
@@ -288,20 +300,17 @@ if($('body').hasClass('load_data') || $('body').hasClass('update_data')){
 				$('.co-option.active img:not(.question)').attr("src",'images/coach/tradicional2.png');
 				break;
 		}
-	$('#frecuencia_perfil').html(frecuencia+" días por semana");
+	$('#frecuencia_perfil').html(frecuencia +" días por semana");
 	$('#ejercicio-dato').html(frecuencia);
-
-
-	$('#restricciones_perfil').html(restricciones);
-
 
 	$('#comentario_perfil').html(comentario);
 	$('.the-comment').html(comentario);
 
 
-$('.tipo_plan .pl-option:nth-of-type('+suma+')').addClass('active');
+//$('.tipo_plan .pl-option:nth-of-type('+suma+')').addClass('active');
+	console.log("plan> "+plan);
 	var suma = parseInt(plan)+1;
-	console.log('suma '+suma);
+	console.log('suma '+plan);
 
 
 		switch(plan){
@@ -316,7 +325,7 @@ $('.tipo_plan .pl-option:nth-of-type('+suma+')').addClass('active');
 			//console.log('detox');
 			break;
 			case "3":
-			$('#plan_perfil').html("Bienestar");
+			$('#plan_perfil').html("Sentirse mejor");
 			$('.pl-option.active img:not(.question)').attr("src",'images/plan/sentirsemejor2.png');
 			//console.log('bienestar');
 			break;
@@ -326,6 +335,9 @@ $('.tipo_plan .pl-option:nth-of-type('+suma+')').addClass('active');
 			//console.log('rendimiento');
 			break;
 		}
+		var parseado = JSON.parse(restricciones);
+		restricciones = parseado.join(", ");
+		$('#restricciones_perfil').html(restricciones);
 }//end if has class
 
 
@@ -343,7 +355,7 @@ $('.tipo_plan .pl-option:nth-of-type('+suma+')').addClass('active');
 	$(function createSwipe () {
 	    imgs = $(".cslider");
 	    imgs.swipe(swipeOptions);
-	});
+	}); //end createSwipe
 
 	function swipeStatus(event, phase, direction, distance) {
 	    if (phase == "move" && (direction == "left" || direction == "right")) {
@@ -365,43 +377,29 @@ $('.tipo_plan .pl-option:nth-of-type('+suma+')').addClass('active');
 	            nextImage();
 	        }
 	    }
-	}
+	} //end swipeStatus
 
 	function previousImage() {
 	    currentImg = Math.max(currentImg - 1, 0);
 	    scrollImages(IMG_WIDTH * currentImg, speed);
-	}
+	}//end previousImage
 
 	function nextImage() {
 	    currentImg = Math.min(currentImg + 1, maxImages - 1);
 	    scrollImages(IMG_WIDTH * currentImg, speed);
-	}
+	}//end nextImage
 
 	function scrollImages(distance, duration) {
 	    imgs.css("transition-duration", (duration / 1000).toFixed(1) + "s");
 	    var value = (distance < 0 ? "" : "-") + Math.abs(distance).toString();
 	    imgs.css("transform", "translate(" + value + "px,0)");
-	}
-	    
-});
+	}//end scrollImages
+});// end Window on Load Resize
 
 $(window).load(function(){
 	$(function() {
 
 if($('body').hasClass('dieta') ){
-
-
-	/*
-
-		REQUEST DIETA
-
-
-	*/
-
-
-/*
-	OBTIENE EL DIA DE HOY
-*/
 
 var today = new Date();
 var hoy = today.getDay();
@@ -426,254 +424,154 @@ var ingredientes;
 //console.log('DIETA');
 //console.log(JSON.stringify(dieta));
 
-switch(hoy){
-	case 0: 
-		console.log('domingo');
-		day_index = 0;
-		var domingo_desayuno = dieta.estructura.domingo.desayuno;
-		var domingo_snack1 = dieta.estructura.domingo.snack1;
-		var domingo_comida = dieta.estructura.domingo.comida;
-		var domingo_snack2 = dieta.estructura.domingo.snack2;
-		var domingo_cena = dieta.estructura.domingo.cena;
-		break;
-	case 1: 
-		console.log('lunes');
-		day_index = 1;
-		var lunes_desayuno = dieta.estructura.lunes.desayuno;
-		var lunes_snack1 = dieta.estructura.lunes.snack1;
-		var lunes_comida = dieta.estructura.lunes.comida;
-		var lunes_snack2 = dieta.estructura.lunes.snack2;
-		var lunes_cena = dieta.estructura.lunes.cena;
-		break;
-	case 2: 
-		console.log('martes');
-		day_index = 2;
-		var martes_desayuno = dieta.estructura.martes.desayuno;
-		var martes_snack1 = dieta.estructura.martes.snack1;
-		var martes_comida = dieta.estructura.martes.comida;
-		var martes_snack2 = dieta.estructura.martes.snack2;
-		var martes_cena = dieta.estructura.martes.cena;
-		break;
-	case 3: 
-		console.log('miercoles');
-		day_index = 3;
-		var miercoles_desayuno = dieta.estructura.miercoles.desayuno;
-		var miercoles_snack1 = dieta.estructura.miercoles.snack1;
-		var miercoles_comida = dieta.estructura.miercoles.comida;
-		var miercoles_snack2 = dieta.estructura.miercoles.snack2;
-		var miercoles_cena = dieta.estructura.miercoles.cena;
-		break;
-	case 4: 
-		console.log('jueves');
-		day_index = 4;
-		var jueves_desayuno = dieta.estructura.jueves.desayuno;
-		var jueves_snack1 = dieta.estructura.jueves.snack1;
-		var jueves_comida = dieta.estructura.jueves.comida;
-		var jueves_snack2 = dieta.estructura.jueves.snack2;
-		var jueves_cena = dieta.estructura.jueves.cena;
-		break;
-	case 5: 
-		console.log('viernes');
-		day_index = 5;
-		var viernes_desayuno = dieta.estructura.viernes.desayuno;
-		var viernes_snack1 = dieta.estructura.viernes.snack1;
-		var viernes_comida = dieta.estructura.viernes.comida;
-		var viernes_snack2 = dieta.estructura.viernes.snack2;
-		var viernes_cena = dieta.estructura.viernes.cena;
-		break;
-	case 6: 
-		console.log('sabado');
-		day_index = 6;
-		var sabado_desayuno = dieta.estructura.sabado.desayuno;
-		var sabado_snack1 = dieta.estructura.sabado.snack1;
-		var sabado_comida = dieta.estructura.sabado.comida;
-		var sabado_snack2 = dieta.estructura.sabado.snack2;
-		var sabado_cena = dieta.estructura.sabado.cena;
-		break;
-}
+var losplatos = [];
+var i=0;
 
-	//Estructura de la diet
-if(day_index == 0){	
-	arr_desayuno 	= Object.keys(domingo_desayuno).map(function(k) { return dieta.estructura.domingo.desayuno[k] });	
-	arr_snack1 		= Object.keys(domingo_snack1).map(function(k) 	{ return dieta.estructura.domingo.snack1[k] });	
-	arr_comida		= Object.keys(domingo_comida).map(function(k) 	{ return dieta.estructura.domingo.comida[k] });	
-	arr_snack2 		= Object.keys(domingo_snack2).map(function(k) 	{ return dieta.estructura.domingo.snack2[k] });	
-	arr_cena 		= Object.keys(domingo_cena).map(function(k) 	{ return dieta.estructura.domingo.cena[k] });
-	var arr_tiempos = [];
-	arr_tiempos.push(arr_desayuno, arr_snack1, arr_comida, arr_snack2, arr_cena);
-}else if(day_index == 1){	
-	arr_desayuno 	= Object.keys(lunes_desayuno).map(function(k) 	{ return dieta.estructura.lunes.desayuno[k] });	
-	arr_snack1 		= Object.keys(lunes_snack1).map(function(k) 	{ return dieta.estructura.lunes.snack1[k] });	
-	arr_comida		= Object.keys(lunes_comida).map(function(k) 	{ return dieta.estructura.lunes.comida[k] });	
-	arr_snack2 		= Object.keys(lunes_snack2).map(function(k) 	{ return dieta.estructura.lunes.snack2[k] });	
-	arr_cena 		= Object.keys(lunes_cena).map(function(k) 		{ return dieta.estructura.lunes.cena[k] });
-	var arr_tiempos = [];
-	arr_tiempos.push(arr_desayuno, arr_snack1, arr_comida, arr_snack2, arr_cena);
-}else if(day_index == 2){	
-	arr_desayuno 	= Object.keys(martes_desayuno).map(function(k) 	{ return dieta.estructura.martes.desayuno[k] });	
-	arr_snack1 		= Object.keys(martes_snack1).map(function(k) 	{ return dieta.estructura.martes.snack1[k] });	
-	arr_comida		= Object.keys(martes_comida).map(function(k) 	{ return dieta.estructura.martes.comida[k] });	
-	arr_snack2 		= Object.keys(martes_snack2).map(function(k) 	{ return dieta.estructura.martes.snack2[k] });	
-	arr_cena 		= Object.keys(martes_cena).map(function(k) 		{ return dieta.estructura.martes.cena[k] });
-	var arr_tiempos = [];
-	arr_tiempos.push(arr_desayuno, arr_snack1, arr_comida, arr_snack2, arr_cena);
-}else if(day_index == 3){	
-	arr_desayuno 	= Object.keys(miercoles_desayuno).map(function(k) 	{ return dieta.estructura.miercoles.desayuno[k] });	
-	arr_snack1 		= Object.keys(miercoles_snack1).map(function(k) 	{ return dieta.estructura.miercoles.snack1[k] });	
-	arr_comida		= Object.keys(miercoles_comida).map(function(k) 	{ return dieta.estructura.miercoles.comida[k] });	
-	arr_snack2 		= Object.keys(miercoles_snack2).map(function(k) 	{ return dieta.estructura.miercoles.snack2[k] });	
-	arr_cena 		= Object.keys(miercoles_cena).map(function(k) 		{ return dieta.estructura.miercoles.cena[k] });
-	var arr_tiempos = [];
-	arr_tiempos.push(arr_desayuno, arr_snack1, arr_comida, arr_snack2, arr_cena);
-}else if(day_index == 4){	
-	arr_desayuno 	= Object.keys(jueves_desayuno).map(function(k) 	{ return dieta.estructura.jueves.desayuno[k] });	
-	arr_snack1 		= Object.keys(jueves_snack1).map(function(k) 	{ return dieta.estructura.jueves.snack1[k] });	
-	arr_comida		= Object.keys(jueves_comida).map(function(k) 	{ return dieta.estructura.jueves.comida[k] });	
-	arr_snack2 		= Object.keys(jueves_snack2).map(function(k) 	{ return dieta.estructura.jueves.snack2[k] });	
-	arr_cena 		= Object.keys(jueves_cena).map(function(k) 		{ return dieta.estructura.jueves.cena[k] });
-	var arr_tiempos = [];
-	arr_tiempos.push(arr_desayuno, arr_snack1, arr_comida, arr_snack2, arr_cena);
-}else if(day_index == 5){
-	arr_desayuno 	= Object.keys(viernes_desayuno).map(function(k) { return dieta.estructura.viernes.desayuno[k] });	
-	arr_snack1 		= Object.keys(viernes_snack1).map(function(k) 	{ return dieta.estructura.viernes.snack1[k] });	
-	arr_comida		= Object.keys(viernes_comida).map(function(k) 	{ return dieta.estructura.viernes.comida[k] });	
-	arr_snack2 		= Object.keys(viernes_snack2).map(function(k) 	{ return dieta.estructura.viernes.snack2[k] });	
-	arr_cena 		= Object.keys(viernes_cena).map(function(k) 	{ return dieta.estructura.viernes.cena[k] });
-	var arr_tiempos = [];
-	arr_tiempos.push(arr_desayuno, arr_snack1, arr_comida, arr_snack2, arr_cena);
-}else if(day_index == 6){	
-	arr_desayuno 	= Object.keys(sabado_desayuno).map(function(k) 	{ return dieta.estructura.sabado.desayuno[k] });	
-	arr_snack1 		= Object.keys(sabado_snack1).map(function(k) 	{ return dieta.estructura.sabado.snack1[k] });	
-	arr_comida		= Object.keys(sabado_comida).map(function(k) 	{ return dieta.estructura.sabado.comida[k] });	
-	arr_snack2 		= Object.keys(sabado_snack2).map(function(k) 	{ return dieta.estructura.sabado.snack2[k] });	
-	arr_cena 		= Object.keys(sabado_cena).map(function(k) 		{ return dieta.estructura.sabado.cena[k] });
-	var arr_tiempos = [];
-	arr_tiempos.push(arr_desayuno, arr_snack1, arr_comida, arr_snack2, arr_cena);
-}else{
-	console.log("none");
-}
-
-	for(var i=0; i<arr_desayuno.length; i++){
-		comm_id = arr_desayuno[i].a.comentario;
-		platillo_id = arr_desayuno[i].a.platillo;
-		// console.log(comm_id);
-		// console.log(platillo_id + " >");
-	}
-
-/*
-	RECORRE EL ARRAY QUE SE GENERA POR DIA TIEMPOS
-*/
-
-	for(var i=0; i<arr_tiempos.length; i++){
-		var tiempos = arr_tiempos[i];
-		console.log(tiempos);
-	}
-
-/*
-	OBTIENE EL NOMBRE DE LA RECETA
-*/
-	var getNombre_receta = function( id ){
-			for(var i=0; i<platillos.length; i++){
-				if(id == platillos[i]._id ){
-					if(platillos[i].descripcion != null){
-						nombre_receta = platillos[i].descripcion;
-						//console.log("nombre> "+nombre_receta);
-					}else{
-						console.log("no tiene nombre de la receta");
-					}
-				}else{
-					//console.log('no tiene id');
-				}
-			}//endFor
-	}//endFunction getNombre_receta
-
-	getNombre_receta(platillo_id);
-	console.log("nombre> "+nombre_receta);
-/*
-	OBTIENE LA RECETA
-*/
-	var getRecetas = function( id ){
-		
-			for(var i=0; i<platillos.length; i++){
-				if(id == platillos[i]._id){
-					if(platillos[i].receta != null){
-						receta = platillos[i].receta;
-					}else{
-						console.log("no tiene platillo");
-					}
-				}else{
-					//console.log('no tiene id');
-				}
-			}//endFor
-
-	}//endFunction getRecetas
-
-	getRecetas(platillo_id);
-	console.log("receta> "+receta);
-
-
-/*
-	OBTIENE LOS INGREDIENTES DE LA RECETA
-*/
-	var getIngredientes = function( id ){
-		for(var i=0; i<platillos.length; i++){
-			if(id == platillos[i]._id){
-				if(platillos[i].ingredientes != null){
-						ingredientes = platillos[i].ingredientes;
-					}else{
-						console.log("no tiene ingredientes");
-					}
-				}else{
-					//console.log('no tiene id');
-				}
-			//console.log(ingredientes);
-			}
+$.each( dieta.platillos, function( key, value ) {
+	losplatos[i]=[];
+	$.each( value, function( key, value ) {
+		// console.log(key+":::"+value);
+		if (key=="_id") {
+		 	losplatos[i][0]=value;
 		}
-	getIngredientes(platillo_id);
-	console.log("ingredientes> "+ingredientes);
+		if (key=="descripcion") {
+		 	losplatos[i][1]=value;
+		}
+		if (key=="receta") {
+		 	losplatos[i][2]=value;
+		}
+		if (key=="ingredientes") {
+		 	losplatos[i][3]=value;
+		}
+	});
+	i++;
+});
+
+var loscomentarios = [];
+var i=0;
+var j=0;
+
+$.each( dieta.comentarios, function( key, value ) {
+	loscomentarios[i]=[];
+	j=0;
+	$.each( value, function( key, value ) {
+		loscomentarios[i][j]=value;
+		j++;
+	});
+	i++;
+});
+
+// console.log(loscomentarios);
 
 
-/*
-	OBTIENE LOS COMENTARIOS DE LA RECETA
-*/
-	var getComentarios = function( id ){
-		for(var i=0; i<comentarios.length; i++){
-			if(id == comentarios[i]._id){
-				if(comentarios[i].comment != null ){
-					comments = comentarios[i].comment;
-				}else{
-					console.log("no tiene comentario> ");
-				}
-			}else{
-				//console.log("no tiene id");
-			}
+for (var i=0; i<losplatos.length; i++) {
+	losplatos[i][4]="";
+	for (var j = 0; j < loscomentarios.length; j++) {
+		if (losplatos[i][0]==loscomentarios[j][2]&&losplatos[i][4]=="") {
+			losplatos[i][4]=loscomentarios[j][1];
 		}
 	}
-	getComentarios(comm_id);
-	console.log("comentarios> "+comments);
+}
+
+// console.log(losplatos);
+
+// console.log('DIETA');
+// console.log(JSON.stringify(dieta));
+
+var dieta_array = [];
+
+var dia_prueba=0;
+
+var dias = [];
+
+$.each( dieta.estructura, function( key, value ) {
+	// los dias de la semana
+	if(key=="domingo"){dia_prueba=1;} else if (key=="lunes") {dia_prueba=2;} else if (key=="martes") {dia_prueba=3;} else if (key=="miercoles") {dia_prueba=4;} else if (key=="jueves") {dia_prueba=5;} else if (key=="viernes") {dia_prueba=6;} else if (key=="sabado") {dia_prueba=7;}
+	var estoyen = '#toda_la_dieta li:nth-of-type('+dia_prueba+') ';
+
+	$.each( value, function( key, value ) {
+		// desayuno, snack, comida,...
+		var dentrode = estoyen+'.acc-content.'+key+' ';
+		var i=1;
+		$.each( value, function( key, value ) {
+			// tiempos (1,2,3..)
+			var masadentro = dentrode+'div.platillo:nth-of-type('+i+')';
+			i++;	
+			$.each( value, function( key, value ) {
+				// opciones (a,b)
+				if ( key=="b" && localStorage.getItem("restricciones") ) {
+					// b
+					$.each( value, function( key, value ) {
+						// id_platillo, id_comentario
+						if (key=="platillo") {				
+							for (var i = 0; i < losplatos.length; i++) {
+								if (value==losplatos[i][0]) {
+									// console.log(losplatos[i][1]+"<"+losplatos[i][2]+"<"+losplatos[i][4]);
+									$(masadentro).attr("data", losplatos[i][0]);
+									$(masadentro+' h5').html(losplatos[i][1]);
+									if (losplatos[i][2]!="") {
+										$(masadentro+' p.receta').html(losplatos[i][2]);
+									} else {
+										$(masadentro+' p.receta').hide();
+									}
+									if (losplatos[i][4]!="") {
+										$(masadentro+' p.comentario').html(losplatos[i][4]);
+									} else {
+										$(masadentro+' p.comentario').hide();
+									}
+								}
+							}
+						}
+
+					});
+				} else {
+					// a
+					$.each( value, function( key, value ) {
+						// id_platillo, id_comentario
+						if (key=="platillo") {
+							for (var i = 0; i < losplatos.length; i++) {
+								if (value==losplatos[i][0]) {
+									// console.log(losplatos[i][1]+"<"+losplatos[i][2]+"<"+losplatos[i][4]);
+									$(masadentro).attr("data", losplatos[i][0]);
+									$(masadentro+' h5').html(losplatos[i][1]);
+									if (losplatos[i][2]!="") {
+										$(masadentro+' p.receta').html(losplatos[i][2]);
+									} else {
+										$(masadentro+'p.receta').hide();
+									}
+									if (losplatos[i][4]!="") {
+										$(masadentro+' p.comentario').html(losplatos[i][4]);
+									} else {
+										$(masadentro+' p.comentario').hide();
+									}
+								}
+							}
+						}
+
+					});
+				}
+
+			});
+		});
+	});
+});
+
+$('.platillo').each(function() {
+    if ($(this).attr('data') === undefined) {
+      $(this).remove();
+    }
+});
 
 
-	var dish = {
-				"nombre_receta" : nombre_receta,
-				"receta" : receta,
-				"comentarios" : comments , 
-				"ingredientes" : ingredientes
-			}
+	// var array = [];
+	// array.push(dish);
 
-//console.log(dish);
+	// console.log("array> "+array);
+
+	// console.log('------------------------');
+
 	
-
-
-
-	var array = [];
-	array.push(dish);
-
-	console.log("array> "+array);
-
-	console.log('------------------------');
-
-	
-	var arr = Object.keys(dieta.estructura.domingo.cena).map(function(k) { return dieta.estructura.domingo.cena[k] });	
+	// var arr = Object.keys(dieta.estructura.domingo.cena).map(function(k) { return dieta.estructura.domingo.cena[k] });	
 	
 	// console.log(arr);
 
@@ -707,7 +605,7 @@ if(day_index == 0){
 	//console.log(weekNumber);
   	var ano = fecha.getFullYear();
   	var mes = meses[fecha.getMonth()];
-
+  	 console.log(fecha.hoy());
 
 /*
 	IMPRIME EL MES Y EL ANO EN EL HEADER DE LA PANTALLA
@@ -723,29 +621,43 @@ if(day_index == 0){
      return result;
     }
 
-    var week = [];
-    week = getWeekDays( new Date( "'" + fecha.hoy() + "'" ) );
+    var week = new Object();
+    var algo = fecha.hoy().toString();
+    console.log(typeof algo); 
+    week = getWeekDays( new Date(algo) );
+
+    //console.log(week);
     var days = $('.day_of_week');
-    var dow; 
-    var str
+    var dow = [];
+    var str;
+    var d = new Date();
+    var date_string;
     for(var i=0; i<dias.length; i++){
-    	//console.log(week[i].toString().slice(8, 11) );
-    	dow = week[i].getDate();
     	var masuno = i+1;
-    	//console.log(dow);
-    	$('tr td.day_of_week:nth-of-type('+masuno+') span').html(dow);
-
-
+    	date_string = week[i].toString();
+    	$('tr td.day_of_week:nth-of-type('+masuno+') span').html(date_string.substring(8, 11));
     }
 
     	var incremento = 168;
 		var current_day;
     	var full_date;
-	    current_day = new Date( + new Date().getTime());
+	    current_day = new Date( + new Date().getTime() );
+	    current_day = fecha.hoy().substring(8);
+	    var left = fecha.hoy().substring(0,8);
+
+	    current_day = parseInt(current_day) +7;
+	    current_day = left + current_day; 
+	    console.log(current_day);
+	    week = getWeekDays( new Date( current_day ) );
+
 
 		$(".nextweek").click(function(){
-	    	full_date = new Date( + new Date("'" + current_day + "'").getTime() + incremento * 60 * 60 * 1000);
-
+	    	full_date = new Date( + new Date( current_day ).getTime() + incremento * 60 * 60 * 1000);
+	    	for(var i=0; i<dias.length; i++){
+	    		var masuno = i+1;
+	    		date_string = week[i].toString();
+	    		$('tr td.day_of_week:nth-of-type('+masuno+') span').html(date_string.substring(8, 11));
+	    	}
 	    	if(full_date.getMonth() != current_day.getMonth()){
 	    		$('#month').html(meses[full_date.getMonth()] );
 	    	}
@@ -758,10 +670,10 @@ if(day_index == 0){
 	    	console.log("Full date > > "+full_date);
 	    	var week2 = getWeekDays( new Date( "'" + full_date + "'" ) );
 			for(var i=0; i<dias.length; i++){
-		    	dow = week2[i].toString().slice(8, 11);
+		    	dow[i] = week2[i].toString().slice(8, 11);
 		    	var masuno = i+1;
-		    	console.log(dow);
-		    	$('tr td.day_of_week:nth-of-type('+masuno+') span').html(dow);
+		    	//console.log(dow[i]);
+		    	$('tr td.day_of_week:nth-of-type('+masuno+') span').html(dow[i]);
 		    }
 
 
@@ -771,6 +683,7 @@ if(day_index == 0){
 			//debe tomar el ultmo dia en el que se encuentra para retroceder a partir de ese punto en el tiempo
 	    	
 	    	full_date = new Date(new Date( "'" + current_day + "'" ).getTime() - incremento * 60 * 60 * 1000);
+
 	    	if(full_date.getMonth() != current_day.getMonth()){
 	    		$('#month').html(meses[full_date.getMonth()] );
 	    	}
@@ -780,19 +693,20 @@ if(day_index == 0){
 	    	}
 
 	    	current_day = full_date;
-	    	console.log("Full date > > "+full_date);
+	    	//console.log("Full date > > "+full_date);
 	    	var week2 = getWeekDays( new Date( "'" + full_date + "'" ) );
 			
 			// if(){
 				for(var i=0; i<dias.length; i++){
-			    	dow = week2[i].toString().slice(8, 11);
+			    	dow[i] = week2[i].toString().slice(8, 11);
 			    	var masuno = i+1;
-			    	console.log(dow);
-			    	$('tr td.day_of_week:nth-of-type('+masuno+') span').html(dow);
+			    	//console.log(dow);
+			    	$('tr td.day_of_week:nth-of-type('+masuno+') span').html(dow[i]);
 			    }
 			// }
 		});
-}//end date
+
+}//end date ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 		var restricciones = new Array();
 
@@ -920,16 +834,16 @@ if(day_index == 0){
 
 		$('#add_updated_profile').on('click', function(){
 
-				var genero 		= localStorage.setItem('genero', $('#update_sexo').val() );
-				localStorage.setItem('edad', $('#edad_value').val() );
-				var zipcode 	=  localStorage.setItem('zipcode', $('input[name="zipocode"]').val() );
-				var estatura 	= localStorage.setItem('estatura', $('input[name="estatura"]').val() );
-				var peso 		= localStorage.setItem('peso', $('input[name="peso"]').val() );
-				var peso_ideal 	= localStorage.setItem('peso_ideal', $('input[name="ideal"]').val() );
-				var coach_type 	= localStorage.setItem('coach_type', $('#coach_type').val() );
-				var dpw 		= localStorage.setItem('dpw', $('#days_per_week').val() );
-				var comentario 	= localStorage.setItem('comentario', $('#comentar').val() );
-				var plan 		= localStorage.setItem('plan', $('#plan').val() );
+				var genero 		= localStorage.setItem('genero', 	  $('#update_sexo').val() );
+				var edad 		= localStorage.setItem('edad', 		  $('#edad_value').val() );
+				var zipcode 	= localStorage.setItem('zipcode', 	  $('input[name="zipocode"]').val() );
+				var estatura 	= localStorage.setItem('estatura', 	  $('input[name="estatura"]').val() );
+				var peso 		= localStorage.setItem('peso', 		  $('input[name="peso"]').val() );
+				var peso_ideal 	= localStorage.setItem('peso_ideal',  $('input[name="ideal"]').val() );
+				var coach_type 	= localStorage.setItem('coach_type',  $('#coach_type').val() );
+				var dpw 		= localStorage.setItem('dpw', 		  $('#days_per_week').val() );
+				var comentario 	= localStorage.setItem('comentarios', $('#comentar').val() );
+				var plan 		= localStorage.setItem('coach_type',  $('#plan').val() );
 				
 				var json = {
 				"sexo" : genero,
@@ -1369,23 +1283,18 @@ if(day_index == 0){
 		});
 
 		$('#finish2').click(function(){
-
 			$('.objetive').animate({opacity:"0",left:"-40px"}, 200);
 			$('.bgre').removeClass('active');
 			$('.bred').addClass('active');
-
-
 /*
 	localStorage PLAN / COACH_TYPE
 */
 			//plan
 			localStorage.setItem('plan', $('#plan').val() );
-			
 			//coach_type
 			localStorage.setItem('coach_type', $('#coach_type').val() );
-
-			 var plan 		= localStorage.getItem('plan', $('#plan').val() );
-			 var coach_type = localStorage.getItem('coach_type', $('#coach_type').val() );
+			var plan 		= localStorage.getItem('coach_type', $('#plan').val() );
+			var coach_type = localStorage.getItem('coach_type', $('#coach_type').val() );
 
 			console.log(" plan> "+ plan+" coachType> "+ coach_type);
 
@@ -1500,7 +1409,7 @@ if(day_index == 0){
 									
 									console.log( key + " ::: " + value );
 									if (key=='id') {
-										$(".wrap-cslide .cslider:nth-of-type("+i+") img.la_foto").attr("src","https://gingerfiles.blob.core.windows.net/coaches/"+value+".png");
+										//$(".wrap-cslide .cslider:nth-of-type("+i+") img.la_foto").attr("src","https://gingerfiles.blob.core.windows.net/coaches/"+value+".png");
 										console.log(value);
 									}
 									if (key=='nombre') {
@@ -1510,15 +1419,15 @@ if(day_index == 0){
 										LastN = value;
 									}
 									if (key=='frase') {
-										$(".wrap-cslide .cslider:nth-of-type("+i+") p.short-descrip b").html(value);
+										//$(".wrap-cslide .cslider:nth-of-type("+i+") p.short-descrip b").html(value);
 										console.log(value);
 									}
 									if (key=='bio') {
-										$(".wrap-cslide .cslider:nth-of-type("+i+") pre.short-descrip").html(value);
+										//$(".wrap-cslide .cslider:nth-of-type("+i+") pre.short-descrip").html(value);
 										console.log(value);
 									}
 								});
-								$(".wrap-cslide .cslider:nth-of-type("+i+") h5.name").html(Name+" "+LastN);
+								//$(".wrap-cslide .cslider:nth-of-type("+i+") h5.name").html(Name+" "+LastN);
 								console.log(Name+" "+LastN);
 							}
   						});
@@ -1572,6 +1481,7 @@ if(day_index == 0){
 		});
 
 		$('.back').click(function(){
+	            window.location.assign('crear.html');
 			if($('.objetive').is(':visible')){
 				$('.objetive').animate({opacity:"0",left:"40px"}, 200);
 				$('.bgre').removeClass('active');
@@ -1581,7 +1491,7 @@ if(day_index == 0){
 	        		$(".aboutyou").show();
 	        		$(".aboutyou").animate({opacity:"1",left:"0px"}, 200);
 	            }, 250);
-	            $(".back").hide();
+	            //$(".back").hide();
 			} else if($('.exercise').is(':visible')){
 				$('.exercise').animate({opacity:"0",left:"40px"}, 200);
 				$('.bred').removeClass('active');
@@ -1753,8 +1663,6 @@ if(day_index == 0){
 				}//end FOR				
 				
 			}// end ELSE
-
-			
 
 			console.log(restricciones);
 

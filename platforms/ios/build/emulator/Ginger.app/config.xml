@@ -45,6 +45,9 @@
     <feature name="Toast">
         <param name="ios-package" value="Toast" />
     </feature>
+    <feature name="BackgroundMode">
+        <param name="ios-package" value="APPBackgroundMode" />
+    </feature>
     <name>Ginger</name>
     <description>
         Nutrición en la palma de tu mano.
@@ -53,6 +56,7 @@
         John Falcon for TDC
     </author>
     <content src="index.html" />
+    <gap:plugin name="de.appplant.cordova.plugin.background-mode" version="0.6.3" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
     <allow-intent href="tel:*" />

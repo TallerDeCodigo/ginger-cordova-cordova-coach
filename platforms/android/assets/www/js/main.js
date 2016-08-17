@@ -10,11 +10,29 @@
 		app_context: this,
 			// Application Constructor
 		initialize: function() {
+
+
+			// 1) Request background execution
+			cordova.plugins.backgroundMode.enable();
+
+			// 2) Now the app runs ins background but stays awake
+			cordova.plugins.backgroundMode.onactivate = function () {
+			    setInterval(function () {
+			        cordova.plugins.notification.badge.increase();
+			        cordova.plugins.backgroundMode.setDefaults({ color: 'FF0000' });
+			    }, 1000);
+			};
+
+			// 3) App is back to foreground
+			cordova.plugins.backgroundMode.ondeactivate = function () {
+			    cordova.plugins.notification.badge.clear();
+			};
+
 			this.bindEvents();
 			/* Initialize API request handler */
 			window.apiRH = new requestHandlerAPI().construct(app);
 
-			console.log('token');
+			//console.log('token');
 			
 			var is_login = apiRH.has_token();
 
@@ -22,7 +40,7 @@
 
 			var is_current = localStorage.getItem('valido');
 
-			console.log(is_login);
+			//console.log(is_login);
 
 			/* IMPORTANT to set requests to be syncronous */
 			/* TODO test all requests without the following code 'cause of deprecation */
@@ -30,20 +48,8 @@
 				 async: false
 			});
 
-			
 			window.loggedIn = false;
-			//app.registerCompiledPartials();
-			//app.registerHelpers();
-
-			/* localStorage init */
 			this.ls 		= window.localStorage;
-			/*var log_info 	= JSON.parse(this.ls.getItem('dedalo_log_info'));
-			var me_info 	= JSON.parse(this.ls.getItem('me'));
-							window.user 		= (log_info) ? log_info.user_login 	: ' ';
-							window.user_display = (me_info)  ? me_info.first_name+' '+me_info.last_name : window.user;
-							window.user_first 	= (me_info)  ? me_info.first_name 	: window.user;
-							window.user_id 		= (log_info) ? log_info.user_id 	: ' ';
-							window.user_role 	= (log_info) ? log_info.user_role 	: ' '; */
 			if(is_login)
 				loggedIn = true;
 	
@@ -52,25 +58,24 @@
 
 			if(is_login){
 				
-				console.log('You okay, now you can start making calls');
+				//console.log('You okay, now you can start making calls');
 				/* Take the user to it's timeline */
 
 				var is_home = window.is_home;
-				var is_feed = window.is_feed;
+				
 
 				if(is_home){
 					return;
 				}else{
-					if(is_feed)
+					if(!is_home)
 						return;
 					else	
-						window.location.assign('dieta.html?filter_feed=all');
+						window.location.assign('index.html?filter_feed=all');
 				}	
 				return;
 			}else{
 				//window.location.assign('feed.html');
 				return;
-
 			}
 			/* Copiado de ondeviceready ----- QUITAR ----- */
 			// var backButtonElement = document.getElementById("backBtn");
@@ -729,7 +734,16 @@
 		    };
 		    navigator.geolocation.getCurrentPosition(onSuccess, onError, {maximumAge: 300000, timeout:10000, enableHighAccuracy : true});
 		},
-		get_file_from_device: function(destination, source){
+
+		
+
+		/*
+			CAMARA LLAMADO DE LA FUCNION EN EL API SDK
+		*/
+
+
+		get_file_from_device: function(destination, source)
+		{
 			apiRH.getFileFromDevice(destination, source);		
 		},
 		showLoader: function(){
@@ -754,9 +768,7 @@
 		},
 
 		/** INIT GINGER SERVICES REQUEST **/
-
 		/* ---- TRACKING ACTIVITY USERS ---- */
-
 		/* @param type: [ 'peso', 'animo', 'brazo', 'pierna', 'cintura', 'cadera', 'pecho', 'agua', 'ejercicio', 'recorrido', 'caminar', 'correr', 'pesas', 'cross' ],  //0..9 */
 
 		register_activity: function(type, magnitude, client_id, coach_id){
@@ -815,38 +827,6 @@
 		},//END UPDATE PERFIL
 
 
-		feed_user_defaults: function(firstName,lastName,email,customerId,password,token,userId,chatId,chatPassword,coachId,coachQuickblox,dietId,user,exerciseValue,picture)
-		{
-			var req = {
-				method : 'post',
-				url : api_base_url + 'tables/medicion/',	//definitr tabla
-				headers: {
-					'X-ZUMO-APPLICATION': 'ideIHnCMutWTPsKMBlWmGVtIPXROdc92',
-					'X-ZUMO-AUTH': '',
-					'Content-Type': 'application/json'
-				},
-				data : {
-					'firstName' : firstName,
-					'lastName' : lastName,
-					'email' : email,
-					'customerId' : customerId,
-					'password' : password,
-					'token' : token,
-					'userId' : userId,
-					'chatId' : chatId,
-					'chatPassword' : chatPassword,
-					'coachQuickblox' : coachQuickblox,
-					'dietId' : dietId,
-					'user' : user,
-					'exerciseValue' : exerciseValue,
-					'picture' : picture
-				}
-			}
-
-			$http(req).success(function(response){
-				console.log(response);	
-			});
-		}, //END feed_user_default
 
 		update_platillo: function(plato, fecha, comida, platillo){
 			var req = {
@@ -902,8 +882,19 @@
 
 			//console.log(result);
 			return result;
-		}//END GET DIET
-	};
+		},//END GET DIET
+		
+		restaFechas: function(f1,f2)
+		{
+			var aFecha1 = f1.split('-'); 
+			var aFecha2 = f2.split('/'); 
+			var fFecha1 = Date.UTC(aFecha1[2],aFecha1[1]-1,aFecha1[0]); 
+			var fFecha2 = Date.UTC(aFecha2[2],aFecha2[1]-1,aFecha2[0]); 
+			var dif = fFecha2 - fFecha1;
+			var dias = Math.floor(dif / (1000 * 60 * 60 * 24)); 
+			return dias;
+		}
+	};	
 
 /*      _                                       _                        _       
  *   __| | ___   ___ _   _ _ __ ___   ___ _ __ | |_   _ __ ___  __ _  __| |_   _ 
@@ -918,67 +909,13 @@
 			Create a new account the old fashioned way 
 
 		*/
-	
-
-		if($('#create_account').length)
-			$('#create_account').validate({
-				rules: {
-					user: "required",
-					mail: {
-							required: true,
-							email: true
-						},
-					pass: "required",
-					cpass : "required"
-				},
-				messages: {
-					user: "Debes proporcionar un nombre de usuario",
-					mail: {
-							required: "Debes proporcionar un correo",
-							email: "Por favor proporciona un correo válido"
-						},
-					pass: "Este campo es requerido para acceder a tu cuenta",
-					cpass: "Las contraseñas que proporcionaste no coinciden"
-				},
-				submitHandler: function(){
-
-					var data_login  	= app.getFormData('#create_account');
-
-					console.log(data_login);
-
-/*
-	stores user name
-*/
-					localStorage.setItem('user_name', data_login.user);
-					localStorage.setItem('user_last_name', data_login.last_name);
-
-					data_login.pass 	= $('#pass').val();
-					
-					var responsedata 	= apiRH.registerNative(data_login);  
-					
-					//console.log(responsedata);						//llega hasta aqui con un valor FALSE
-
-					if(responsedata) {
-						//console.log(responsedata);
-						
-						apiRH.save_user_data_clientside(responsedata);
-						
-						window.location.assign('feed.html');
-
-						return;
-					}else{
-						app.toast('Lo sentimos, el nombre de usuario ya existe.'); //dispara el toast con el mensaje.
-						//e.preventDefault();
-					}
-				}
-			});
 
 		/* Log Out from the API */
 		$('#logout').on('click', function(e){
 			/* Requesting logout from server */
 			//var response = apiRH.logOut({user_login : user, request_token : apiRH.get_request_token() });
 			//if(response.success){
-				app.toast('Has cerrado la sesión, hasta pronto!');
+				app.toast('Has cerrado la sesión, hasta pronto');
 					localStorage.clear();
 				window.location.assign('login.html');
 				return;
@@ -1016,14 +953,49 @@
 				console.log(data_login.mail);
 
 				data_login.pass = $('#pass').val();
+
+
+				//Login OK
+
 				var responsedata = apiRH.loginNative(data_login);
 
-			  	console.log("RESPUESTA: " + responsedata);
+
+				console.log(responsedata);
+				
+				//Dietas OK
+				
+				//var responsedata = apiRH.getDiets();
+
+				//Usuarios OK
+
+				//var responsedata = apiRH.getUsuarios();
+
+				//Finanzas
+
+				//var responsedata = apiRH.getFinanzas(1);
+
+				//Platillos
+
+				//var responsedata = apiRH.listDishes(1);
+
+				//Ingredientes
+
+				// var responsedata = apiRH.listIngredient();
+				
+				console.log("> "+ JSON.stringify(responsedata));
 
 				if(responsedata){
-				 	//apiRH.save_user_data_clientside(responsedata);
-				 	window.location.assign('dieta.html');
+
+					var coachInfo = apiRH.getInfoCoach();
+
+					console.log(coachInfo);
+
+				 	if(coachInfo)
+				 		window.location.assign('index.html');
+				 	
 				 	return;
+				}else{
+					console.log('Error');
 				}
 			}
 	}); //END VALIDATE
@@ -1042,48 +1014,57 @@
 		var  t_cupon 	= $('input[name="cupon"]').val(); 
 		var  t_terms 	= $('input[name="terms"]').val(); 
 
+		Conekta.setPublishableKey('key_C3MaVjaR7emXdiyRGTcbjFQ');
 		
-		function conekta()
-		{	
+		var errorResponseHandler, successResponseHandler, tokenParams;
 
-			Conekta.setPublishableKey('key_C3MaVjaR7emXdiyRGTcbjFQ');
-			
-			var errorResponseHandler, successResponseHandler, tokenParams;
-			tokenParams = {
-			  "card": {
-			    "number": t_card,
-			    "name": t_nombre,
-			    "exp_year": t_ano,
-			    "exp_month": t_mes,
-			    "cvc": t_cvc
-			  }
-			};
+		tokenParams = {
+		  "card": {
+		    "number": t_card,
+		    "name": t_nombre,
+		    "exp_year": t_ano,
+		    "exp_month": t_mes,
+		    "cvc": t_cvc
+		  }
+		};
 
-			successResponseHandler = function(token) 
-			{
-				var response = apiRH.makePayment(token.id);
+		successResponseHandler = function(token) 
+		{
+			var response = apiRH.makePayment(token.id);
+
+			// Funcion de mensaje de bienvenida
+
+			if(response){
+				var coachId = localStorage.setItem('coachId');	
+				var dietaId = localStorage.setItem('dietaId');
+				var json = {
+					"coach" : coachId,
+					"dieta" : dietaId	
+				};
+				//Actualizamos Coach y Dieta para el Usuario
+				var response = apiRH.updatePerfil(JSON);
 
 				if(response)
 					window.location.assign('dieta.html');
 				else
-					alert("Error al procesar tu pago");
-				return;
-			};
+					alert("Error al actualizar datos");
+			}else{
+				alert("Error al procesar tu pago");
+			}
+			return;
+		};
 
-			/* Después de recibir un error */
+		/* Después de recibir un error */
 
-			errorResponseHandler = function(error) {
-			  return console.log(error.message);  //error de conectividad
-			  alert('Error al procesar tu pago');
-			};
+		errorResponseHandler = function(error) {
+		  return console.log(error.message);  //error de conectividad
+		  alert('Error al procesar tu pago');
+		};
 
-			/* Tokenizar una tarjeta en Conekta */
+		/* Tokenizar una tarjeta en Conekta */
 
-			Conekta.token.create(tokenParams, successResponseHandler, errorResponseHandler);
+		Conekta.token.create(tokenParams, successResponseHandler, errorResponseHandler);
 
-		}
-
-		conekta();
 
 	});//endCLICK
 
