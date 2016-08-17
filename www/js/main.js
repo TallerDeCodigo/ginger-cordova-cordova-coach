@@ -16,9 +16,11 @@
 
 			console.log('token');
 			
-			var is_login 	= apiRH.has_token();
-			var is_client 	= localStorage.getItem('customerId');
-			var is_current 	= localStorage.getItem('valido');
+			var is_login = apiRH.has_token();
+
+			var is_client = localStorage.getItem('customerId');
+
+			var is_current = localStorage.getItem('valido');
 
 			console.log(is_login);
 
@@ -714,6 +716,14 @@
 		    };
 		    navigator.geolocation.getCurrentPosition(onSuccess, onError, {maximumAge: 300000, timeout:10000, enableHighAccuracy : true});
 		},
+
+		
+
+		/*
+			CAMARA LLAMADO DE LA FUCNION EN EL API SDK
+		*/
+
+
 		get_file_from_device: function(destination, source)
 		{
 			apiRH.getFileFromDevice(destination, source);		
