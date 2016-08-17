@@ -16,11 +16,9 @@
 
 			console.log('token');
 			
-			var is_login = apiRH.has_token();
-
-			var is_client = localStorage.getItem('customerId');
-
-			var is_current = localStorage.getItem('valido');
+			var is_login 	= apiRH.has_token();
+			var is_client 	= localStorage.getItem('customerId');
+			var is_current 	= localStorage.getItem('valido');
 
 			console.log(is_login);
 

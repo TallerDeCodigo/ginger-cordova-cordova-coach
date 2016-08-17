@@ -453,7 +453,9 @@ p.small{margin-bottom:0;}
 #soporte{font-size: 2rem}
 
 
-
+a:focus img {
+    border: 0;
+}
 
 
 
