@@ -1160,6 +1160,10 @@ function requestHandlerAPI(){
 		this.fileselect_fail = function (error) {
 								app.toast("An error has occurred: " + error);
 							};
+
+							/*
+								IMPLEMENTACION DE LA CAMARA 
+							*/
 		/**
 		 * @param String destination Upload destination Options: "profile", "event"
 		 * @param String source Source to get media file from Options: "camera", "gallery"
@@ -1169,6 +1173,7 @@ function requestHandlerAPI(){
 
 			this.photoDestinationType = navigator.camera.DestinationType;
 			var sourcetype =  navigator.camera.PictureSourceType.PHOTOLIBRARY;
+			
 			if(source == "camera") sourcetype =  navigator.camera.PictureSourceType.CAMERA;
 			if(destination == 'profile')
 				navigator.camera.getPicture(context.profileselect_win, context.fileselect_fail, { quality: 50,
