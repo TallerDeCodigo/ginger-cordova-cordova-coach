@@ -846,6 +846,8 @@ $(window).load(function(){
 
 if($('body').hasClass('has-chat-list') ){
 
+		connectToChat();
+		
 		$('.persona').click(function(){
 
 			var data_for_chat = $(this).attr('data');

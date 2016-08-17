@@ -22,48 +22,48 @@ $(document).ready(function() {
   });
 });
 
-function connectToChat(user) {
-  $('#loginForm button').hide();
-  $('#loginForm .progress').show();
+// function connectToChat(user) {
+//   $('#loginForm button').hide();
+//   $('#loginForm .progress').show();
 
-  // Create session and connect to chat
-  //
-  QB.createSession({login: user.login, password: user.pass}, function(err, res) {
+//   // Create session and connect to chat
+//   //
+//   QB.createSession({login: user.login, password: user.pass}, function(err, res) {
 
-    console.log(user.login);
-    if (res) {
-      // save session token
-      token = res.token;
+//     console.log(user.login);
+//     if (res) {
+//       // save session token
+//       token = res.token;
 
-      user.id = res.user_id;
-      mergeUsers([{user: user}]);
+//       user.id = res.user_id;
+//       mergeUsers([{user: user}]);
 
-      QB.chat.connect({userId: user.id, password: user.pass}, function(err, roster) {
-        if (err) {
-          console.log(err);
-        } else {
-          console.log(roster);
+//       QB.chat.connect({userId: user.id, password: user.pass}, function(err, roster) {
+//         if (err) {
+//           console.log(err);
+//         } else {
+//           console.log(roster);
 
-          // setup scroll stickerpipe module
-          //
-          setupStickerPipe();
+//           // setup scroll stickerpipe module
+//           //
+//           setupStickerPipe();
 
-          // load chat dialogs
-          //
-          retrieveChatDialogs();
+//           // load chat dialogs
+//           //
+//           retrieveChatDialogs();
 
-          // setup message listeners
-          //
-          setupAllListeners();
+//           // setup message listeners
+//           //
+//           setupAllListeners();
 
-          // setup scroll events handler
-          //
-          setupMsgScrollHandler();
-        }
-      });
-    }
-  });
-}
+//           // setup scroll events handler
+//           //
+//           setupMsgScrollHandler();
+//         }
+//       });
+//     }
+//   });
+// }
 
 function setupAllListeners() {
   QB.chat.onDisconnectedListener    = onDisconnectedListener;
