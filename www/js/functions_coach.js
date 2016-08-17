@@ -27,6 +27,12 @@ $(window).load(function(){
 		var objetivo = [ 'adelgazar','detox','bienestar','rendimiento' ];
 		var sex = ['Hombre','Mujer'];
 		var tipo_de_ingredientes = [ 'granosycereales', 'verduras', 'grasas', 'lacteos', 'proteinaanimal', 'leguminosas', 'nuecesysemillas', 'frutas', 'endulzantes', 'aderezosycondimentos', 'superfoods', 'liquidos'];
+
+
+		if($('body').hasClass('has-home'))
+		{
+			
+		}
 		
 		/**
 		 *
