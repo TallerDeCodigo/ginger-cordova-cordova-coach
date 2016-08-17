@@ -14,7 +14,7 @@
 			/* Initialize API request handler */
 			window.apiRH = new requestHandlerAPI().construct(app);
 
-			console.log('token');
+			//console.log('token');
 			
 			var is_login = apiRH.has_token();
 
@@ -22,7 +22,7 @@
 
 			var is_current = localStorage.getItem('valido');
 
-			console.log(is_login);
+			//console.log(is_login);
 
 			/* IMPORTANT to set requests to be syncronous */
 			/* TODO test all requests without the following code 'cause of deprecation */
@@ -40,7 +40,7 @@
 
 			if(is_login){
 				
-				console.log('You okay, now you can start making calls');
+				//console.log('You okay, now you can start making calls');
 				/* Take the user to it's timeline */
 
 				var is_home = window.is_home;

@@ -29,6 +29,8 @@ function connectToChat(user) {
   // Create session and connect to chat
   //
   QB.createSession({login: user.login, password: user.pass}, function(err, res) {
+
+    console.log(user.login);
     if (res) {
       // save session token
       token = res.token;

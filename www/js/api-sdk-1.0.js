@@ -4,9 +4,9 @@
  */
 
 if (localStorage) {
-	console.log("Local storage supported");
+	//console.log("Local storage supported");
 } else {
-  console.log("Local storage not supported");
+  //console.log("Local storage not supported");
 }
 
 /* 
@@ -45,7 +45,7 @@ function requestHandlerAPI(){
 	this.ls = window.localStorage;
 	/* Constructor */
 	this.construct = function(app_context){
-					console.log('Initialized ginger api-sdk1.0');
+					//console.log('Initialized ginger api-sdk1.0');
 					if(this.ls.getItem('request_token')) this.token = this.ls.getItem('request_token');
 					sdk_app_context = app_context;
 					/* For chaining purposes ::) */
@@ -405,11 +405,11 @@ function requestHandlerAPI(){
 					'Content-Type': 'application/json'
 				}
 			}
-			console.log(req);
+			//console.log(req);
 
 			var response = this.getRequest('tables/cliente/?coach=' + localStorage.getItem('userId'), req);
 
-			console.log("Request Data Clientes");
+			//console.log("Request Data Clientes");
 
 			//console.log(response);  //llega aqui con la respuesta del servidor
 

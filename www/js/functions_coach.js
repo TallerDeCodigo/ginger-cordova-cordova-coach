@@ -4,8 +4,6 @@ $( function() {
 		console.log("has class");
 	  	$( ".accordion" ).accordion({collapsible:true,active:false,animate:300,heightStyle:"content"});
 	  	$( ".accordion1" ).accordion({collapsible:true,active:false,animate:200,heightStyle:"content"});
-	}else{
-		console.log("no has class");
 	}
 });//end function 
 
@@ -77,7 +75,11 @@ $(window).load(function(){
 		if($('body').hasClass('has-user') ){
 
 			var item = localStorage.getItem('user-selected');
-			var user = JSON.parse(item)
+			//console.log(item);
+
+			var user = JSON.parse(item);
+			//console.log(user);
+
 			var fecha = new Date();
 
 			console.log(user.perfil.fechaNacimiento + '::::' + fecha.toString());
@@ -831,9 +833,45 @@ $(window).load(function(){
 			$(this).addClass('active');
 		});
 
+
+if($('body').hasClass('has-chat-list') ){
+
 		$('.persona').click(function(){
+
+			var data_for_chat = $(this).attr('data');
+			//console.log(data_for_chat);
+
+			localStorage.setItem('usr_data_chat', data_for_chat);
+
+			data_for_chat = localStorage.getItem('usr_data_chat');
+			data_for_chat = JSON.parse(data_for_chat);
+
+			var _jid = data_for_chat.jid.slice(0,13);
+			var _id = data_for_chat._id;
+			var _nombre = data_for_chat.nombre;
+			var _apellido = data_for_chat.apellido;
+			var _chatPass = data_for_chat.chatPassword;
+			console.log(_jid+" "+_id+" "+_chatPass+" "+_nombre+" "+_apellido);
+
+			/*
+				GENERA UN USUARIO PARA EL CHAT
+			*/
+			var QBUser1 = {
+				id: _id,
+				name: _nombre,
+				login: _nombre,
+				pass: _chatPass
+			}
+
+			/*
+				hace la conexion al chat
+			*/
+			connectToChat(QBUser1);
+
+			
 			window.location.assign('chat.html');
 		});
+}
 
 		$('.usuario-item').click(function(){
 
