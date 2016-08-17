@@ -363,72 +363,61 @@ $(window).load(function(){
 
 				var dias = [];
 
+
+				//delete dieta.estructura['martes'];
+
+				console.log(dieta);
+
+				var arrDieta = dieta;
+
 				$.each( dieta.estructura, function( key, value ) {
 					// los dias de la semana
 					if(key=="domingo"){dia_prueba=1;} else if (key=="lunes") {dia_prueba=2;} else if (key=="martes") {dia_prueba=3;} else if (key=="miercoles") {dia_prueba=4;} else if (key=="jueves") {dia_prueba=5;} else if (key=="viernes") {dia_prueba=6;} else if (key=="sabado") {dia_prueba=7;}
+					
 					var estoyen = '#toda_la_dieta li:nth-of-type('+dia_prueba+') ';
-
+					
 					$.each( value, function( key, value ) {
 						// desayuno, snack, comida,...
 						var dentrode = estoyen+'.acc-content.'+key+' ';
+						
 						var i=1;
+
 						$.each( value, function( key, value ) {
 							// tiempos (1,2,3..)
+							// console.log(key + " :::: 0" +value);
 							var masadentro = dentrode+'div.platillo:nth-of-type('+i+')';
 							i++;	
 							$.each( value, function( key, value ) {
-								// opciones (a,b)
-								if ( key=="b" && localStorage.getItem("restricciones") ) {
-									// b
-									$.each( value, function( key, value ) {
-										// id_platillo, id_comentario
-										if (key=="platillo") {				
-											for (var i = 0; i < losplatos.length; i++) {
-												if (value==losplatos[i][0]) {
-													// console.log(losplatos[i][1]+"<"+losplatos[i][2]+"<"+losplatos[i][4]);
-													$(masadentro).attr("data", losplatos[i][0]);
-													$(masadentro+' h5').html(losplatos[i][1]);
-													if (losplatos[i][2]!="") {
-														$(masadentro+' p.receta').html(losplatos[i][2]);
-													} else {
-														$(masadentro+' p.receta').hide();
-													}
-													if (losplatos[i][4]!="") {
-														$(masadentro+' p.comentario').html(losplatos[i][4]);
-													} else {
-														$(masadentro+' p.comentario').hide();
-													}
+
+								$.each( value, function( key, value ) {
+									// id_platillo, id_comentario
+									// console.log(key + " :::: " +value);
+									if (key=="platillo") {
+										for (var i = 0; i < losplatos.length; i++) {
+											if (value==losplatos[i][0]) {
+												// console.log(losplatos[i][1]+"<"+losplatos[i][2]+"<"+losplatos[i][4]);
+
+												$(masadentro).attr("data", losplatos[i][0]);
+												
+												$(masadentro + ' nav svg').attr("data", JSON.stringify(losplatos[i]));
+
+												$(masadentro+' h5').html(losplatos[i][1]);
+												
+												if (losplatos[i][2]!="") {
+													$(masadentro+' p.receta').html(losplatos[i][2]);
+												} else {
+													$(masadentro+'p.receta').hide();
+												}
+												if (losplatos[i][4]!="") {
+													$(masadentro+' p.comentario').html(losplatos[i][4]);
+												} else {
+													$(masadentro+' p.comentario').hide();
 												}
 											}
 										}
+									}
 
-									});
-								} else {
-									// a
-									$.each( value, function( key, value ) {
-										// id_platillo, id_comentario
-										if (key=="platillo") {
-											for (var i = 0; i < losplatos.length; i++) {
-												if (value==losplatos[i][0]) {
-													// console.log(losplatos[i][1]+"<"+losplatos[i][2]+"<"+losplatos[i][4]);
-													$(masadentro).attr("data", losplatos[i][0]);
-													$(masadentro+' h5').html(losplatos[i][1]);
-													if (losplatos[i][2]!="") {
-														$(masadentro+' p.receta').html(losplatos[i][2]);
-													} else {
-														$(masadentro+'p.receta').hide();
-													}
-													if (losplatos[i][4]!="") {
-														$(masadentro+' p.comentario').html(losplatos[i][4]);
-													} else {
-														$(masadentro+' p.comentario').hide();
-													}
-												}
-											}
-										}
-
-									});
-								}
+								});	
 
 							});
 						});
@@ -441,10 +430,21 @@ $(window).load(function(){
 				    }
 				});
 
+				$('.delete').click(function (e) {
+					var pdel = $(this).attr('data');
+					console.log('here ' + $(this).attr('data') );
+					//delete dieta.estructura[pdel];
+					console.log(arrDieta);
+				});
+
 			}	
 		}
 
-
+		////////////////////////////////////////////////////////////
+		//
+		//  PLATILLOS FUNCTIONS
+		//
+		////////////////////////////////////////////////////////////		
 
 
 		if($('body').hasClass('has-dishes') ){
@@ -478,11 +478,17 @@ $(window).load(function(){
 				var i = 0;
 				$('.list-dish').html('');
 				$.each(responsedata, function( key, value ) {
-					$('.list-dish').append('<li class="platillo-item"><h2>' + dish[i].descripcion + '</h2><p>' + dish[i].receta + '</p></li>');	
+					$('.list-dish').append('<li class="platillo-item" data="' + dish[i] + '"><h2>' + dish[i].descripcion + '</h2><p>' + dish[i].receta + '</p></li>');	
 
 					i++;	
 
 				});
+			});
+
+			$('.add').click(function () {
+				
+				localStorage.setItem('dishSelected', '');
+
 			});
 
 		}
@@ -490,16 +496,25 @@ $(window).load(function(){
 
 		if($('body').hasClass('has-create-platillo')){
 
+			var arrIngredientes;
+
 			$('add').click(function () {
+				
 				var is_public 		= $('').attr('');
-				var is_name 		= $('name_platillo').val();
-				var is_receta 		= $('').attr('');
-				var is_comentarios 	= $('').attr('');
-				var is_ingredients 	= $('').attr('');	
+				var has_name 		= $('textarea#descripcion').val();
+				var has_receta 		= $('textarea#receta').val();
+				var has_comentarios 	= $('textarea#comentario').val();
+				var has_ingredients 	= '';
 
 				var json = {
-
-				}
+					"descripcion" : has_name,
+					"receta" : has_receta,
+					"coach" : localStorage.getItem('userId'),
+					"autorizado" : 0,
+					"publico" : is_public,
+					"comentarios" : has_comentarios,
+					"ingredientes" : arrIngredientes 
+				};
 
 				var response = apiRH.newDish(json);
 
@@ -546,7 +561,6 @@ $(window).load(function(){
 
 			});
 		}
-
 
 /*
 	CREAR INGREDIENTES
@@ -794,10 +808,6 @@ $(window).load(function(){
 
 		    return amount_parts.join('.');
 		}
-
-		$('#enviar_login').click(function(){
-
-		});
 
 		$(".acc-selector").click(function(){
 			if ($(this).hasClass('ui-state-active')) {
