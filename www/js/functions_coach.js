@@ -294,6 +294,7 @@ $(window).load(function(){
 
 			var dieta = app.get_diet('?_id='+ localStorage.getItem('dOperator'));
 			console.log('ID DIET: ' + dieta._id);
+
 			if(dieta){
 				var comm_id;
 				var platillo_id;
@@ -472,9 +473,9 @@ $(window).load(function(){
 
 				var responsedata = apiRH.listDishes(is_public);
 
-
-				$.each(dish, function( key, value ) {
-
+				var i = 0;
+				$('.list-dish').html('');
+				$.each(responsedata, function( key, value ) {
 					$('.list-dish').append('<li class="platillo-item"><h2>' + dish[i].descripcion + '</h2><p>' + dish[i].receta + '</p></li>');	
 
 					i++;	
