@@ -26,16 +26,15 @@ function connectToChat(user) {
 
   // Create session and connect to chat
   //
-  QB.createSession({login: user.login, password: user.pass}, function(err, res) {
+  QB.createSession({email: user.login, password: user.pass}, function(err, res) {
 
     console.log(user.login);
     console.log(user.pass);
     if (res) {
-      console.token(' aqui ');
       // save session token
       token = res.token;
 
-      console.token(' TOKEN ' + token);
+      console.log(' TOKEN ' + token);
       user.id = res.user_id;
       mergeUsers([{user: user}]);
 

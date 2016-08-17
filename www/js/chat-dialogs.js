@@ -30,6 +30,8 @@ function retrieveChatDialogs() {
       //
       var occupantsIds = [];
 
+      console.log(resDialogs);
+
       if(resDialogs.items.length === 0){
 
         // hide login form
