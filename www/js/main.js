@@ -44,12 +44,12 @@
 				/* Take the user to it's timeline */
 
 				var is_home = window.is_home;
-				var is_feed = window.is_feed;
+				
 
 				if(is_home){
 					return;
 				}else{
-					if(is_feed)
+					if(!is_home)
 						return;
 					else	
 						window.location.assign('index.html?filter_feed=all');
