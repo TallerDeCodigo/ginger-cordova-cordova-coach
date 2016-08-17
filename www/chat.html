@@ -18,42 +18,55 @@
 		<script type="text/javascript" src="js/oauth.js"></script>
 		<script src="js/main.js"></script>
 		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/quickblox/2.1.2/quickblox.min.js"></script>
+		<script type='text/javascript' src='js/plugins.js'></script>
+
 
 	</head>
 	<body>
-	<div id="container" class="chat">
-		<header class="hwhite2">
-			<div class="toolbar">
-				<a class="back"><img src="images/back.svg"></a>
-				<h2 class="titulo">María Medina</h2>
-				<!-- <a class="add">Guardar</a> -->
-			</div>
-		</header>
-		<section>
-			<div class="incoming">
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi tincidunt purus non nulla euismod lobortis.</p>
-			</div>
-			<div class="outgoing">
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi tincidunt purus non nulla euismod lobortis. Pellentesque fermentum tortor vitae mauris rhoncus viverra. Proin egestas diam quis ex tincidunt suscipit.</p>
-			</div>
-			<div class="incoming withimg">
-				<img src="images/muestra.png">
-			</div>
-			<div class="outgoing">
-				<p>Lorem ipsum dolor sit amet</p>
-			</div>
-			<div class="incoming">
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi tincidunt purus non nulla euismod lobortis.</p>
-			</div>
-		</section>
-		<footer class="foot-chat">
-			<a href="#" class="attach"><img src="images/attach.svg"></a>
-			<textarea id="mensaje-chat" rows="1" onfocus="if(this.innerHTML=='Mensaje') {this.innerHTML='';}">Mensaje</textarea>
-			<a class="send cpur" href="#">Enviar</a>
-		</footer>
-	</div>
-	<script type='text/javascript' src='js/plugins.js'></script>
-	<script src="js/chat-config.js"></script>
+
+		<div id="container" class="chat">
+			<header class="hwhite2">
+				<div class="toolbar">
+					<a href="lista-chat.html" class="back"><img src="images/back.svg"></a>
+					<h2 class="titulo">María Medina</h2>
+					<!-- <a class="add">Guardar</a> -->
+				</div>
+			</header>
+			<section>
+				<div class="incoming">
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi tincidunt purus non nulla euismod lobortis.</p>
+				</div>
+				<div class="outgoing">
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi tincidunt purus non nulla euismod lobortis. Pellentesque fermentum tortor vitae mauris rhoncus viverra. Proin egestas diam quis ex tincidunt suscipit.</p>
+				</div>
+				<div class="incoming withimg">
+					<img src="images/muestra.png">
+				</div>
+				<div class="outgoing">
+					<p>Lorem ipsum dolor sit amet</p>
+				</div>
+				<div class="incoming">
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi tincidunt purus non nulla euismod lobortis.</p>
+				</div>
+			</section>
+			<footer class="foot-chat">
+				<a href="#" class="attach"><img src="images/attach.svg"></a>
+				<textarea id="mensaje-chat" rows="1" onfocus="if(this.innerHTML=='Mensaje') {this.innerHTML='';}">Mensaje</textarea>
+				<a class="send cpur" href="#">Enviar</a>
+			</footer>
+		</div>
+		
 	</body>
+		<script type="text/javascript">
+			/* Initialize app object and perform initial login check */
+			window.is_home = false;
+			app.initialize();
+		</script>
+		<script src="js/chat-config.js"></script>
+		<script src="js/chat-connection.js"></script>
+		<script src="js/chat-messages.js"></script>
+		<script src="js/chat-ui-helpers.js"></script>
+		<script src="js/chat-dialogs.js"></script>
+		<script src="js/chat-users.js"></script>
 </html>
 

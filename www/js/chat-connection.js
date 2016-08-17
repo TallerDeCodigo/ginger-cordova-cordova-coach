@@ -4,8 +4,8 @@ var currentUser;
 
 $(document).ready(function() {
 
-  $("#loginForm").modal("show");
-  $('#loginForm .progress').hide();
+  //$("#loginForm").modal("show");
+  //$('#loginForm .progress').hide();
 
   // User1 login action
   //

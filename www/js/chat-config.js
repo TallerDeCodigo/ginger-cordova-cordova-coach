@@ -1,35 +1,68 @@
 console.log('<<<chat-config OK>>>');
+var i=0;
+
+var responsedata = apiRH.getUsuarios();
+console.log(responsedata);
+
+var user = responsedata;
+
+/*
+
+  LLENA LA LISTA DE USUARIOS EN LA LISTA DEL CHAT
+
+*/
+
+$.each(user, function(key, value){
+
+var JID = user[i].jid;
+
+console.log(  JID.splice() );
+
+  $('.lista_chat').append(' <li class="persona"><div class="circle-frame"><img src="images/muestra.png"></div><h5 data="'+ user[i].chatPassword +'">'+ user[i].nombre +'</h5><p>Comí de más y ahora tengo dolor en mi hígado.</p><div class="no-leido">12:06</div></li> ')
+  
+  i++;
+
+}); 
+
+
+
+
 var QBApp = {
-  appId: 28287,
-  authKey: 'XydaWcf8OO9xhGT',
-  authSecret: 'JZfqTspCvELAmnW'
+  appId: 20019,
+  authKey: 'wX-b8q-hSn3AArS',
+  authSecret: 'aCyMHpfYQNNZD8K'
 };
 
-var config = {
-  chatProtocol: {
-    active: 2
-  },
-  debug: {
-    mode: 1,
-    file: null
-  },
-  stickerpipe: {
-    elId: 'stickers_btn',
 
-    apiKey: '847b82c49db21ecec88c510e377b452c',
+// Stickerpipe plugin en desuso
 
-    enableEmojiTab: false,
-    enableHistoryTab: true,
-    enableStoreTab: true,
 
-    userId: null,
+// var config = {
+//   chatProtocol: {
+//     active: 2
+//   },
+//   debug: {
+//     mode: 1,
+//     file: null
+//   },
+//   stickerpipe: {
+//     elId: 'stickers_btn',
 
-    priceB: '0.99 $',
-    priceC: '1.99 $'
-  }
-};
+//     apiKey: '847b82c49db21ecec88c510e377b452c',
 
-var QBUser1 = {
+//     enableEmojiTab: false,
+//     enableHistoryTab: true,
+//     enableStoreTab: true,
+
+//     userId: null,
+
+//     priceB: '0.99 $',
+//     priceC: '1.99 $'
+//   }
+// };
+                  /*Debe recibir el id del usuario, su login pass y su login user*/
+
+var QBUser = {
         id: 6729114,
         name: 'quickuser',
         login: 'chatusr11',
@@ -42,4 +75,4 @@ var QBUser1 = {
         pass: 'chatusr22'
     };
 
-QB.init(QBApp.appId, QBApp.authKey, QBApp.authSecret, config);
+QB.init(QBApp.appId, QBApp.authKey, QBApp.authSecret/*, config*/);
