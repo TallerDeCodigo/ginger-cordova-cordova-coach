@@ -35,67 +35,10 @@ var QBApp = {
   DECLARA USUARIOS
 */
 
-var QBUser = {
-        id: 2418124,
-        name: 'xxxxxx',
-        login: '2418124',
-        pass: '7eveGyxJBkRMwEe1FSEG'
-    },
-    QBUser2 = {
-        id: 6729119,
-        name: 'bloxuser',
-        login: 'chatusr22',
-        pass: 'chatusr22'
-    };
-
 QB.init(QBApp.appId, QBApp.authKey, QBApp.authSecret, config);
 
 
-function connectToChat() {
- 
-  // Create session and connect to chat
-  //
 
-  console.log('here');
-  
-  QB.createSession({login: "michelleronaym@gmail.com", password: "7eveGyxJBkRMwEe1FSEG"}, function(err, res) {
-    
-  console.log('Error ' + res);
-    if (res) {
-      // save session token
-
-
-      token = res.token;
-
-      user.id = res.user_id;
-      mergeUsers([{user: user}]);
-
-      QB.chat.connect({userId: "michelleronaym@gmail.com", password: '7eveGyxJBkRMwEe1FSEG'}, function(err, roster) {
-        if (err) {
-          console.log(err);
-        } else {
-          console.log('Error: ' + roster);
-
-          // // setup scroll stickerpipe module
-          // //
-          // setupStickerPipe();
-
-          // // load chat dialogs
-          // //
-          // retrieveChatDialogs();
-
-          // // setup message listeners
-          // //
-          // setupAllListeners();
-
-          // // setup scroll events handler
-          // //
-          // setupMsgScrollHandler();
-        }
-      });
-    }
-  });
-}
 
 // Stickerpipe plugin en desuso
 
