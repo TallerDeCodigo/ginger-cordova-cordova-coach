@@ -555,10 +555,12 @@ $(window).load(function(){
 			var category = -1;
 			var tipo = -1;	
 			var medida = -1;
+			
 			$('.add').click(function(){
 				console.log('add ingrediente');
-				i_nombre = $('input[name="name_ingrediente"]').val();
-
+				
+				i_nombre 	= $('input[name="name_ingrediente"]').val();
+				
 				if(i_nombre.length < 2) 
 					return;
 				if(category == -1) 
@@ -573,11 +575,11 @@ $(window).load(function(){
 				json = {	
 					"nombre" : i_nombre,
 					"categoria" : category,
-					"tipo" 	 : i_nombre,
+					"tipo" 	 : tipo,
 					"contable" : medida
 				};
 
-				apiRH.newIngredient(json);
+				var response = apiRH.newIngredient(json);
 
 				if(response){
 					alert(response);
@@ -592,16 +594,22 @@ $(window).load(function(){
 
 			$('.ing-category').click(function(){
 				category = $(this).attr('value');
+				console.log(category);
 			});
 
 			$('.btn-state').click(function(){
 				$('.btn-state').removeClass('active');
-				tipo = $(this).addClass('active');
+				$(this).addClass('active');
+				tipo = $(this).attr('data');
+				console.log(tipo);
 			});
 
 			$('.siono').click(function(){
 				$('.siono').removeClass('active');
-				medida = $(this).addClass('active');
+				$(this).addClass('active');
+
+				medida = $(this).attr('data');
+				console.log(medida);
 			});
 
 		}//end if has Class

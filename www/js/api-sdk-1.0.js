@@ -385,7 +385,7 @@ function requestHandlerAPI(){
 
 			console.log("Request Data Ingredients");
 
-			console.log(response);  //llega aqui con la respuesta del servidor
+			console.log('API RESPONSE: ' + response);  //llega aqui con la respuesta del servidor
 
 			return (response) ? response : false;
 		 };
