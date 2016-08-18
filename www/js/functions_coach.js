@@ -846,17 +846,15 @@ $(window).load(function(){
 
 		if($('body').hasClass('has-chat-list') ){
 				
-				$('.persona').click(function(){
-					console.log('click');
-					window.location.assign('chat.html');
-				});
-
 				var user = { login : "michelleronaym@gmail.com", pass : "7eveGyxJBkRMwEe1FSEG"};
 				
 				connectToChat(user);
 
+				
 
 		}//end IF body has class
+
+		
 
 		$('.usuario-item').click(function(){
 

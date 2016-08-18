@@ -2,26 +2,6 @@
 
 var currentUser;
 
-$(document).ready(function() {
-
-  //$("#loginForm").modal("show");
-  //$('#loginForm .progress').hide();
-
-  // User1 login action
-  //
-  $('#user1').click(function() {
-    currentUser = QBUser;
-    //connectToChat(QBUser1);
-  });
-
-  // User2 login action
-  //
-  $('#user2').click(function() {
-    currentUser = QBUser;
-   // connectToChat(QBUser2);
-  });
-});
-
 function connectToChat(user) {
 
   console.log('llegando a connectToChat');
@@ -69,11 +49,11 @@ function connectToChat(user) {
 
           // setup message listeners
           //
-          //setupAllListeners();
+          setupAllListeners();
 
           // setup scroll events handler
           //
-         //setupMsgScrollHandler();
+          setupMsgScrollHandler();
         }
       });
     }
