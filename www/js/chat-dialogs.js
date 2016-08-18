@@ -61,18 +61,18 @@ function retrieveChatDialogs() {
       var message_time;
 
       $.each(resDialogs, function( key, value ){
-        console.log('for> '+resDialogs.items[i].last_message);
+        //console.log('for> '+resDialogs.items[i].last_message);
         
         var date_millis = resDialogs.items[i].last_message_date_sent;
         var secs = date_millis*1000;
         
         time = new Date(secs)
-        console.log(time);
+        //console.log(time);
         hours = time.getHours();
         minutes = time.getMinutes();
         message_time = hours+ ":"+minutes;
 
-        console.log(hours+ ":"+minutes);
+        //console.log(hours+ ":"+minutes);
           $('.lista_chat').append('<li class="persona"><div class="circle-frame"><img src="images/muestra.png"></div><h5>'+ resDialogs.items[i].name+'</h5><p>'+ resDialogs.items[i].last_message +'</p><div class="no-leido">'+message_time+'</div></li>');
 
         i++;

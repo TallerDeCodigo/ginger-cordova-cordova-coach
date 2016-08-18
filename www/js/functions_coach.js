@@ -845,16 +845,11 @@ $(window).load(function(){
 
 
 		if($('body').hasClass('has-chat-list') ){
-
-				$('.persona').on('click', function(){
+				
+				$('.persona').click(function(){
 					console.log('click');
 					window.location.assign('chat.html');
 				});
-
-				// $('.persona').click(function(){
-				// 	console.log('click');
-				// 	window.location.assign('chat.html');
-				// });
 
 				var user = { login : "michelleronaym@gmail.com", pass : "7eveGyxJBkRMwEe1FSEG"};
 				
