@@ -846,32 +846,22 @@ $(window).load(function(){
 
 		if($('body').hasClass('has-chat-list') ){
 
+				$('.persona').on('click', function(){
+					console.log('click');
+					window.location.assign('chat.html');
+				});
+
+				// $('.persona').click(function(){
+				// 	console.log('click');
+				// 	window.location.assign('chat.html');
+				// });
 
 				var user = { login : "michelleronaym@gmail.com", pass : "7eveGyxJBkRMwEe1FSEG"};
 				
 				connectToChat(user);
 
-				$('.persona').click(function(){
 
-					// var data_for_chat = $(this).attr('data');
-					// //console.log(data_for_chat);
-
-					// localStorage.setItem('usr_data_chat', data_for_chat);
-
-					// data_for_chat = localStorage.getItem('usr_data_chat');
-					// data_for_chat = JSON.parse(data_for_chat);
-
-					// var _jid = data_for_chat.jid.slice(0,13);
-					// var _id = data_for_chat._id;
-					// var _nombre = data_for_chat.nombre;
-					// var _apellido = data_for_chat.apellido;
-					// var _chatPass = data_for_chat.chatPassword;
-					// console.log(_jid+" "+_id+" "+_chatPass+" "+_nombre+" "+_apellido);
-
-				
-					window.location.assign('chat.html');
-				});
-		}
+		}//end IF body has class
 
 		$('.usuario-item').click(function(){
 

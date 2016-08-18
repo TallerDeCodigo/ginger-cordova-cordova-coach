@@ -45,20 +45,39 @@ function retrieveChatDialogs() {
     } else {
 
 
-      // '<li class="persona">
-      //   <div class="circle-frame">
-      //     <img src="images/muestra.png">
-      //   </div>
-      //   <h5>Myriam Blahblah</h5>
-      //   <p>Comí de más y ahora tengo dolor en mi hígado.</p>
-      //   <div class="no-leido">12:06</div>
-      // </li>'
 
       // repackage dialogs data and collect all occupants ids
       //
       var occupantsIds = [];
+      var i=0;
 
       console.log(resDialogs);
+      console.log(currentUser);
+
+      var nombre_del_usuario = 'usuario';
+      var time;
+      var hours;
+      var minutes;
+      var message_time;
+
+      $.each(resDialogs, function( key, value ){
+        console.log('for> '+resDialogs.items[i].last_message);
+        
+        var date_millis = resDialogs.items[i].last_message_date_sent;
+        var secs = date_millis*1000;
+        
+        time = new Date(secs)
+        console.log(time);
+        hours = time.getHours();
+        minutes = time.getMinutes();
+        message_time = hours+ ":"+minutes;
+
+        console.log(hours+ ":"+minutes);
+          $('.lista_chat').append('<li class="persona"><div class="circle-frame"><img src="images/muestra.png"></div><h5>'+ resDialogs.items[i].name+'</h5><p>'+ resDialogs.items[i].last_message +'</p><div class="no-leido">'+message_time+'</div></li>');
+
+        i++;
+
+      });
 
       if(resDialogs.items.length === 0){
 
