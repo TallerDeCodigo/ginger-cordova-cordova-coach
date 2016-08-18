@@ -25,7 +25,7 @@ function buildMessageHTML(messageText, messageSenderId, messageDateSent, attachm
 		// });
 	}
 
-  var messageHtml =
+  var messageHtml = 
 			'<div class="list-group-item" id="'+messageId+'" onclick="clickToAddMsg('+"'"+messageId+"'"+')">'+
 				'<time datetime="'+messageDateSent+ '" class="pull-right">'
 					+jQuery.timeago(messageDateSent)+
@@ -38,12 +38,13 @@ function buildMessageHTML(messageText, messageSenderId, messageDateSent, attachm
 				+delivered+read+
 			'</div>';
   return messageHtml;
+  
 }
 
 // build html for dialogs
 function buildDialogHtml(dialogId, dialogUnreadMessagesCount, dialogIcon, dialogName, dialogLastMessage) {
   var time = new Date();
-  
+
   // var UnreadMessagesCountShow = '<span class="badge">'+dialogUnreadMessagesCount+'</span>';
   // UnreadMessagesCountHide = '<span class="badge" style="display: none;">'+dialogUnreadMessagesCount+'</span>';
 
