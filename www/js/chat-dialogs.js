@@ -223,7 +223,7 @@ function triggerDialog(dialogId){
 
   $('#messages-list').scrollTop($('#messages-list').prop('scrollHeight'));
 
-  window.location.assign('chat.html');
+  
 }
 
 function setupUsersScrollHandler(){
