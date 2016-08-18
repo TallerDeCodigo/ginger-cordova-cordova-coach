@@ -5,7 +5,7 @@ function buildMessageHTML(messageText, messageSenderId, messageDateSent, attachm
       messageAttach = '<img src="http://api.quickblox.com/blobs/'+attachmentFileId+'/download.xml?token='+token+'" alt="attachment" class="attachments img-responsive" />';
   }
 
-	var isMessageSticker = stickerpipe.isSticker(messageText);
+	var isMessageSticker = ""; //stickerpipe.isSticker(messageText);
 
   var delivered = '<img class="icon-small" src="images/delivered.jpg" alt="" id="delivered_'+messageId+'">';
   var read = '<img class="icon-small" src="images/read.jpg" alt="" id="read_'+messageId+'">';
@@ -16,13 +16,13 @@ function buildMessageHTML(messageText, messageSenderId, messageDateSent, attachm
 	} else if (isMessageSticker) {
 		messageTextHtml = '<div class="message-sticker-container"></div>';
 
-		stickerpipe.parseStickerFromText(messageText, function(sticker, isAsync) {
-			if (isAsync) {
-				$('#' + messageId + ' .message-sticker-container').html(sticker.html);
-			} else {
-				messageTextHtml = sticker.html;
-			}
-		});
+		// stickerpipe.parseStickerFromText(messageText, function(sticker, isAsync) {
+		// 	if (isAsync) {
+		// 		$('#' + messageId + ' .message-sticker-container').html(sticker.html);
+		// 	} else {
+		// 		messageTextHtml = sticker.html;
+		// 	}
+		// });
 	}
 
   var messageHtml =
@@ -45,18 +45,10 @@ function buildDialogHtml(dialogId, dialogUnreadMessagesCount, dialogIcon, dialog
   var UnreadMessagesCountShow = '<span class="badge">'+dialogUnreadMessagesCount+'</span>';
       UnreadMessagesCountHide = '<span class="badge" style="display: none;">'+dialogUnreadMessagesCount+'</span>';
 
-  var isMessageSticker = stickerpipe.isSticker(dialogLastMessage);
+  var isMessageSticker = ""; //stickerpipe.isSticker(dialogLastMessage);
 
-  var dialogHtml =
-      '<a href="#" class="list-group-item inactive" id='+'"'+dialogId+'"'+' onclick="triggerDialog('+"'"+dialogId+"'"+')">'+
-                   (dialogUnreadMessagesCount === 0 ? UnreadMessagesCountHide : UnreadMessagesCountShow)+
-        '<h4 class="list-group-item-heading">'+ dialogIcon+'&nbsp;&nbsp;&nbsp;' +
-            '<span>'+dialogName+'</span>' +
-        '</h4>'+
-        '<p class="list-group-item-text last-message">'+
-            (dialogLastMessage === null ?  "" : (isMessageSticker ? 'Sticker' : dialogLastMessage))+
-        '</p>'+
-      '</a>';
+  var dialogHtml ='<a href="#" class="list-group-item inactive" id='+'"'+dialogId+'"'+' onclick="triggerDialog('+"'"+dialogId+"'"+')">'+(dialogUnreadMessagesCount === 0 ? UnreadMessagesCountHide : UnreadMessagesCountShow)+'<h4 class="list-group-item-heading">'+ dialogIcon+'&nbsp;&nbsp;&nbsp;' +'<span>'+dialogName+'</span>' +'</h4>'+'<p class="list-group-item-text last-message">'+(dialogLastMessage === null ?  "" : (isMessageSticker ? 'Sticker' : dialogLastMessage))+'</p>'+'</a>';
+  
   return dialogHtml;
 }
 

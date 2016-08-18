@@ -1,4 +1,4 @@
-
+console.log('<CHAT DIALOG JS>');
 var dialogs = {};
 
 function onSystemMessageListener(message) {
@@ -18,13 +18,41 @@ function onSystemMessageListener(message) {
   }
 }
 
+
+
+/*
+      <li class="persona">
+        <div class="circle-frame">
+          <img src="images/muestra.png">
+        </div>
+        <h5>Myriam Blahblah</h5>
+        <p>Comí de más y ahora tengo dolor en mi hígado.</p>
+        <div class="no-leido">12:06</div>
+      </li>
+
+*/
+
 function retrieveChatDialogs() {
   // get the chat dialogs list
   //
+
+  console.log("en retrieve chat dialogs");
+
+
   QB.chat.dialog.list(null, function(err, resDialogs) {
     if (err) {
       console.log(err);
     } else {
+
+
+      // '<li class="persona">
+      //   <div class="circle-frame">
+      //     <img src="images/muestra.png">
+      //   </div>
+      //   <h5>Myriam Blahblah</h5>
+      //   <p>Comí de más y ahora tengo dolor en mi hígado.</p>
+      //   <div class="no-leido">12:06</div>
+      // </li>'
 
       // repackage dialogs data and collect all occupants ids
       //
@@ -35,7 +63,7 @@ function retrieveChatDialogs() {
       if(resDialogs.items.length === 0){
 
         // hide login form
-        $("#loginForm").modal("hide");
+        //$("#loginForm").modal("hide");
 
         // setup attachments button handler
         //
@@ -81,7 +109,7 @@ function retrieveChatDialogs() {
         triggerDialog(resDialogs.items[0]._id);
 
         // hide login form
-        $("#loginForm").modal("hide");
+        //$("#loginForm").modal("hide");
 
         // setup attachments button handler
         //
@@ -118,9 +146,11 @@ function showOrUpdateDialogInUI(itemRes, updateHtml) {
   	$('#dialogs-list').prepend(updatedDialogHtml);
   	$('.list-group-item.active .badge').text(0).hide(0);
 	} else {
+
     var dialogHtml = buildDialogHtml(dialogId, dialogUnreadMessagesCount, dialogIcon, dialogName, dialogLastMessage);
     $('#dialogs-list').append(dialogHtml);
-	}
+	
+  }
 }
 
 // add photo to dialogs
@@ -203,7 +233,7 @@ function showUsers(userLogin, userId) {
 
 // show modal window with users
 function showNewDialogPopup() {
-  $("#add_new_dialog").modal("show");
+  //$("#add_new_dialog").modal("show");
   $('#add_new_dialog .progress').hide();
 
   // get and show users
@@ -238,7 +268,7 @@ function createNewDialog() {
     usersNames[index] = $(this).text();
   });
 
-  $("#add_new_dialog").modal("hide");
+  //$("#add_new_dialog").modal("hide");
   $('#add_new_dialog .progress').show();
 
   var dialogName;
@@ -280,7 +310,7 @@ function createNewDialog() {
 
       currentDialog = createdDialog;
 
-      joinToNewDialogAndShow(createdDialog);
+      joinToNewDialogAndShow(createdDialog);    //create dialog es un itemDialog
 
       notifyOccupants(createdDialog.occupants_ids, createdDialog._id, 1);
 
@@ -402,7 +432,7 @@ function getAndUpdateDialog(updatedDialogId) {
 
 // show modal window with dialog's info
 function showDialogInfoPopup() {
-  $("#update_dialog").modal("show");
+  //$("#update_dialog").modal("show");
   $('#update_dialog .progress').hide();
 
   // shwo current dialog's occupants
@@ -514,7 +544,7 @@ function onDialogUpdate() {
     }
   });
 
-  $("#update_dialog").modal("hide");
+  //$("#update_dialog").modal("hide");
   $('#dialog-name-input').val('');
   $('.users_form').removeClass("active");
 }
@@ -540,7 +570,7 @@ function onDialogDelete() {
       }
     });
 
-    $("#update_dialog").modal("hide");
+    //$("#update_dialog").modal("hide");
     $('#update_dialog .progress').show();
   }
 }

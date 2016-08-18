@@ -849,8 +849,8 @@ $(window).load(function(){
 
 				var user = { login : "michelleronaym@gmail.com", pass : "7eveGyxJBkRMwEe1FSEG"};
 				
-
 				connectToChat(user);
+
 				$('.persona').click(function(){
 
 					// var data_for_chat = $(this).attr('data');
