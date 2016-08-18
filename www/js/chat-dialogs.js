@@ -157,7 +157,7 @@ function showOrUpdateDialogInUI(itemRes, updateHtml) {
   if (dialogType == 3) {
     opponentId    = QB.chat.helpers.getRecipientId(itemRes.occupants_ids, currentUser.id);
     opponentLogin = getUserLoginById(opponentId);
-    dialogName    = 'Dialog with ' + opponentLogin;
+    dialogName    = dialogName;
   }
 
   if (updateHtml === true) {
@@ -357,7 +357,7 @@ function joinToNewDialogAndShow(itemDialog) {
   } else {
     opponentId = QB.chat.helpers.getRecipientId(itemDialog.occupants_ids, currentUser.id);
     opponentLogin = getUserLoginById(opponentId);
-    dialogName = chatName = 'Dialog with ' + opponentLogin;
+    dialogName = chatName = 'Dialog -  with ' + dialogName;
   }
 
   // show it
