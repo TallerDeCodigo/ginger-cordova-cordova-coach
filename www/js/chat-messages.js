@@ -72,9 +72,11 @@ function onReadStatusListener(messageId) {
 }
 
 function retrieveChatMessages(dialog, beforeDateSent){
+
+  console.log('retrieveChatMessages');
   // Load messages history
   //
-  $(".load-msg").show(0);
+  //$(".load-msg").show(0);
 
   var params = {chat_dialog_id: dialog._id,
                      sort_desc: 'date_sent',
@@ -84,7 +86,11 @@ function retrieveChatMessages(dialog, beforeDateSent){
   if(beforeDateSent !== null){
     params.date_sent = {lt: beforeDateSent};
   }else{
+
+    console.log('BEFORE DATE SENT IS NOT NULL');
+    
     currentDialog = dialog;
+    //console.log(currentDialog);
     dialogsMessages = [];
   }
 
@@ -96,11 +102,14 @@ function retrieveChatMessages(dialog, beforeDateSent){
       if(messages.items.length === 0) {
         $("#no-messages-label").removeClass('hide');
       } else {
+
+        console.log('tiene mensajes');
         $("#no-messages-label").addClass('hide');
 
         messages.items.forEach(function(item, i, arr) {
 
-          dialogsMessages.splice(0, 0, item);
+          dialogsMessages.splice(0, 0, item); //esta vacio
+          //console.log(dialogsMessages.splice(0, 0, item));
 
           var messageId = item._id;
           var messageText = item.message;

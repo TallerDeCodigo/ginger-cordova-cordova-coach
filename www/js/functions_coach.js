@@ -24,7 +24,6 @@ $(window).load(function(){
 		var restricciones 	= [ 'Huevos', 'Pollo', 'Pescado', 'Mariscos', 'Lacteos', 'Carne' ];
 		var objetivo 		= [ 'adelgazar','detox','bienestar','rendimiento' ];
 		var sex 			= ['Hombre','Mujer'];
-
 		var tipo_de_ingredientes = [ 'granosycereales', 'verduras', 'grasas', 'lacteos', 'proteinaanimal', 'leguminosas', 'nuecesysemillas', 'frutas', 'endulzantes', 'aderezosycondimentos', 'superfoods', 'liquidos'];
 
 
@@ -845,6 +844,7 @@ $(window).load(function(){
 
 
 		if($('body').hasClass('has-chat-list') ){
+			console.log(currentUser);
 				
 				var user = { login : "michelleronaym@gmail.com", pass : "7eveGyxJBkRMwEe1FSEG"};
 				

@@ -20,17 +20,12 @@ function onSystemMessageListener(message) {
 
 
 
-/*
-      <li class="persona">
-        <div class="circle-frame">
-          <img src="images/muestra.png">
-        </div>
-        <h5>Myriam Blahblah</h5>
-        <p>Comí de más y ahora tengo dolor en mi hígado.</p>
-        <div class="no-leido">12:06</div>
-      </li>
 
+
+/*
+  RETRIEVE CHAT DIALOGS
 */
+
 
 function retrieveChatDialogs() {
   // get the chat dialogs list
@@ -43,25 +38,21 @@ function retrieveChatDialogs() {
     if (err) {
       console.log(err);
     } else {
-
-
-
       // repackage dialogs data and collect all occupants ids
-      //
       var occupantsIds = [];
       var i=0;
 
       console.log(resDialogs);
       console.log(currentUser);
 
-      var nombre_del_usuario = 'usuario';
+      var nombre_del_usuario = currentUser.id;
       var time;
       var hours;
       var minutes;
       var message_time;
 
       $.each(resDialogs, function( key, value ){
-        //console.log('for> '+resDialogs.items[i].last_message);
+        console.log('for> '+resDialogs.items[i].name);
         
         var date_millis = resDialogs.items[i].last_message_date_sent;
         var secs = date_millis*1000;
@@ -73,7 +64,7 @@ function retrieveChatDialogs() {
         message_time = hours+ ":"+minutes;
 
         //console.log(hours+ ":"+minutes);
-         // $('.lista_chat').append('<li class="persona"><div class="circle-frame"><img src="images/muestra.png"></div><h5>'+ resDialogs.items[i].name+'</h5><p>'+ resDialogs.items[i].last_message +'</p><div class="no-leido">'+message_time+'</div></li>');
+          //$('.lista_chat').append('<li class="persona"><div class="circle-frame"><img src="images/muestra.png"></div><h5>'+ resDialogs.items[i].name+'</h5><p>'+ resDialogs.items[i].last_message +'</p><div class="no-leido">'+message_time+'</div></li>');
 
         i++;
 
@@ -207,11 +198,15 @@ function updateDialogsList(dialogId, text){
   $('#'+dialogId+' .list-group-item-text').text(stickerpipe.isSticker(text) ? 'Sticker' : text);
 }
 
+
+
+
+
 // Choose dialog
 function triggerDialog(dialogId){
   console.log("Select a dialog with id: " + dialogId + ", name: " + dialogs[dialogId].name);
-
   // deselect
+
   var kids = $('#dialogs-list').children();
   kids.removeClass('active').addClass('inactive');
 
@@ -227,6 +222,8 @@ function triggerDialog(dialogId){
   retrieveChatMessages(dialogs[dialogId], null);
 
   $('#messages-list').scrollTop($('#messages-list').prop('scrollHeight'));
+
+  //window.location.assign('chat.html');
 }
 
 function setupUsersScrollHandler(){

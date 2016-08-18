@@ -45,8 +45,6 @@ function connectToChat(user) {
           //
           retrieveChatDialogs();
 
-          functiontest();
-
           // setup message listeners
           //
           setupAllListeners();
