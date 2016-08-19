@@ -122,7 +122,7 @@ function retrieveChatMessages(dialog, beforeDateSent){
           var messageSenderLogin = getUserLoginById(messageSenderId);
           console.log(messageSenderLogin);
 
-          
+
           // send read status
           if (item.read_ids.indexOf(currentUser.id) === -1) {
             sendReadStatus(messageSenderId, messageId, currentDialog._id);
@@ -197,7 +197,7 @@ function clickSendAttachments(inputFile) {
 // send text or attachment
 function sendMessage(text, attachmentFileId) {
 
-  stickerpipe.onUserMessageSent(stickerpipe.isSticker(text));
+  // stickerpipe.onUserMessageSent(stickerpipe.isSticker(text));
 
   var msg = {
     type: currentDialog.type === 3 ? 'chat' : 'groupchat',
@@ -216,7 +216,7 @@ function sendMessage(text, attachmentFileId) {
     opponentId = QB.chat.helpers.getRecipientId(currentDialog.occupants_ids, currentUser.id);
     QB.chat.send(opponentId, msg);
 
-    $('.list-group-item.active .list-group-item-text').text(stickerpipe.isSticker(msg.body) ? 'Sticker' : msg.body);
+    //$('.list-group-item.active .list-group-item-text').text(stickerpipe.isSticker(msg.body) ? 'Sticker' : msg.body);
 
     if(attachmentFileId === null){
       showMessage(currentUser.id, msg);
