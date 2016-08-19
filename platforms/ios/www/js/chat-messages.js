@@ -72,9 +72,11 @@ function onReadStatusListener(messageId) {
 }
 
 function retrieveChatMessages(dialog, beforeDateSent){
+
+  console.log('retrieveChatMessages');
   // Load messages history
   //
-  $(".load-msg").show(0);
+  //$(".load-msg").show(0);
 
   var params = {chat_dialog_id: dialog._id,
                      sort_desc: 'date_sent',
@@ -84,7 +86,11 @@ function retrieveChatMessages(dialog, beforeDateSent){
   if(beforeDateSent !== null){
     params.date_sent = {lt: beforeDateSent};
   }else{
+
+    console.log('BEFORE DATE SENT IS NOT NULL');
+    
     currentDialog = dialog;
+    //console.log(currentDialog);
     dialogsMessages = [];
   }
 
@@ -96,17 +102,26 @@ function retrieveChatMessages(dialog, beforeDateSent){
       if(messages.items.length === 0) {
         $("#no-messages-label").removeClass('hide');
       } else {
+
+        console.log('tiene mensajes');
         $("#no-messages-label").addClass('hide');
 
         messages.items.forEach(function(item, i, arr) {
 
-          dialogsMessages.splice(0, 0, item);
+          dialogsMessages.splice(0, 0, item); //esta vacio
+          //console.log(dialogsMessages.splice(0, 0, item));
+
+          console.log('>>>>' + JSON.stringify(item));
 
           var messageId = item._id;
           var messageText = item.message;
           var messageSenderId = item.sender_id;
+
+          console.log('idMensaje ' + messageSenderId);
           var messageDateSent = new Date(item.date_sent*1000);
           var messageSenderLogin = getUserLoginById(messageSenderId);
+          console.log(messageSenderLogin);
+
 
           // send read status
           if (item.read_ids.indexOf(currentUser.id) === -1) {
@@ -120,7 +135,7 @@ function retrieveChatMessages(dialog, beforeDateSent){
             }
           }
 
-          var messageHtml = buildMessageHTML(messageText, messageSenderLogin, messageDateSent, messageAttachmentFileId, messageId);
+          var messageHtml = buildMessageHTML(messageText, messageSenderId, messageDateSent, messageAttachmentFileId, messageId);
 
           $('#messages-list').prepend(messageHtml);
 
@@ -143,19 +158,22 @@ function retrieveChatMessages(dialog, beforeDateSent){
   });
 
   $(".load-msg").delay(100).fadeOut(500);
+  setTimeout(function(){ window.scrollTo(0,document.body.scrollHeight); }, 1);
+  
 }
 
 
 // sending messages after confirmation
 function clickSendMessage() {
-  var currentText = $('#message_text').val().trim();
+  var currentText = $('#mensaje-chat').val().trim();
   if (currentText.length === 0){
     return;
   }
 
-  $('#message_text').val('').focus();
+  $('#mensaje-chat').val('').focus();
 
   sendMessage(currentText, null);
+  window.scrollTo(0,document.body.scrollHeight);
 }
 
 function clickSendAttachments(inputFile) {
@@ -182,7 +200,7 @@ function clickSendAttachments(inputFile) {
 // send text or attachment
 function sendMessage(text, attachmentFileId) {
 
-  stickerpipe.onUserMessageSent(stickerpipe.isSticker(text));
+  // stickerpipe.onUserMessageSent(stickerpipe.isSticker(text));
 
   var msg = {
     type: currentDialog.type === 3 ? 'chat' : 'groupchat',
@@ -201,7 +219,7 @@ function sendMessage(text, attachmentFileId) {
     opponentId = QB.chat.helpers.getRecipientId(currentDialog.occupants_ids, currentUser.id);
     QB.chat.send(opponentId, msg);
 
-    $('.list-group-item.active .list-group-item-text').text(stickerpipe.isSticker(msg.body) ? 'Sticker' : msg.body);
+    //$('.list-group-item.active .list-group-item-text').text(stickerpipe.isSticker(msg.body) ? 'Sticker' : msg.body);
 
     if(attachmentFileId === null){
       showMessage(currentUser.id, msg);

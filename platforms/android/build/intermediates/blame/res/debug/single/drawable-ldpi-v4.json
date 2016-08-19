@@ -2,9 +2,5 @@
     {
         "merged": "/Users/HELA/Sites/ginger-cordova-cordova-coach/platforms/android/build/intermediates/res/merged/debug/drawable-ldpi-v4/icon.png",
         "source": "/Users/HELA/Sites/ginger-cordova-cordova-coach/platforms/android/res/drawable-ldpi/icon.png"
-    },
-    {
-        "merged": "/Users/HELA/Sites/ginger-cordova-cordova/platforms/android/build/intermediates/res/merged/debug/drawable-ldpi-v4/icon.png",
-        "source": "/Users/HELA/Sites/ginger-cordova-cordova/platforms/android/res/drawable-ldpi/icon.png"
     }
 ]

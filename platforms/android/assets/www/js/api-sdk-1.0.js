@@ -1189,6 +1189,8 @@ function requestHandlerAPI(){
 								app.toast("An error has occurred: " + error);
 							};
 
+
+
 							/*
 								IMPLEMENTACION DE LA CAMARA 
 							*/

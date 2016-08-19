@@ -13,20 +13,20 @@
 
 
 			// 1) Request background execution
-			cordova.plugins.backgroundMode.enable();
+			// cordova.plugins.backgroundMode.enable();
 
-			// 2) Now the app runs ins background but stays awake
-			cordova.plugins.backgroundMode.onactivate = function () {
-			    setInterval(function () {
-			        cordova.plugins.notification.badge.increase();
-			        cordova.plugins.backgroundMode.setDefaults({ color: 'FF0000' });
-			    }, 1000);
-			};
+			// // 2) Now the app runs ins background but stays awake
+			// cordova.plugins.backgroundMode.onactivate = function () {
+			//     setInterval(function () {
+			//         cordova.plugins.notification.badge.increase();
+			//         cordova.plugins.backgroundMode.setDefaults({ color: 'FF0000' });
+			//     }, 1000);
+			// };
 
-			// 3) App is back to foreground
-			cordova.plugins.backgroundMode.ondeactivate = function () {
-			    cordova.plugins.notification.badge.clear();
-			};
+			// // 3) App is back to foreground
+			// cordova.plugins.backgroundMode.ondeactivate = function () {
+			//     cordova.plugins.notification.badge.clear();
+			// };
 
 			this.bindEvents();
 			/* Initialize API request handler */

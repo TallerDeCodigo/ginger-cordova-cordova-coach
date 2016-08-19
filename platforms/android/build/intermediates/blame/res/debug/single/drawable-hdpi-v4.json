@@ -1,13 +1,5 @@
 [
     {
-        "merged": "/Users/HELA/Sites/ginger-cordova-cordova/platforms/android/build/intermediates/res/merged/debug/drawable-hdpi-v4/icon.png",
-        "source": "/Users/HELA/Sites/ginger-cordova-cordova/platforms/android/res/drawable-hdpi/icon.png"
-    },
-    {
-        "merged": "/Users/HELA/Sites/ginger-cordova-cordova/platforms/android/build/intermediates/res/merged/debug/drawable-hdpi-v4/ic_action_next_item.png",
-        "source": "/Users/HELA/Sites/ginger-cordova-cordova/platforms/android/res/drawable-hdpi/ic_action_next_item.png"
-    },
-    {
         "merged": "/Users/HELA/Sites/ginger-cordova-cordova-coach/platforms/android/build/intermediates/res/merged/debug/drawable-hdpi-v4/ic_action_next_item.png",
         "source": "/Users/HELA/Sites/ginger-cordova-cordova-coach/platforms/android/res/drawable-hdpi/ic_action_next_item.png"
     },
@@ -16,16 +8,8 @@
         "source": "/Users/HELA/Sites/ginger-cordova-cordova-coach/platforms/android/res/drawable-hdpi/icon.png"
     },
     {
-        "merged": "/Users/HELA/Sites/ginger-cordova-cordova/platforms/android/build/intermediates/res/merged/debug/drawable-hdpi-v4/ic_action_previous_item.png",
-        "source": "/Users/HELA/Sites/ginger-cordova-cordova/platforms/android/res/drawable-hdpi/ic_action_previous_item.png"
-    },
-    {
         "merged": "/Users/HELA/Sites/ginger-cordova-cordova-coach/platforms/android/build/intermediates/res/merged/debug/drawable-hdpi-v4/ic_action_previous_item.png",
         "source": "/Users/HELA/Sites/ginger-cordova-cordova-coach/platforms/android/res/drawable-hdpi/ic_action_previous_item.png"
-    },
-    {
-        "merged": "/Users/HELA/Sites/ginger-cordova-cordova/platforms/android/build/intermediates/res/merged/debug/drawable-hdpi-v4/ic_action_remove.png",
-        "source": "/Users/HELA/Sites/ginger-cordova-cordova/platforms/android/res/drawable-hdpi/ic_action_remove.png"
     },
     {
         "merged": "/Users/HELA/Sites/ginger-cordova-cordova-coach/platforms/android/build/intermediates/res/merged/debug/drawable-hdpi-v4/ic_action_remove.png",

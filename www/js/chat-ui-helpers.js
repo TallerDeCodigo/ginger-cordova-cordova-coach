@@ -42,6 +42,7 @@ function buildMessageHTML(messageText, messageSenderId, messageDateSent, attachm
 
   var sender = (localStorage.getItem('idSender') == messageSenderId)?'outgoing':'incoming';  
   console.log('Mensaje ID SENDER: ' + messageSenderId);
+  console.log( localStorage.getItem('idSender') );
   console.log(sender);
   var messageHtml = '<div class="list-group-item" id="'+messageId+'" onclick="clickToAddMsg('+"'"+messageId+"'"+')">'+
         '<div class="'+ sender +'">' +

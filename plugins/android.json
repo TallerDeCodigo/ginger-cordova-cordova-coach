@@ -10,6 +10,9 @@
         "com.oauthio.plugins.oauthio": {
             "PACKAGE_NAME": "org.ginger.app"
         },
+        "cordova-plugin-background-mode": {
+            "PACKAGE_NAME": "org.ginger.app"
+        },
         "cordova-plugin-camera": {
             "PACKAGE_NAME": "org.ginger.app"
         },
@@ -38,9 +41,6 @@
             "PACKAGE_NAME": "org.ginger.app"
         },
         "nl.x-services.plugins.toast": {
-            "PACKAGE_NAME": "org.ginger.app"
-        },
-        "cordova-plugin-background-mode": {
             "PACKAGE_NAME": "org.ginger.app"
         }
     },

@@ -154,12 +154,11 @@ section.menu {color:#FFF;font-size:110%;}
 #enviar_login{background:url(../images/enter.svg);background-position:center;background-repeat:no-repeat;outline:none;margin-top:30px;}
 
 /* CHAT */
-
 .foot-chat {position:fixed;background:#f5f1f0;width:100%;bottom:0px;padding:6px 70px 2px 40px;border-top:1px solid #CCC;}
 .foot-chat a {position:absolute;}
 .attach {left:10px;bottom:4px;}
 .attach img {width:22px;height:auto;}
-.send {right:4px;bottom:5px;height:27px;width:61px;line-height:27px;font-weight:700;}
+input.send {position:absolute;border-style:none; outline:none;background:none;right:4px;bottom:5px;height:27px;width:61px;line-height:27px;font-weight:700;}
 
 .foot-chat textarea {width:100%;resize:none;outline:none;border:1px solid #CCC;border-radius:3px;padding:4px 5px 1px;}
 
@@ -170,10 +169,11 @@ section.menu {color:#FFF;font-size:110%;}
 .incoming:not(.withimg) {border-bottom-left-radius:0px;}
 .outgoing:not(.withimg) {border-bottom-right-radius:0px;}
 .withimg {overflow:hidden;}
-.incoming p, .outgoing p {margin:0;padding:7px 11px 7px 11px;}
+.incoming p, .outgoing p {margin:0;padding:7px 11px 7px 11px;word-break: break-all;}
 .incoming img, .outgoing img {margin:0;width:100%;margin-bottom:-4px;}
 
 .chat section {padding-bottom:50px;}
+.content.list-group .list-group-item:last-of-type div{margin-bottom: 50px}
 
 /* DIETA */
 

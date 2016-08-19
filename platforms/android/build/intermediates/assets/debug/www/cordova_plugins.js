@@ -18,6 +18,23 @@ module.exports = [
         ]
     },
     {
+        "id": "cordova-plugin-device.device",
+        "file": "plugins/cordova-plugin-device/www/device.js",
+        "pluginId": "cordova-plugin-device",
+        "clobbers": [
+            "device"
+        ]
+    },
+    {
+        "id": "cordova-plugin-background-mode.BackgroundMode",
+        "file": "plugins/cordova-plugin-background-mode/www/background-mode.js",
+        "pluginId": "cordova-plugin-background-mode",
+        "clobbers": [
+            "cordova.plugins.backgroundMode",
+            "plugin.backgroundMode"
+        ]
+    },
+    {
         "id": "cordova-plugin-camera.Camera",
         "file": "plugins/cordova-plugin-camera/www/CameraConstants.js",
         "pluginId": "cordova-plugin-camera",
@@ -47,14 +64,6 @@ module.exports = [
         "pluginId": "cordova-plugin-camera",
         "clobbers": [
             "CameraPopoverHandle"
-        ]
-    },
-    {
-        "id": "cordova-plugin-device.device",
-        "file": "plugins/cordova-plugin-device/www/device.js",
-        "pluginId": "cordova-plugin-device",
-        "clobbers": [
-            "device"
         ]
     },
     {
@@ -280,15 +289,6 @@ module.exports = [
         "id": "nl.x-services.plugins.toast.tests",
         "file": "plugins/nl.x-services.plugins.toast/test/tests.js",
         "pluginId": "nl.x-services.plugins.toast"
-    },
-    {
-        "id": "cordova-plugin-background-mode.BackgroundMode",
-        "file": "plugins/cordova-plugin-background-mode/www/background-mode.js",
-        "pluginId": "cordova-plugin-background-mode",
-        "clobbers": [
-            "cordova.plugins.backgroundMode",
-            "plugin.backgroundMode"
-        ]
     }
 ];
 module.exports.metadata = 
@@ -296,17 +296,17 @@ module.exports.metadata =
 {
     "cordova-plugin-inappbrowser": "1.4.0",
     "com.oauthio.plugins.oauthio": "0.2.4",
+    "cordova-plugin-device": "1.1.2",
+    "cordova-plugin-background-mode": "0.6.6-dev",
     "cordova-plugin-compat": "1.0.0",
     "cordova-plugin-camera": "2.2.0",
     "cordova-plugin-console": "1.0.3",
-    "cordova-plugin-device": "1.1.2",
     "cordova-plugin-file": "4.2.0",
     "cordova-plugin-file-transfer": "1.5.1",
     "cordova-plugin-geolocation": "2.2.0",
     "cordova-plugin-splashscreen": "3.2.2",
     "cordova-plugin-whitelist": "1.2.2",
-    "nl.x-services.plugins.toast": "2.5.0",
-    "cordova-plugin-background-mode": "0.6.6-dev"
+    "nl.x-services.plugins.toast": "2.5.0"
 };
 // BOTTOM OF METADATA
 });

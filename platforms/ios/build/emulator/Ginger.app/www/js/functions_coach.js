@@ -24,7 +24,6 @@ $(window).load(function(){
 		var restricciones 	= [ 'Huevos', 'Pollo', 'Pescado', 'Mariscos', 'Lacteos', 'Carne' ];
 		var objetivo 		= [ 'adelgazar','detox','bienestar','rendimiento' ];
 		var sex 			= ['Hombre','Mujer'];
-
 		var tipo_de_ingredientes = [ 'granosycereales', 'verduras', 'grasas', 'lacteos', 'proteinaanimal', 'leguminosas', 'nuecesysemillas', 'frutas', 'endulzantes', 'aderezosycondimentos', 'superfoods', 'liquidos'];
 
 
@@ -226,6 +225,8 @@ $(window).load(function(){
 			});
 
 		}
+
+		
 
 		//has-create-diet
 		if($('body').hasClass('has-create-diet')){
@@ -844,44 +845,37 @@ $(window).load(function(){
 		});
 
 
-if($('body').hasClass('has-chat-list') ){
+		if($('body').hasClass('has-chat-list') ){
+				console.log(currentUser);
+				var userLog = JSON.parse(localStorage.getItem('user'));
 
-		$('.persona').click(function(){
 
-			var data_for_chat = $(this).attr('data');
-			//console.log(data_for_chat);
+				var user = { login : userLog.mail, pass : userLog.chatPassword};
+				
+				connectToChat(user);
 
-			localStorage.setItem('usr_data_chat', data_for_chat);
+				$('.attach').click(function(){
+					$('input[name="galeria"]').trigger('click');
 
-			data_for_chat = localStorage.getItem('usr_data_chat');
-			data_for_chat = JSON.parse(data_for_chat);
+				});
 
-			var _jid = data_for_chat.jid.slice(0,13);
-			var _id = data_for_chat._id;
-			var _nombre = data_for_chat.nombre;
-			var _apellido = data_for_chat.apellido;
-			var _chatPass = data_for_chat.chatPassword;
-			console.log(_jid+" "+_id+" "+_chatPass+" "+_nombre+" "+_apellido);
+				$('.list-gorup-item').click(function(){
+					$('#dialog-list').hide();$('.menu-bar').hide();$('.escribir').show();
+				});
 
-			/*
-				GENERA UN USUARIO PARA EL CHAT
-			*/
-			var QBUser1 = {
-				id: _id,
-				name: _nombre,
-				login: _nombre,
-				pass: _chatPass
-			}
+		}//end IF body has class
 
-			/*
-				hace la conexion al chat
-			*/
-			connectToChat(QBUser1);
+		if($('body').hasClass('has-chat-window')){
+			 console.log('Hey!!');
+			 // var user = { login : "michelleronaym@gmail.com", pass : "7eveGyxJBkRMwEe1FSEG"};
+				
+			 
 
-			
-			window.location.assign('chat.html');
-		});
-}
+			 //triggerDialog('579901eea0eb4770a9000019');
+
+		}
+
+		
 
 		$('.usuario-item').click(function(){
 

@@ -108,7 +108,7 @@ function retrieveChatMessages(dialog, beforeDateSent){
 
         messages.items.forEach(function(item, i, arr) {
 
-          dialogsMessages.splice(0, 0, item); //esta vacio
+          dialogsMessages.splice(0, 0, item); 
           //console.log(dialogsMessages.splice(0, 0, item));
 
           console.log('>>>>' + JSON.stringify(item));
@@ -120,6 +120,7 @@ function retrieveChatMessages(dialog, beforeDateSent){
           console.log('idMensaje ' + messageSenderId);
           var messageDateSent = new Date(item.date_sent*1000);
           var messageSenderLogin = getUserLoginById(messageSenderId);
+          console.log(messageSenderId);
           console.log(messageSenderLogin);
 
 
@@ -156,11 +157,10 @@ function retrieveChatMessages(dialog, beforeDateSent){
       console.log(err);
     }
   });
-
+  
   $(".load-msg").delay(100).fadeOut(500);
   setTimeout(function(){ window.scrollTo(0,document.body.scrollHeight); }, 1);
-  
-}
+}//end retrieveChatMessages
 
 
 // sending messages after confirmation
