@@ -158,19 +158,22 @@ function retrieveChatMessages(dialog, beforeDateSent){
   });
 
   $(".load-msg").delay(100).fadeOut(500);
+  setTimeout(function(){ window.scrollTo(0,document.body.scrollHeight); }, 1);
+  
 }
 
 
 // sending messages after confirmation
 function clickSendMessage() {
-  var currentText = $('#message_text').val().trim();
+  var currentText = $('#mensaje-chat').val().trim();
   if (currentText.length === 0){
     return;
   }
 
-  $('#message_text').val('').focus();
+  $('#mensaje-chat').val('').focus();
 
   sendMessage(currentText, null);
+  window.scrollTo(0,document.body.scrollHeight);
 }
 
 function clickSendAttachments(inputFile) {

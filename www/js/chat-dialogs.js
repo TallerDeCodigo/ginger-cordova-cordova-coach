@@ -113,7 +113,7 @@ function retrieveChatDialogs() {
 
         //  and trigger the 1st dialog
         //
-        triggerDialog(resDialogs.items[0]._id);
+        //triggerDialog(resDialogs.items[0]._id);
 
         // hide login form
         //$("#loginForm").modal("hide");
@@ -215,12 +215,15 @@ function triggerDialog(dialogId){
 
   $('#messages-list').html('');
 
+  $('#dialogs-list').hide();
+  $('.menu-bar').hide();
+  $('.escribir').show();
+
   // load chat history
   //
   retrieveChatMessages(dialogs[dialogId], null);
 
-  $('#messages-list').scrollTop($('#messages-list').prop('scrollHeight'));
-
+  //$('#messages-list').scrollTop($('#messages-list').prop('scrollHeight'));
   
 }
 

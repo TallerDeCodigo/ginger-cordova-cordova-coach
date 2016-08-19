@@ -226,6 +226,8 @@ $(window).load(function(){
 
 		}
 
+		
+
 		//has-create-diet
 		if($('body').hasClass('has-create-diet')){
 
@@ -852,7 +854,14 @@ $(window).load(function(){
 				
 				connectToChat(user);
 
-				
+				$('.attach').click(function(){
+					$('input[name="galeria"]').trigger('click');
+
+				});
+
+				$('.list-gorup-item').click(function(){
+					$('#dialog-list').hide();$('.menu-bar').hide();$('.escribir').show();
+				});
 
 		}//end IF body has class
 
