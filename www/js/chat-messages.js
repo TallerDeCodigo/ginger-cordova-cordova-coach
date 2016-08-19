@@ -111,14 +111,18 @@ function retrieveChatMessages(dialog, beforeDateSent){
           dialogsMessages.splice(0, 0, item); //esta vacio
           //console.log(dialogsMessages.splice(0, 0, item));
 
-          console.log('>>>>' + JSON.parse(item));
+          console.log('>>>>' + JSON.stringify(item));
 
           var messageId = item._id;
           var messageText = item.message;
           var messageSenderId = item.sender_id;
+
+          console.log('idMensaje ' + messageSenderId);
           var messageDateSent = new Date(item.date_sent*1000);
           var messageSenderLogin = getUserLoginById(messageSenderId);
+          console.log(messageSenderLogin);
 
+          
           // send read status
           if (item.read_ids.indexOf(currentUser.id) === -1) {
             sendReadStatus(messageSenderId, messageId, currentDialog._id);
@@ -131,7 +135,7 @@ function retrieveChatMessages(dialog, beforeDateSent){
             }
           }
 
-          var messageHtml = buildMessageHTML(messageText, messageSenderLogin, messageDateSent, messageAttachmentFileId, messageId);
+          var messageHtml = buildMessageHTML(messageText, messageSenderId, messageDateSent, messageAttachmentFileId, messageId);
 
           $('#messages-list').prepend(messageHtml);
 
