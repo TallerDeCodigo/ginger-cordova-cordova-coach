@@ -844,15 +844,27 @@ $(window).load(function(){
 
 
 		if($('body').hasClass('has-chat-list') ){
-			console.log(currentUser);
-				
-				var user = { login : "michelleronaym@gmail.com", pass : "7eveGyxJBkRMwEe1FSEG"};
+				console.log(currentUser);
+				var userLog = JSON.parse(localStorage.getItem('user'));
+
+
+				var user = { login : userLog.mail, pass : userLog.chatPassword};
 				
 				connectToChat(user);
 
 				
 
 		}//end IF body has class
+
+		if($('body').hasClass('has-chat-window')){
+			 console.log('Hey!!');
+			 // var user = { login : "michelleronaym@gmail.com", pass : "7eveGyxJBkRMwEe1FSEG"};
+				
+			 
+
+			 //triggerDialog('579901eea0eb4770a9000019');
+
+		}
 
 		
 

@@ -204,6 +204,7 @@ function updateDialogsList(dialogId, text){
 
 // Choose dialog
 function triggerDialog(dialogId){
+  
   console.log("Select a dialog with id: " + dialogId + ", name: " + dialogs[dialogId].name);
   // deselect
 
