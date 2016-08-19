@@ -19,9 +19,6 @@ function onSystemMessageListener(message) {
 }
 
 
-
-
-
 /*
   RETRIEVE CHAT DIALOGS
 */

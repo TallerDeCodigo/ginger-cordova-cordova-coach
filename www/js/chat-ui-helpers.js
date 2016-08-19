@@ -1,5 +1,6 @@
 // build html for messages
 function buildMessageHTML(messageText, messageSenderId, messageDateSent, attachmentFileId, messageId, status){
+
   var messageAttach;
   if(attachmentFileId){
       messageAttach = '<a href="http://api.quickblox.com/blobs/'+attachmentFileId+'/download.xml?token='+token+'"><img src="http://api.quickblox.com/blobs/'+attachmentFileId+'/download.xml?token='+token+'" alt="attachment" class="attachments img-responsive" /></a>';
@@ -25,18 +26,28 @@ function buildMessageHTML(messageText, messageSenderId, messageDateSent, attachm
 		// });
 	}
 
-  var messageHtml =
-			'<div class="list-group-item" id="'+messageId+'" onclick="clickToAddMsg('+"'"+messageId+"'"+')">'+
-				'<time datetime="'+messageDateSent+ '" class="pull-right">'
-					+jQuery.timeago(messageDateSent)+
-				'</time>'+
+    // var messageHtml =
+		// 	'<div class="list-group-item" id="'+messageId+'" onclick="clickToAddMsg('+"'"+messageId+"'"+')">'+
+		// 		'<time datetime="'+messageDateSent+ '" class="pull-right">'
+		// 			+jQuery.timeago(messageDateSent)+
+		// 		'</time>'+
 
-				'<h4 class="list-group-item-heading">'+messageSenderId+'</h4>'+
-				'<p class="list-group-item-text">'+
-					messageTextHtml +
-				'</p>'
-				+delivered+read+
-			'</div>';
+		// 		'<h4 class="list-group-item-heading">'+messageSenderId+'</h4>'+
+		// 		'<p class="list-group-item-text">'+
+		// 			messageTextHtml +
+		// 		'</p>'
+		// 		+delivered+read+
+		// 	'</div>';
+
+
+  var sender = (localStorage.getItem('idSender') == messageSenderId)?'outgoing':'incoming';  
+  console.log('Mensaje ID SENDER: ' + messageSenderId);
+  console.log(sender);
+  var messageHtml = '<div class="list-group-item" id="'+messageId+'" onclick="clickToAddMsg('+"'"+messageId+"'"+')">'+
+        '<div class="'+ sender +'">' +
+        '<p>' + messageTextHtml + '</p>'+
+        '</div>' + 
+        '</div>';
   return messageHtml;
 }
 

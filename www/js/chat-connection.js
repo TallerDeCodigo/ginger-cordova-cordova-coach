@@ -24,10 +24,15 @@ function connectToChat(user) {
       console.log(' TOKEN ' + token);
 
       user.id = res.user_id;
+
+      console.log('LOG ID: ' + user.id);
       mergeUsers([{user: user}]);
 
       QB.chat.connect({userId: user.id, password: user.pass}, function(err, roster) {
         console.log("id> "+user.id);
+
+        localStorage.setItem('idSender', user.id);
+
         console.log("id> "+user.pass);
         if (err) {
           console.log(err);

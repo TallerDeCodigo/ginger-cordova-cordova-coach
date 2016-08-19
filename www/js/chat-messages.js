@@ -111,6 +111,8 @@ function retrieveChatMessages(dialog, beforeDateSent){
           dialogsMessages.splice(0, 0, item); //esta vacio
           //console.log(dialogsMessages.splice(0, 0, item));
 
+          console.log('>>>>' + JSON.parse(item));
+
           var messageId = item._id;
           var messageText = item.message;
           var messageSenderId = item.sender_id;
